@@ -3,21 +3,26 @@
 
 
     
-    
-    
-    
   <url>
-    <loc>http://yoursite.com/2017/06/11/hello-world/</loc>
-    <lastmod>2017-06-11T10:04:00.670Z</lastmod>
+    <loc>http://yoursite.com/2017/06/29/1/</loc>
+    <lastmod>2017-06-29T10:18:40.058Z</lastmod>
     <data>
         <display>
-        <title>Hello World</title>
-        <pubTime>2017-06-11T10:04:00.658Z</pubTime>
+        <title>2017网络安全实验班选拔writeup</title>
+        <pubTime>2017-06-29T09:42:34.000Z</pubTime>
         
+        <tag>-writeup</tag>
+         
          
            
+             
+              <breadCrumb title="-writeup" url="http://yoursite.com/categories/writeup/"/>
+          
         </display>
     </data>
     </url>
 
+    
+    
+    
 </urlset>
