@@ -61,7 +61,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="-study," />
 
 
 
@@ -77,15 +77,17 @@
 
 
 
-<meta name="description" content="人难免天生有自怜的情绪，唯有时刻保持清醒，才能看清真正的价值在哪里。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lookup&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/2017/06/index.html">
+<meta name="description" content="本垃圾刚开始接触二进制，顺手做个摘录 #寄存器# ##32位寄存器## |EAX|累加器|accumulator(累加)| |EBX|基址寄存器|base(基本)| |ECX|计数器|counter(计算)| |EDX|数据寄存器|data(数据)| |ESI|源变址寄存器|source index(源)| |EDI|目的变址寄存器|destination index(目的)| |EBP|扩展基址">
+<meta name="keywords" content="-study">
+<meta property="og:type" content="article">
+<meta property="og:title" content="逆向之路1——汇编基础">
+<meta property="og:url" content="http://yoursite.com/2017/08/23/2/index.html">
 <meta property="og:site_name" content="Lookup&#39;s blog">
-<meta property="og:description" content="人难免天生有自怜的情绪，唯有时刻保持清醒，才能看清真正的价值在哪里。">
+<meta property="og:description" content="本垃圾刚开始接触二进制，顺手做个摘录 #寄存器# ##32位寄存器## |EAX|累加器|accumulator(累加)| |EBX|基址寄存器|base(基本)| |ECX|计数器|counter(计算)| |EDX|数据寄存器|data(数据)| |ESI|源变址寄存器|source index(源)| |EDI|目的变址寄存器|destination index(目的)| |EBP|扩展基址">
+<meta property="og:updated_time" content="2017-08-24T08:15:09.487Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lookup&#39;s blog">
-<meta name="twitter:description" content="人难免天生有自怜的情绪，唯有时刻保持清醒，才能看清真正的价值在哪里。">
+<meta name="twitter:title" content="逆向之路1——汇编基础">
+<meta name="twitter:description" content="本垃圾刚开始接触二进制，顺手做个摘录 #寄存器# ##32位寄存器## |EAX|累加器|accumulator(累加)| |EBX|基址寄存器|base(基本)| |ECX|计数器|counter(计算)| |EDX|数据寄存器|data(数据)| |ESI|源变址寄存器|source index(源)| |EDI|目的变址寄存器|destination index(目的)| |EBP|扩展基址">
 
 
 
@@ -103,7 +105,7 @@
   };
 </script>
 
-  <title> 归档 | Lookup's blog </title>
+  <title> 逆向之路1——汇编基础 | Lookup's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -124,7 +126,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -245,66 +247,201 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 2 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                逆向之路1——汇编基础
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-23T17:00:35+08:00" content="2017-08-23">
+              2017-08-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/study/" itemprop="url" rel="index">
+                    <span itemprop="name">-study</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <p><strong>本垃圾刚开始接触二进制，顺手做个摘录</strong></p>
+<p>#寄存器#</p>
+<p>##32位寄存器##</p>
+<p>|EAX|累加器|accumulator(累加)|</p>
+<p>|EBX|基址寄存器|base(基本)|</p>
+<p>|ECX|计数器|counter(计算)|</p>
+<p>|EDX|数据寄存器|data(数据)|</p>
+<p>|ESI|源变址寄存器|source index(源)|</p>
+<p>|EDI|目的变址寄存器|destination index(目的)|</p>
+<p>|EBP|扩展基址指针寄存器|base point(基址指针)</p>
+<p>|ESP|栈指针寄存器|stack point(栈指针)|</p>
+<p>|EIP|指令指针寄存器|instruction pointer(指令指针)|</p>
+<p>##标志寄存器##</p>
+<p><strong>好像这几个最重要</strong></p>
+<blockquote>
+<p>进位标志CF(Carry Flag):进位标志CF主要用来反映运算是否产生进位或借位。如果运算结果的最高位产生了一个进位或借位，那么，其值为1，否则其值为0。</p>
+<p>零标志ZF(Zero Flag):零标志ZF用来反映运算结果是否为0。如果运算结果为0，则其值为1，否则其值为0。在判断运算结果是否为0时，可使用此标志位。</p>
+<p>溢出标志OF(Overflow Flag):溢出标志OF用于反映有符号数加减运算所得结果是否溢出。如果运算结果超过当前运算位数所能表示的范围，则称为溢出，OF的值被置为1，否则，OF的值被清为0。</p>
+</blockquote>
+<p>#汇编命令#<br><strong>我将资料上面的直接摘录写来了。。。</strong></p>
+<p>##ADD (加)##<br>语法: ADD 被加数, 加数</p>
+<p>加法指令将一个数值加在一个寄存器上或者一个内存地址上。</p>
+<p>加法指令对ZF、OF、CF都会有影响。</p>
+<p>##AND (逻辑与)##<br>语法: AND 目标数, 原数</p>
+<p>AND运算对两个数进行逻辑与运算。</p>
+<p>AND指令会清空OF,CF标记，设置ZF标记。</p>
+<p>##CALL (调用)##<br>语法：CALL something<br>CALL指令将当前的相对地址(IP)压入栈中，并且调用CALL 后的子程序</p>
+<p>##CMP (比较)##<br>语法: CMP 目标数, 原数</p>
+<p>CMP指令比较两个值并且标记CF、OF、ZF</p>
+<p>##DEC (自减)##<br>语法: DEC something</p>
+<p>dec用来自减1，相当于c中的–</p>
+<p>dec指令可以标记ZF、OF</p>
+<p>##DIV (除)##</p>
+<p>语法: DIV 除数</p>
+<p>DIV指令用来将EAX除以除数(无符号除法)，被除数通常是EAX，结果也储存在EAX中，而被除数对除数取的模存在除数中。</p>
+<p>div指令可以标记CF、OF、ZF</p>
+<p>##INC (自加)##<br>语法: INC something</p>
+<p>INC同DEC相反，它是将值加1</p>
+<p>INC指令可以标记ZF、OF</p>
+<p>##JUMPS##</p>
+<p><code>JA*          -    如果大于就跳转(无符号)          - CF=0 and ZF=0</code></p>
+<p><code>JB*          -    如果小于就跳转(无符号)           - CF=1</code></p>
+<p><code>JE**         -    如果相等就跳转                - ZF=1</code></p>
+<p><code>JG*          -    如果大于就跳转(有符号)           - ZF=0 and SF=OF (SF = Sign Flag)</code></p>
+<p><code>JGE*         -    如果大于或等于就跳转(有符号)      - SF=OF</code></p>
+<p><code>JL*          -    如果小于就跳转(有符号)         - SF != OF (!= is not)</code></p>
+<p><code>JLE*         -    如果小于或等于就跳转(有符号   - ZF=1 and OF != OF</code></p>
+<p><code>JMP**        -    跳转                         - 强制跳转</code></p>
+<p><code>JNE**        -    如果不等于就跳转             - ZF=0</code></p>
+<p>##NOP (无操作)##<br>语法：NOP</p>
+<p>这个指令说明不做任何事<br>所以它在逆向中运用范围最广</p>
+<p>##POP##<br>语法：POP 目的地址</p>
+<p>POP指令将栈顶第一个字传送到目的地址。 每次POP后，ESP(栈指针寄存器)都会增加以指向新栈顶</p>
+<p>##PUSH##<br>语法：PUSH 值</p>
+<p>PUSH是POP的相反操作，它将一个值压入栈并且减小栈顶指针值以指向新栈顶。</p>
+<p>##RET (返回)##<br>语法：RET</p>
+<p>RET指令的功能是从一个代码区域中退出到调用CALL的指令处。</p>
+<p>##TEST##<br>语法：TEST 操作符、操作符<br>这个指令99%都是用于”TEST EAX, EAX”，它执行与AND相同的功能，但是并不储存数据。如果EAX=0就会标记ZF，如果EAX不是0，就会清空ZF</p>
+<p>##XOR##</p>
+<p>语法：XOR 目的数,源数</p>
+<p>XOR指令对两个数进行异或操作</p>
+<p>这个指令清空OF、CF，但会标记ZF</p>
+
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/study/" rel="tag">#-study</a>
+          
         </div>
       
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/29/1/" rel="next" title="2017网络安全实验班选拔writeup">
+                <i class="fa fa-chevron-left"></i> 2017网络安全实验班选拔writeup
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/06/29/1/" itemprop="url">
-              
-                <span itemprop="name">2017网络安全实验班选拔writeup</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-06-29T17:42:34+08:00"
-              content="2017-06-29" >
-          06-29
-        </time>
-      </div>
-
-    </header>
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -312,6 +449,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -333,8 +474,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -419,6 +569,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -515,11 +676,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   
