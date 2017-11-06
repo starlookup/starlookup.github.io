@@ -22,15 +22,4 @@
         <tag>-study</tag>
       </tags>
   </entry>
-  <entry>
-    <title><![CDATA[2017网络安全实验班选拔writeup]]></title>
-    <url>%2F2017%2F06%2F29%2F1%2F</url>
-    <content type="text"><![CDATA[先膜一遍前面的师傅，自己还是太垃圾，当时选拔没办法记录，所以都只是大概过程 挑战题Misc编程小练习我直接用记事本打开，通过记事本的功能找出4个字母为Ayke,唯一不爽的事，我以为是直接提交，结果发现一直不对，耽误很长时间后，用flag{Ayke}提交发现对了，一口老血 真有这么难用binwalk分析发现 其中有个flag.txt于是解压找出flag 网络007根据题目提示应该是个数据包，加个.pcap后缀，用wireshark打开，我突发奇想搜索关键字password运气比较好，发现传输了.png这个图片，于是我在搜索关键字找到这个图片 Web抽奖这题是陕西省网络空间安全技术大赛的原题，里面有个函数(function() { window.getFlag=function(text){ if(text==&#39;1&#39;){ alert(&quot;你最厉害啦!可惜没flag&quot;) } if(text==&#39;2&#39;){ alert(&quot;你太厉害了,竟然是二等奖&quot;) } if(text==&#39;3&#39;){ alert(&quot;你好厉害,三等奖啊&quot;) } if(text==&#39;flag&#39;){ alert(&quot;flag{951c712ac2c3e57053c43d80c0a9e543}&quot;) } if(text==&#39;0&#39;){ alert(&quot;再来一次吧&quot;) } } }) Web5刚开始真的没有头绪，于是无意搜索了一下robots.txt,结果有惊喜 于是复制路径得到看似很奇怪的东西，其实放在浏览器控制台跑一下就出来了 Crypt在各位师傅写脚本的时候解仿射密码题，由于本人没想到怎么写脚本，于是用手算的。。。可谓是非常搞笑了。。。]]></content>
-      <categories>
-        <category>-writeup</category>
-      </categories>
-      <tags>
-        <tag>-writeup</tag>
-      </tags>
-  </entry>
 </search>
