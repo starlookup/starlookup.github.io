@@ -4,19 +4,24 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/12/11/2/</loc>
-    <lastmod>2017-12-11T11:01:26.971Z</lastmod>
+    <loc>http://yoursite.com/2017/12/14/2/</loc>
+    <lastmod>2017-12-14T07:00:08.065Z</lastmod>
     <data>
         <display>
-        <title>《程序员的自我修养》读书笔记(一)</title>
-        <pubTime>2017-12-11T10:52:08.000Z</pubTime>
+        <title>《程序员的自我修养》读书笔记一</title>
+        <pubTime>2017-12-14T05:22:02.000Z</pubTime>
         
-        <tag>-reading</tag>
+        <tag>rading</tag>
+         
+        <tag>bin</tag>
          
          
            
              
-              <breadCrumb title="-reading" url="http://yoursite.com/categories/reading/"/>
+              <breadCrumb title="reading" url="http://yoursite.com/categories/reading/"/>
+          
+             
+              <breadCrumb title="bin" url="http://yoursite.com/categories/reading/bin/"/>
           
         </display>
     </data>
@@ -24,19 +29,24 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/09/30/3/</loc>
-    <lastmod>2017-12-11T11:00:08.746Z</lastmod>
+    <loc>http://yoursite.com/2016/01/16/3/</loc>
+    <lastmod>2017-12-14T07:00:06.577Z</lastmod>
     <data>
         <display>
-        <title>曾经的Freshyear</title>
-        <pubTime>2017-09-30T08:51:13.000Z</pubTime>
+        <title>致freshyear</title>
+        <pubTime>2016-01-16T05:58:41.000Z</pubTime>
         
-        <tag>-daily</tag>
+        <tag>daily</tag>
+         
+        <tag>随笔</tag>
          
          
            
              
-              <breadCrumb title="-daily" url="http://yoursite.com/categories/daily/"/>
+              <breadCrumb title="daily" url="http://yoursite.com/categories/daily/"/>
+          
+             
+              <breadCrumb title="随笔" url="http://yoursite.com/categories/daily/%E9%9A%8F%E7%AC%94/"/>
           
         </display>
     </data>

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>《程序员的自我修养》读书笔记一 | Lookup&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这本书还是因幡师傅推荐给我的，看到swing师傅blog里也写过这本书读书笔记，想想自己也来写一个吧">
+<meta name="keywords" content="rading,bin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《程序员的自我修养》读书笔记一">
+<meta property="og:url" content="http://yoursite.com/2017/12/14/2/index.html">
+<meta property="og:site_name" content="Lookup&#39;s blog">
+<meta property="og:description" content="这本书还是因幡师傅推荐给我的，看到swing师傅blog里也写过这本书读书笔记，想想自己也来写一个吧">
+<meta property="og:updated_time" content="2017-12-14T07:00:08.065Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《程序员的自我修养》读书笔记一">
+<meta name="twitter:description" content="这本书还是因幡师傅推荐给我的，看到swing师傅blog里也写过这本书读书笔记，想想自己也来写一个吧">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">仰望</a></h1>
+        </hgroup>
+
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">博客首页</a></li>
+                        
+                            <li><a href="/">作品展示</a></li>
+                        
+                            <li><a href="/FrontEndGuide">学习书签</a></li>
+                        
+                            <li><a href="/tags/随笔">随笔</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://starlookup@gmail.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/starlookup" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="#" title="weibo">weibo</a>
+                            
+                                <a class="fl google" target="_blank" href="#" title="google">google</a>
+                            
+                                <a class="fl twitter" target="_blank" href="#" title="twitter">twitter</a>
+                            
+                                <a class="fl linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/bin/" style="font-size: 10px;">bin</a> <a href="/tags/daily/" style="font-size: 10px;">daily</a> <a href="/tags/rading/" style="font-size: 10px;">rading</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://lcypro.wordpress.com">知弦</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.bubbles966.cn/">bubbles</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.my-kko.com/">mykko</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://pupiles.com/">pupiles</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://jinse666.cn">jinse</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.math1as.com/index.php">最崇拜的mathisa</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">刚刚开始学习bin的小蠢萌</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">仰望</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">仰望</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">博客首页</a></li>
+                
+                    <li><a href="/">作品展示</a></li>
+                
+                    <li><a href="/FrontEndGuide">学习书签</a></li>
+                
+                    <li><a href="/tags/随笔">随笔</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://starlookup@gmail.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/starlookup" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+                    
+                        <a class="google" target="_blank" href="#" title="google">google</a>
+                    
+                        <a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+                    
+                        <a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/12/14/2/" class="article-date">
+      <time datetime="2017-12-14T05:22:02.000Z" itemprop="datePublished">2017-12-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      《程序员的自我修养》读书笔记一
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/reading/">reading</a><a class="article-category-link" href="/categories/reading/bin/">bin</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bin/">bin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rading/">rading</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>　　<strong>这本书还是因幡师傅推荐给我的，看到swing师傅blog里也写过这本书读书笔记，想想自己也来写一个吧</strong></p>
+<p><excerpt in="" index="" |="" 首页摘要=""><br> <a id="more"></a></excerpt></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+
+
+<p><strong>个人理解有误之处，望师傅们指正</strong></p>
+<h2 id="温故而知新"><a href="#温故而知新" class="headerlink" title="温故而知新"></a>温故而知新</h2><ul>
+<li>书籍基于兼容x86指令集的32位CPU个人计算机</li>
+</ul>
+<h3 id="一、硬件设备"><a href="#一、硬件设备" class="headerlink" title="一、硬件设备"></a>一、硬件设备</h3><h4 id="关键部件"><a href="#关键部件" class="headerlink" title="关键部件"></a>关键部件</h4><pre><code>1.CPU
+
+2.内存
+
+3.I/O控制芯片
+</code></pre><h4 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h4><ul>
+<li>早期计算机CPU频率与内存一致，连同一根总线，I/O速度较内存与CPU更慢，为了能让CPU与I/O通信，每个设备都有相应的控制器</li>
+<li>后来CPU频率不断提高，内存跟不上CPU，产生了与内存频率一致的系统总线，CPU以倍频方式与系统总线通线。这就是产生了<strong>CPU倍频</strong>。</li>
+<li>再后来图形化界面普及，图形芯片要与CPU和内存大量交换数据，且对速度有一定要求。便产生了<strong>北桥芯片（处理高速）</strong>与<strong>南桥芯片（处理低速）</strong>。</li>
+<li>再后来到了近代，CPU频率没有大幅提升了，限制在了4GHz，人们就想增加CPU数量来提高整体速度。最常见的SMP(对称多处理器)，即每个CPU地位功能完全相同。</li>
+<li>但是多处理器成本比较高，于是人们就共享昂贵的缓存部分，保留多个核心，以一个处理器外包装。产生了<strong>多核处理器</strong>。</li>
+</ul>
+<blockquote>
+<p>注：速度提高与CPU数量不能成正比，因为一个程序不能分成没有任何关系的若干个问题。</p>
+</blockquote>
+<h3 id="二、系统软件"><a href="#二、系统软件" class="headerlink" title="二、系统软件"></a>二、系统软件</h3><h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><pre><code>1.平台性（系统内核、驱动程序、运行库等）
+2.用于程序开发（编译器、汇编器、链接器等）
+</code></pre><h4 id="相关知识-1"><a href="#相关知识-1" class="headerlink" title="相关知识"></a>相关知识</h4><ul>
+<li>系统软件体系从上到下可分为 <strong>software-&gt;runtime library-&gt;operating system kernel-&gt;hardware</strong></li>
+<li>每层之间要通信，协议叫接口。两层之间由下层定义借口，上层使用。</li>
+<li>虚拟机技术是在硬件与操作系统之间增加了一层虚拟层，使得可以同时运行多个操作系统。</li>
+<li>应用程序与运行库之间通信的接口为<strong>API</strong>，不同运行库API不同，如32位windows提供API被称为Win32</li>
+<li>为了尽量利用CPU资源，现在采用了<strong>多任务系统</strong>，应用程序以<strong>进程</strong>方式运行，权限比操作系统低。进程地址空间独立。</li>
+<li>CPU由操作系统分配，根据优先级高低，所谓抢占式，一个进程运行时间不可过长，不然会被暂停，分配给其他进程。</li>
+<li>多任务导致内存可能不够，于是增加中间层，就如虚拟机机制一样，提出了<strong>虚拟地址</strong>，可以通过映射转成物理地址。</li>
+<li>分隔思想有分段与分页，后面会详细写。</li>
+</ul>
+<h3 id="三、线程"><a href="#三、线程" class="headerlink" title="三、线程"></a>三、线程</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><pre><code>程序执行流最小单元，由线程ID、当前指令指针、寄存器集合、堆栈组成。可以理解一个进程由一到多个线程组成。线程共享相关的内存空间。
+</code></pre><h4 id="相关知识-2"><a href="#相关知识-2" class="headerlink" title="相关知识"></a>相关知识</h4><ul>
+<li><p>多线程优势： </p>
+<blockquote>
+<ol>
+<li>有效利用等待时间，比如等待网络响应时可以执行其他操作。</li>
+<li>复杂进程，可分工进行</li>
+<li>有些程序本身要求多线程，比如BT下载</li>
+<li>发挥多核的计算能力</li>
+<li>相较于多进程，多线程在数据共享方面效率更高</li>
+</ol>
+</blockquote>
+</li>
+<li><p>线程与进程共享的数据：程序代码（.text）、全局变量、局部静态变量（.data）和堆上数据（malloc）、打开的文件，A线程打开的文件可由B线程读写；</p>
+</li>
+<li>线程私有数据：局部变量和函数参数、TLS(线程局部存储)</li>
+<li>线程数量大于处理器数量时，则就一定会有单处理器对应多线程，处理器让每个进程仅执行很短的时间（毫秒），造成表面的同时执行。</li>
+<li><p>线程分三种状态：</p>
+<blockquote>
+<ul>
+<li>1.执行</li>
+<li>2.就绪：线程可以立即运行，但CPU被占用</li>
+<li>3.等待：线程无法执行</li>
+</ul>
+</blockquote>
+</li>
+<li><p>等待结束-&gt;就绪-&gt;就绪结束-&gt;执行-&gt;执行结束-&gt;就绪或等待 </p>
+</li>
+<li>线程调度方式，大部分都参照<strong>优先级调度</strong>与<strong>轮转法</strong>。轮转发就是每个线程都执行一会。优先级调度就是每个线程有自己的优先级，优先级高的全部执行完后，优先级低的才能执行。</li>
+<li>在Windows和Linux优先级可手动设置，系统也会根据线程表现自动调整，比如频繁等待的线程优先级就较容易提高。</li>
+<li>饿死指的就是，一个线程总是有优先级比它高的线程在执行，以至于它始终无法执行。系统为了解决这个问题会提高它的优先级。</li>
+<li>linux不如windows有明确的线程与进程，linux中所有的执行（进程、线程）都叫任务，每个任务类似与一个单线程的进程。不过多个任务共享内存空间时，就类似于多线程的进程。</li>
+</ul>
+<h4 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h4><ul>
+<li>多线程同时访问一个共享数据，可能造成<strong>线程竞争</strong><blockquote>
+<ul>
+<li>举个例子全局变量i = 1;</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li><p>线程1: ++i;</p>
+</li>
+<li><p>线程2: –i;</p>
+</li>
+<li><p>每个线程都是（1）取数据到寄存器（2）完成计算（3）存储回i,两个线程同时运行结果可能为0,1,2。</p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>为了防止线程同时访问，所以提出了<strong>锁</strong>的概念，即一个线程访问时获取锁，访问结束后释放锁。使其他线程在它访问时不能访问。</p>
+</li>
+<li><p>有了锁也不一定安全，例如由于优化和并发，产生过度优化。</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>举个例子全局变量x = 0</li>
+<li>线程一：lock();x++;unlock();</li>
+<li>线程二：lock();x++;unlock();<br>*正常来看结果应为2，但是由于编译器为了提高x的访问速度，把x放到了寄存器中，而不同线程寄存器是独立的，线程一操作完后，因为后面还要访问x,没有将运算后的结果返回给x，导致线程二读取的时候x还是0</li>
+</ul>
+</blockquote>
+<ul>
+<li>用户使用的是存在于用户态的多线程，而不是内核线程。用户态的线程与内核线程有三种模型：<blockquote>
+<ul>
+<li>（1）一对一模型:缺点数量受内核进程控制，效率低。</li>
+<li>（2）多对一模型：缺点一个用户线程阻塞可能导致其他都无法执行,但是效率提高</li>
+<li>（3）多对多模型</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p><strong>目前只读到第九章，前面章节有些部分还比较模糊，这周事比较多，就先写一章，会坚持写下去的</strong></p>
+</the>
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/12/14/2/">《程序员的自我修养》读书笔记一</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 仰望 的个人博客">仰望</a></p>
+        <p><span>发布时间:</span>2017年12月14日 - 13时22分</p>
+        <p><span>最后更新:</span>2017年12月14日 - 15时00分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/12/14/2/" title="《程序员的自我修养》读书笔记一">http://yoursite.com/2017/12/14/2/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/12/14/2/　　作者: 仰望" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2016/01/16/3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">致freshyear</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#温故而知新"><span class="toc-number">1.</span> <span class="toc-text">温故而知新</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、硬件设备"><span class="toc-number">1.1.</span> <span class="toc-text">一、硬件设备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关键部件"><span class="toc-number">1.1.1.</span> <span class="toc-text">关键部件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相关知识"><span class="toc-number">1.1.2.</span> <span class="toc-text">相关知识</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、系统软件"><span class="toc-number">1.2.</span> <span class="toc-text">二、系统软件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#分类"><span class="toc-number">1.2.1.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相关知识-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">相关知识</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、线程"><span class="toc-number">1.3.</span> <span class="toc-text">三、线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概念"><span class="toc-number">1.3.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相关知识-2"><span class="toc-number">1.3.2.</span> <span class="toc-text">相关知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#线程安全"><span class="toc-number">1.3.3.</span> <span class="toc-text">线程安全</span></a></li></ol></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2016/01/16/3/" title="下一篇: 致freshyear">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/12/14/2/">《程序员的自我修养》读书笔记一</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/16/3/">致freshyear</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2017 仰望
+            </div>
+            <div class="footer-right">
+                <a href="http://lookupes.com/" target="_blank">仰望's </a>Sophomore<a href="http://lookupes.com" target="_blank">blog </a> by lookup
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >表哥到访数到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
