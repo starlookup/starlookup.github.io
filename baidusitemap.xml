@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/09/20/3/</loc>
+    <lastmod>2017-12-14T12:47:14.181Z</lastmod>
+    <data>
+        <display>
+        <title>致freshyear</title>
+        <pubTime>2017-09-20T06:22:22.000Z</pubTime>
+        
+        <tag>daily</tag>
+         
+        <tag>随笔</tag>
+         
+         
+           
+             
+              <breadCrumb title="daily" url="http://yoursite.com/categories/daily/"/>
+          
+             
+              <breadCrumb title="随笔" url="http://yoursite.com/categories/daily/%E9%9A%8F%E7%AC%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/12/14/2/</loc>
     <lastmod>2017-12-14T07:00:08.065Z</lastmod>
     <data>
@@ -22,31 +47,6 @@
           
              
               <breadCrumb title="bin" url="http://yoursite.com/categories/reading/bin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2016/01/16/3/</loc>
-    <lastmod>2017-12-14T07:00:06.577Z</lastmod>
-    <data>
-        <display>
-        <title>致freshyear</title>
-        <pubTime>2016-01-16T05:58:41.000Z</pubTime>
-        
-        <tag>daily</tag>
-         
-        <tag>随笔</tag>
-         
-         
-           
-             
-              <breadCrumb title="daily" url="http://yoursite.com/categories/daily/"/>
-          
-             
-              <breadCrumb title="随笔" url="http://yoursite.com/categories/daily/%E9%9A%8F%E7%AC%94/"/>
           
         </display>
     </data>
