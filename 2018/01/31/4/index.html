@@ -3,19 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>致freshyear | Lookup&#39;s blog</title>
+  <title>格式化字符串漏洞学习 | Lookup&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不知不觉一年已过">
-<meta name="keywords" content="daily,随笔">
+  <meta name="description" content="最近看了几篇格式化字符串漏洞的帖子，师傅们都写得很好，自己稍微总结一下，方便复习">
+<meta name="keywords" content="rading,pwn">
 <meta property="og:type" content="article">
-<meta property="og:title" content="致freshyear">
-<meta property="og:url" content="http://yoursite.com/2017/09/20/3/index.html">
+<meta property="og:title" content="格式化字符串漏洞学习">
+<meta property="og:url" content="http://yoursite.com/2018/01/31/4/index.html">
 <meta property="og:site_name" content="Lookup&#39;s blog">
-<meta property="og:description" content="不知不觉一年已过">
-<meta property="og:updated_time" content="2017-12-14T12:47:14.181Z">
+<meta property="og:description" content="最近看了几篇格式化字符串漏洞的帖子，师傅们都写得很好，自己稍微总结一下，方便复习">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1fnzo2sai64j30lo08h0sw.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1fnzwamxf4cj30h507st8q.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1fnzwdakim9j30ey07cwej.jpg">
+<meta property="og:updated_time" content="2018-01-31T10:49:48.609Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="致freshyear">
-<meta name="twitter:description" content="不知不觉一年已过">
+<meta name="twitter:title" content="格式化字符串漏洞学习">
+<meta name="twitter:description" content="最近看了几篇格式化字符串漏洞的帖子，师傅们都写得很好，自己稍微总结一下，方便复习">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1fnzo2sai64j30lo08h0sw.jpg">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -237,11 +241,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-3" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-4" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/09/20/3/" class="article-date">
-      <time datetime="2017-09-20T06:22:22.000Z" itemprop="datePublished">2017-09-20</time>
+      <a href="/2018/01/31/4/" class="article-date">
+      <time datetime="2018-01-31T10:47:02.000Z" itemprop="datePublished">2018-01-31</time>
 </a>
     </div>
   
@@ -254,7 +258,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      致freshyear
+      格式化字符串漏洞学习
     </h1>
   
 
@@ -263,13 +267,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/daily/">daily</a><a class="article-category-link" href="/categories/daily/随笔/">随笔</a>
+    <a class="article-category-link" href="/categories/reading/">reading</a><a class="article-category-link" href="/categories/reading/pwn/">pwn</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/daily/">daily</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwn/">pwn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rading/">rading</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -279,28 +283,113 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>　　<strong> 不知不觉一年已过</strong><excerpt in="" index="" |="" 首页摘要=""><br> <a id="more"></a></excerpt></p>
+        <p>　　<strong>最近看了几篇格式化字符串漏洞的帖子，师傅们都写得很好，自己稍微总结一下，方便复习</strong></p>
+<p><excerpt in="" index="" |="" 首页摘要=""><br> <a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-<h1 id="曾经的Freshyear"><a href="#曾经的Freshyear" class="headerlink" title="曾经的Freshyear"></a>曾经的Freshyear</h1><h2 id="懵懂"><a href="#懵懂" class="headerlink" title="懵懂"></a>懵懂</h2><blockquote>
-<p>当我带着新鲜感与好奇踏入大学的大门，遇见了我的舍友们(即使是现在在我看来我随便选的一个宿舍，依然是整个学院最好的宿舍，因为在这里我遇见了他们)从一个大佬舍友那儿我第一次听到了C语言这种东西，我才知道了电脑原来不止可以玩游戏,但也只是知道这一点而已。</p>
+
+<h2 id="格式化字符串漏洞"><a href="#格式化字符串漏洞" class="headerlink" title="格式化字符串漏洞"></a>格式化字符串漏洞</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>格式化字符串漏洞现在已经很少见，毕竟保护措施也在不断的进步，但是CTF还是可以看见的，且这个是学习的基础，还是很有了解的必要的。前段时间skye师傅也发了一个<a href="https://bbs.xdsec.club/d/196-awd-tips-ida-patch" target="_blank" rel="external">IDA patch格式化字符串漏洞</a>的帖子。那我也刚好看过格式化字符串漏洞的相关帖子,这篇也是我看过一些帖子后的个人理解与总结。如理解有错误的地方还希望指正。</p>
 </blockquote>
-<h2 id="成长"><a href="#成长" class="headerlink" title="成长"></a>成长</h2><h3 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h3><blockquote>
-<p>大一的我，刚开始真的什么都不知道，加入了很多组织，我成功进入了很多组织，但是却唯一在我最在乎的信安协会失败了（现在也很难受╮(╯▽╰)╭，过几天再去面试祝我好运吧）。但是还好协会一直比较自由，我一直在其中蹭着学习。</p>
-<p>正在我迷茫的时候，我遇到了我在大学里最为感激的两个人，一个就是我的大佬舍友，一个是我的实验班学长。没有他们，也许我还只是原地打转的那个少年。我从web入手，从前端写起，没事打打ctf,每个星期日常去协会膜吴神，抱着对实验班的憧憬，学习着。后来真的进入了实验班，遇到了各位师傅。在我看来我和师傅们差距不止一点，但是我觉得我很满足了，我对自己一直要求的是，只要自己认为自己在进步就好了。用金男神的话，只要一直学习就好了。</p>
-<p>暑假我决定转二进制方向，不是因为其他，只是自己内心是真的喜欢，学习那些底层知识，去逆一个程序，内心真的会有满足感。所以找到自己喜欢的方向，其实真的很重要。也希望自己可以一直坚持下去。其实有时候自己真的很自卑就好了，我认识那些大师傅们，也许我大学毕业都达不到他们高中毕业的水平（不是也许是一定。。。）。但是我还记得我写出自己的第一个网站（宿舍论坛）的那种兴奋，还记得自己逆掉第一个程序的满足。这些就已经够了，又何必在乎其他呢。</p>
-<p>其实也不是每个人都要选择技术道路，大学也只是完善自己的过程，找到自己喜欢的，选择自己的方向，坚持下去就好了呀。</p>
+<p>###基础知识</p>
+<h4 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h4><blockquote>
+<p>学习过数据结构的朋友，应该很了解栈的相关知识，栈是一种先进后出的数据结构，是一种只能在一端进行插入和删除操作的特殊线性表，它相关的一些概念如下：</p>
+<ul>
+<li><p>栈底（BASE）：我理解是相当于栈的初始地址，在栈的操作时，它一般情况下是不变的;</p>
+</li>
+<li><p>栈顶（TOP）：是进行操作的一边，栈进行操作会对它的地址进行改变</p>
+</li>
+<li><p>压栈/入栈/进栈（PUSH）：先将栈顶指针加1，再将新的元素置入栈中，且是栈顶位置</p>
+</li>
+<li><p>弹栈/出栈/退栈（POP）： 将栈顶指向的元素弹出栈表，栈顶指针减1</p>
+</li>
+</ul>
+<p>注：栈的空间也有限制，会出现溢出情况</p>
 </blockquote>
-<h3 id="朋友"><a href="#朋友" class="headerlink" title="朋友"></a>朋友</h3><blockquote>
-<p>在这个学校里，我认识了很多人，他们也许有的是技术大佬，有的是游戏大神，有的是男神。但是我最好的朋友（除了我的舍友）永远是辩论队的小可爱们。我以前在初中以及高中因为一些小事，对于朋友有种抵触感，我不再信任任何人。辩论队的小伙伴让我又回到了从前那个爱笑的我。在大学里有时候一定的社交也许是必要的，但是如果找不到那群真正让自己开心的那帮人，一切也就没有了任何价值了。所以也很感谢辩论队的小伙伴。</p>
+<h4 id="漏洞"><a href="#漏洞" class="headerlink" title="漏洞"></a>漏洞</h4><ul>
+<li>格式化字符串漏洞，主要是由<em>printf()系列函数引起的, </em>printf系列函数一般形式为*printf(“format”, 输出表列)，而%[标志][输出最小宽度][.精度][长度]类型，是前面格式化输出的一般格式，学习过c语言也应该都了解，比如%d是十进制整数，%s是字符串，%x是十六进制数等等。</li>
+</ul>
+<blockquote>
+<p>这里有个很典型的例子</p>
+<ul>
+<li><p>printf(“%s”,str)</p>
+</li>
+<li><p>printf(str)</p>
+</li>
+</ul>
+<p>这两句都可以输出str的内容,比如这样</p>
 </blockquote>
-<h3 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h3><blockquote>
-<p>拿了个三等奖学金就很美滋滋，没想到我这个垃圾也有拿到奖学金的日子，炫耀一下，O(∩_∩)O哈哈~。大二一定要拿个二等奖学金。╭(╯^╰)╮</p>
+<pre><code>int main(void)
+{
+    char str[100];
+
+    printf(&quot;please input:&quot;);
+
+    scanf(&quot;%s&quot;,str);
+
+    printf(&quot;%s\n&quot;,str);
+
+    printf(str);
+
+    system(&quot;pause&quot;);
+
+    return 0;
+}
+</code></pre><p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1fnzo2sai64j30lo08h0sw.jpg" alt=""></p>
+<blockquote>
+<p>可以看到两句printf都是正常输出的.</p>
 </blockquote>
-<h2 id="感慨"><a href="#感慨" class="headerlink" title="感慨"></a>感慨</h2><blockquote>
-<p>不知不觉一年就过去了，我也终于变成了曾经自己口中的学长了。但是自己却觉得自己配不上学长这个词吧。无论是从技术方面，还是从辩论方面，以及学习方面。真的是离我心中学长这个词差的太远了吧。也希望自己可以继续奋斗下去吧，不求什么结果，只要自己问心无愧就好。毕竟前面的路还太长太长。。。</p>
+<ul>
+<li>这时候问题就出来了，正常使用第一种不会有什么问题，但是使用第二种就会有问题，第二种printf的参数是可控的，就是我们所说的<strong>格式化字符漏洞</strong>，*当然%[地址偏移量]$[类型]，比如%2$x,也是会泄露相关内存所对应的数据的，它是对于地址进行偏移的输出。</li>
+</ul>
+<h5 id="参数个数不固定"><a href="#参数个数不固定" class="headerlink" title="参数个数不固定"></a>参数个数不固定</h5><p>一个正常的程序比如</p>
+<pre><code>int main(void)
+{
+    int num=1;
+    printf(&quot;%d\n&quot;,num);
+    system(&quot;pause&quot;);
+    return 0;
+}
+</code></pre><p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1fnzwamxf4cj30h507st8q.jpg" alt=""></p>
+<p>那么如果我们在其中加一个参数呢，改为</p>
+<pre><code>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+
+int main(void)
+{
+    int num=1;
+    printf(&quot;%d %x\n&quot;,num);
+    system(&quot;pause&quot;);
+    return 0;
+}
+</code></pre><p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1fnzwdakim9j30ey07cwej.jpg" alt=""></p>
+<p>会发现我们没有对%x传入任何值，但是它依然输出了值，其实这个%x是内存中的值，如果在加几个%x会依然输出。所以利用这个可以一直输出内存中的值。当然它可以实现任意地址数据的读取。</p>
+<h5 id="n的不安全"><a href="#n的不安全" class="headerlink" title="%n的不安全"></a>%n的不安全</h5><blockquote>
+<p>%n好像在我们学习c语言中并不是很常用，用文字解释来说将前面输出的长度写入address中，例如</p>
 </blockquote>
-<p><strong><em> 博客有时候不更新，主要还是觉得自己学的东西太基础了吧，我觉得有价值的还是会记录的 </em></strong></p>
+<pre><code>printf(&quot;%d%*n&quot;,num,address);
+</code></pre><p>%hhn 把前面输出的num的长度输出到address所代表地址的前1个字节</p>
+<p>%hn 把前面输出的num的长度输出到address所代表地址的前2个字节</p>
+<p>%ln 把前面输出的num的长度输出到address所代表地址的前4个字节</p>
+<p>%n 把前面输出的num的长度输出到address所代表的地址前4个字节</p>
+<p>%lln 把前面输出的num的长度输出到address所代表地址的前8个字节</p>
+<blockquote>
+<p>%n可以让我们往地址里面写入我们所需要的值，利用构造我们想要的所谓的长度值，便可以修改相应的地址上面的值。例如</p>
+<p>printf(“%.340d%n”,num,&amp;num)</p>
+<p>实行完后num会变成340。</p>
+</blockquote>
+<h4 id="相关应用"><a href="#相关应用" class="headerlink" title="相关应用"></a>相关应用</h4><blockquote>
+<p>在skye师傅的帖子中，他写了一个小demo,很形象的展示了他patch的过程，在他的demo里，他printf函数中没有格式化参数，这就是一个典型格式化字符串漏洞。</p>
+<p>当然师傅是写了一个比较小的demo.在很多的ctf比赛中也有很多相关的更为复杂的题目。我看的两篇帖子中对于其中在ctf的应用总结的很详细。</p>
+<p><a href="https://www.anquanke.com/post/id/85785" target="_blank" rel="external">格式化字符串漏洞利用小结（一）</a></p>
+<p><a href="ttps://www.anquanke.com/post/id/85817" target="_blank" rel="external">格式化字符串漏洞利用小结（二）</a></p>
+</blockquote>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ul>
+<li><p><a href="http://cb.drops.wiki/drops/binary-6259.html" target="_blank" rel="external">二进制漏洞之——邪恶的printf</a></p>
+</li>
+<li><p><a href="http://cb.drops.wiki/drops/papers-9426.html" target="_blank" rel="external">漏洞挖掘基础之格式化字符串</a></p>
+</li>
+</ul>
 </the>
       
       
@@ -356,13 +445,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/09/20/3/">致freshyear</a></p>
+        <p><span>本文标题:</span><a href="/2018/01/31/4/">格式化字符串漏洞学习</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 仰望 的个人博客">仰望</a></p>
-        <p><span>发布时间:</span>2017年09月20日 - 14时22分</p>
-        <p><span>最后更新:</span>2017年12月14日 - 20时47分</p>
+        <p><span>发布时间:</span>2018年01月31日 - 18时47分</p>
+        <p><span>最后更新:</span>2018年01月31日 - 18时49分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/09/20/3/" title="致freshyear">http://yoursite.com/2017/09/20/3/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/09/20/3/　　作者: 仰望" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/01/31/4/" title="格式化字符串漏洞学习">http://yoursite.com/2018/01/31/4/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/01/31/4/　　作者: 仰望" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -375,15 +464,11 @@
 
 <nav id="article-nav">
   
-    <a href="/2017/12/14/2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          《程序员的自我修养》读书笔记一
-        
-      </div>
-    </a>
   
+    <a href="/2017/12/14/2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">《程序员的自我修养》读书笔记一</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 
@@ -392,7 +477,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#曾经的Freshyear"><span class="toc-number">1.</span> <span class="toc-text">曾经的Freshyear</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#懵懂"><span class="toc-number">1.1.</span> <span class="toc-text">懵懂</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#成长"><span class="toc-number">1.2.</span> <span class="toc-text">成长</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#技术"><span class="toc-number">1.2.1.</span> <span class="toc-text">技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#朋友"><span class="toc-number">1.2.2.</span> <span class="toc-text">朋友</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#学习"><span class="toc-number">1.2.3.</span> <span class="toc-text">学习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#感慨"><span class="toc-number">1.3.</span> <span class="toc-text">感慨</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#格式化字符串漏洞"><span class="toc-number">1.</span> <span class="toc-text">格式化字符串漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#栈"><span class="toc-number">1.1.1.</span> <span class="toc-text">栈</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#漏洞"><span class="toc-number">1.1.2.</span> <span class="toc-text">漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#参数个数不固定"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">参数个数不固定</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#n的不安全"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">%n的不安全</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相关应用"><span class="toc-number">1.1.3.</span> <span class="toc-text">相关应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考链接"><span class="toc-number">1.2.</span> <span class="toc-text">参考链接</span></a></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -441,13 +526,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/12/14/2/" title="上一篇: 《程序员的自我修养》读书笔记一">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2017/12/14/2/" title="下一篇: 《程序员的自我修养》读书笔记一">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
     <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/01/31/4/">格式化字符串漏洞学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/14/2/">《程序员的自我修养》读书笔记一</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/20/3/">致freshyear</a></li></ul>
