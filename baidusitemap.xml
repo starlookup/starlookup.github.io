@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>http://yoursite.com/2088/04/02/6/</loc>
+    <lastmod>2018-04-02T15:05:32.465Z</lastmod>
+    <data>
+        <display>
+        <title>Lookup's Daily</title>
+        <pubTime>2088-04-02T13:37:02.000Z</pubTime>
+        
+        <tag>studying</tag>
+         
+        <tag>daily</tag>
+         
+         
+           
+             
+              <breadCrumb title="studying" url="http://yoursite.com/categories/studying/"/>
+          
+             
+              <breadCrumb title="daily" url="http://yoursite.com/categories/studying/daily/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2018/03/22/5/</loc>
     <lastmod>2018-03-21T16:14:56.564Z</lastmod>
     <data>
@@ -36,9 +61,9 @@
         <title>格式化字符串漏洞学习</title>
         <pubTime>2018-01-31T10:47:02.000Z</pubTime>
         
-        <tag>reading</tag>
-         
         <tag>pwn</tag>
+         
+        <tag>reading</tag>
          
          
            
