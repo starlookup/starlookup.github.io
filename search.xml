@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Lookup's Daily]]></title>
     <url>%2F2088%2F04%2F02%2F6%2F</url>
-    <content type="text"><![CDATA[每天记一下 2018-4-2 1.pwnable刷了一题 2.感觉数据挖掘课好水呀，有点难受 3.身边一个师傅进了 chamd5 ，两个进了fp 为他们高兴，有点羡慕 4.Linux堆内存管理深入分析 5.清华大学 操作系统课程 6.secwiki 2018-4-3 1.今天满课，痛苦，晚上还有实验，我的天。。。 2.pwnable刷了一题 3.ROP 4.matlab作业 2018-4-4 1.Tencent讲座，见到 Pwn2Own 大佬值了 2.pwnable 一题 3.看了几小时书 4.写实验报告（真心烦这个。。。） 2018-4-5 1.西安植物园逛一下 2.头号玩家也太好看了吧 3.强网杯题目复盘ing 2018-4-6 1.补作业ing ,毕业要紧，毕业要紧 2018-4-7 1.我竟然调个Docker调了半天，我真是服了，唉，但基本熟悉了 2.pwnable刷题ing 3.强网杯接着复盘]]></content>
+    <content type="text"><![CDATA[每天记一下 2018-4-2 1.pwnable刷了一题 2.感觉数据挖掘课好水呀，有点难受 3.身边一个师傅进了 chamd5 ，两个进了fp 为他们高兴，有点羡慕 4.Linux堆内存管理深入分析 5.清华大学 操作系统课程 6.secwiki 2018-4-3 1.今天满课，痛苦，晚上还有实验，我的天。。。 2.pwnable刷了一题 3.ROP 4.matlab作业 2018-4-4 1.Tencent讲座，见到 Pwn2Own 大佬值了 2.pwnable 一题 3.看了几小时书 4.写实验报告（真心烦这个。。。） 2018-4-5 1.西安植物园逛一下 2.头号玩家也太好看了吧 3.强网杯题目复盘ing 2018-4-6 1.补作业ing ,毕业要紧，毕业要紧 2018-4-7 1.我竟然调个Docker调了半天，我真是服了，唉，但基本熟悉了 2.pwnable刷题ing 3.强网杯接着复盘 2018-4-8 1.体育课爽呀，一点力气都没了，丧的一批 2.协会换届了，时间过得也太快了，自己还是这么菜 3.入手一个ipad,美滋滋，学习更有动力了呢（假装学习） 2018-4-9 1.补完三个实验报告。。。我是弄不懂实验报告这东西到底有啥用，实验10分钟，报告1小时。。。 2.真的是都花在实验报告上了，好气啊！！！]]></content>
       <categories>
         <category>studying</category>
         <category>daily</category>
@@ -22,8 +22,8 @@
         <category>pwn</category>
       </categories>
       <tags>
-        <tag>studying</tag>
         <tag>pwn</tag>
+        <tag>studying</tag>
       </tags>
   </entry>
   <entry>
