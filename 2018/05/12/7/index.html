@@ -61,7 +61,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="daily,studying," />
 
 
 
@@ -77,15 +77,17 @@
 
 
 
-<meta name="description" content="人难免天生有自怜的情绪，唯有时刻保持清醒，才能看清真正的价值在哪里。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lookup&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/2018/03/index.html">
+<meta name="description" content="每天翻一点，多读书，多看报，少玩手机，多睡觉">
+<meta name="keywords" content="daily,studying">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Heap-exploitation">
+<meta property="og:url" content="http://yoursite.com/2018/05/12/7/index.html">
 <meta property="og:site_name" content="Lookup&#39;s blog">
-<meta property="og:description" content="人难免天生有自怜的情绪，唯有时刻保持清醒，才能看清真正的价值在哪里。">
+<meta property="og:description" content="每天翻一点，多读书，多看报，少玩手机，多睡觉">
+<meta property="og:updated_time" content="2018-05-11T16:48:46.377Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lookup&#39;s blog">
-<meta name="twitter:description" content="人难免天生有自怜的情绪，唯有时刻保持清醒，才能看清真正的价值在哪里。">
+<meta name="twitter:title" content="Heap-exploitation">
+<meta name="twitter:description" content="每天翻一点，多读书，多看报，少玩手机，多睡觉">
 
 
 
@@ -103,7 +105,7 @@
   };
 </script>
 
-  <title> 归档 | Lookup's blog </title>
+  <title> Heap-exploitation | Lookup's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -124,7 +126,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -245,66 +247,174 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 6 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Heap-exploitation
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-05-12T00:03:02+08:00" content="2018-05-12">
+              2018-05-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/studying/" itemprop="url" rel="index">
+                    <span itemprop="name">studying</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/studying/daily/" itemprop="url" rel="index">
+                    <span itemprop="name">daily</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <p>　　<strong>每天翻一点，多读书，多看报，少玩手机，多睡觉</strong></p>
+<p><excerpt in="" index="" |="" 首页摘要=""><br> <a id="more"></a></excerpt></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<h3 id="Heap-memory"><a href="#Heap-memory" class="headerlink" title="Heap memory"></a>Heap memory</h3><h4 id="What-is-Heap-什么是堆"><a href="#What-is-Heap-什么是堆" class="headerlink" title="What is Heap(什么是堆)"></a>What is Heap(什么是堆)</h4><blockquote>
+<p>堆是由操作系统分配给每个程序的一块内存区域。不同于栈，堆内存空间是可以动态分配得。而这也就意味着程序可以任意在它需求时从堆段内存，“请求”或者“释放”内存。而且，这块内存是全局共享的。也就是说，它可以在程序的任何地方有效访问和修改，而不是仅仅是在申请调用它的函数里面。程序一般使用指针来实现内存的动态申请，虽然这样效率会比使用本地变量（栈上）稍有下降。</p>
+</blockquote>
+<h4 id="Using-dynamic-memory-使用动态内存"><a href="#Using-dynamic-memory-使用动态内存" class="headerlink" title="Using dynamic memory(使用动态内存)"></a>Using dynamic memory(使用动态内存)</h4><blockquote>
+<p><strong>stdlib.h</strong> 提供了很多可以访问、修改以及管理的标准库函数。常用的函数包括<strong>malloc</strong>和<strong>free</strong>:</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 动态分配 10 字节内存</span></div><div class="line"></div><div class="line"><span class="keyword">char</span> *buffer = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">10</span>);</div><div class="line"></div><div class="line"><span class="built_in">strcpy</span>(buffer, <span class="string">"hello"</span>);</div><div class="line"></div><div class="line"><span class="built_in">printf</span>(<span class="string">"%s\n"</span>, buffer); <span class="comment">// prints "hello"</span></div><div class="line"></div><div class="line"><span class="comment">// 释放先前分配的动态内存</span></div><div class="line"></div><div class="line"><span class="built_in">free</span>(buffer);</div></pre></td></tr></table></figure>
+<p>文档中对于<strong>malloc</strong>和<strong>free</strong>的说明：</p>
+<h5 id="malloc"><a href="#malloc" class="headerlink" title="malloc"></a>malloc</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">malloc(size_t n)</div><div class="line">Returns a pointer to a newly allocated chunk of at least n</div><div class="line">bytes, or null if no space is available. Additionally, on</div><div class="line">failure, errno is set to ENOMEM on ANSI C systems.</div><div class="line">If n is zero, malloc returns a minimum-sized chunk. (The</div><div class="line">minimum size is 16 bytes on most 32bit systems, and 24 or 32</div><div class="line">bytes on 64bit systems.) On most systems, size_t is an unsigned</div><div class="line">type, so calls with negative arguments are interpreted as</div><div class="line">requests for huge amounts of space, which will often fail. The</div><div class="line">maximum supported value of n differs across systems, but is in</div><div class="line">all cases less than the maximum representable value of a</div><div class="line">size_t.</div><div class="line">*/</div></pre></td></tr></table></figure>
+<h5 id="free"><a href="#free" class="headerlink" title="free"></a>free</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">free(void* p)</div><div class="line">Releases the chunk of memory pointed to by p, that had been</div><div class="line">previously allocated using malloc or a related routine such as</div><div class="line">realloc. It has no effect if p is null. It can have arbitrary</div><div class="line">(i.e., bad!) effects if p has already been freed.</div><div class="line">Unless disabled (using mallopt), freeing very large spaces will</div><div class="line">when possible, automatically trigger operations that give</div><div class="line">back unused memory to the system, thus reducing program</div><div class="line">footprint.</div><div class="line">*/</div></pre></td></tr></table></figure>
+<blockquote>
+<p>需要注意的是这些内存分配函数由标准库提供。这些函数在开发人员与操作系统之间提供了一个有效管理堆内存的中间层。开发人员有必要在使用完分配的内存后立即将其<strong>free</strong>。从内部来看，这些函数都使用了两种系统调用<strong>sbrk</strong>和<strong>mmap</strong>来申请或释放操作系统的堆内存。</p>
+</blockquote>
+</the>
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2018">2018</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/daily/" rel="tag">#daily</a>
+          
+            <a href="/tags/studying/" rel="tag">#studying</a>
+          
         </div>
       
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/22/5/" rel="next" title="栈溢出入门总结">
+                <i class="fa fa-chevron-left"></i> 栈溢出入门总结
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2088/04/02/6/" rel="prev" title="Lookup's Daily">
+                Lookup's Daily <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/22/5/" itemprop="url">
-              
-                <span itemprop="name">栈溢出入门总结</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-22T00:04:02+08:00"
-              content="2018-03-22" >
-          03-22
-        </time>
-      </div>
-
-    </header>
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -312,6 +422,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -333,8 +447,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -419,6 +542,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Heap-memory"><span class="nav-number">1.</span> <span class="nav-text">Heap memory</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#What-is-Heap-什么是堆"><span class="nav-number">1.1.</span> <span class="nav-text">What is Heap(什么是堆)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Using-dynamic-memory-使用动态内存"><span class="nav-number">1.2.</span> <span class="nav-text">Using dynamic memory(使用动态内存)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#malloc"><span class="nav-number">1.2.1.</span> <span class="nav-text">malloc</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#free"><span class="nav-number">1.2.2.</span> <span class="nav-text">free</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -515,11 +649,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   

@@ -5,15 +5,40 @@
     
   <url>
     <loc>http://yoursite.com/2088/04/02/6/</loc>
-    <lastmod>2018-05-10T15:48:24.265Z</lastmod>
+    <lastmod>2018-05-11T16:51:17.104Z</lastmod>
     <data>
         <display>
         <title>Lookup's Daily</title>
         <pubTime>2088-04-02T13:37:02.000Z</pubTime>
         
+        <tag>daily</tag>
+         
         <tag>studying</tag>
          
+         
+           
+             
+              <breadCrumb title="studying" url="http://yoursite.com/categories/studying/"/>
+          
+             
+              <breadCrumb title="daily" url="http://yoursite.com/categories/studying/daily/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/05/12/7/</loc>
+    <lastmod>2018-05-11T16:48:46.377Z</lastmod>
+    <data>
+        <display>
+        <title>Heap-exploitation</title>
+        <pubTime>2018-05-11T16:03:02.000Z</pubTime>
+        
         <tag>daily</tag>
+         
+        <tag>studying</tag>
          
          
            
@@ -38,9 +63,9 @@
         <title>栈溢出入门总结</title>
         <pubTime>2018-03-21T16:04:02.000Z</pubTime>
         
-        <tag>pwn</tag>
-         
         <tag>studying</tag>
+         
+        <tag>pwn</tag>
          
          
            
