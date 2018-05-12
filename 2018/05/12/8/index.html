@@ -80,14 +80,17 @@
 <meta name="description" content="每天翻一点，多读书，多看报，少玩手机，多睡觉">
 <meta name="keywords" content="daily,studying">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Heap-exploitation_one">
-<meta property="og:url" content="http://yoursite.com/2018/05/12/7/index.html">
+<meta property="og:title" content="Heap-exploitation_two">
+<meta property="og:url" content="http://yoursite.com/2018/05/12/8/index.html">
 <meta property="og:site_name" content="Lookup&#39;s blog">
 <meta property="og:description" content="每天翻一点，多读书，多看报，少玩手机，多睡觉">
-<meta property="og:updated_time" content="2018-05-12T15:04:40.266Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1fr8zpw7syyj30u70dijv2.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1fr8zvkvatkj30ua0g40xe.jpg">
+<meta property="og:updated_time" content="2018-05-12T16:10:14.837Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Heap-exploitation_one">
+<meta name="twitter:title" content="Heap-exploitation_two">
 <meta name="twitter:description" content="每天翻一点，多读书，多看报，少玩手机，多睡觉">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1fr8zpw7syyj30u70dijv2.jpg">
 
 
 
@@ -105,7 +108,7 @@
   };
 </script>
 
-  <title> Heap-exploitation_one | Lookup's blog </title>
+  <title> Heap-exploitation_two | Lookup's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -268,7 +271,7 @@
             
             
               
-                Heap-exploitation_one
+                Heap-exploitation_two
               
             
           </h1>
@@ -343,19 +346,48 @@
 <p><excerpt in="" index="" |="" 首页摘要=""><br> <a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-<h3 id="Heap-memory"><a href="#Heap-memory" class="headerlink" title="Heap memory"></a>Heap memory</h3><h4 id="What-is-Heap-什么是堆"><a href="#What-is-Heap-什么是堆" class="headerlink" title="What is Heap(什么是堆)"></a>What is Heap(什么是堆)</h4><blockquote>
-<p>堆是由操作系统分配给每个程序的一块内存区域。不同于栈，堆内存空间是可以动态分配得。而这也就意味着程序可以任意在它需求时从堆段内存，“请求”或者“释放”内存。而且，这块内存是全局共享的。也就是说，它可以在程序的任何地方有效访问和修改，而不是仅仅是在申请调用它的函数里面。程序一般使用指针来实现内存的动态申请，虽然这样效率会比使用本地变量（栈上）稍有下降。</p>
+<h3 id="深入-glibc-堆"><a href="#深入-glibc-堆" class="headerlink" title="深入 glibc 堆"></a>深入 glibc 堆</h3><blockquote>
+<p>本节，将深入的讨论 glibc 堆的管理相关函数。分析是基于2017年3月27日的 glibc 源代码上完成的。</p>
+<p>除了源代码，也主要参考了：</p>
+<ul>
+<li><a href="https://sploitfun.wordpress.com/2015/02/10/understanding-glibc-malloc/" target="_blank" rel="external">Understanding glibc malloc</a></li>
+<li><a href="https://www.blackhat.com/presentations/bh-usa-07/Ferguson/Whitepaper/bh-usa-07-ferguson-WP.pdf" target="_blank" rel="external">Understanding the heap by breaking it</a></li>
+</ul>
+<p>在进入分析前，一定要提前记住以下注意事项：</p>
+<ol>
+<li><p>内部使用 INTERNAL_SIZE_T (默认等于size_t), 而不是用 size_t.</p>
+</li>
+<li><p>Alignment 被定义为 2 * (sizeof(size_t)).</p>
+</li>
+<li><p>MORECORE 被定义为调用获得更多内存的途径。默认情况下定义为 sbrk.</p>
+</li>
+</ol>
+<p>接下来我们讲学习内部使用的不同数据类型，bins , chunks , 和不同函数的内部。</p>
 </blockquote>
-<h4 id="Using-dynamic-memory-使用动态内存"><a href="#Using-dynamic-memory-使用动态内存" class="headerlink" title="Using dynamic memory(使用动态内存)"></a>Using dynamic memory(使用动态内存)</h4><blockquote>
-<p><strong>stdlib.h</strong> 提供了很多可以访问、修改以及管理的标准库函数。常用的函数包括<strong>malloc</strong>和<strong>free</strong>:</p>
+<h4 id="额外资源"><a href="#额外资源" class="headerlink" title="额外资源"></a>额外资源</h4><ol>
+<li><a href="https://www.youtube.com/watch?v=Svm5V4leEho" target="_blank" rel="external">r2Con2016 Glibc Heap Analysis with radare2 video</a> </li>
+</ol>
+<h4 id="malloc-chunk"><a href="#malloc-chunk" class="headerlink" title="malloc_chunk"></a>malloc_chunk</h4><blockquote>
+<p>下面的结构体代表在内存中的一个特殊的内存块 (chunk)，有些结构体成员对于已分配的和未分配的块有着不同的意义。</p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 动态分配 10 字节内存</span></div><div class="line"></div><div class="line"><span class="keyword">char</span> *buffer = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">10</span>);</div><div class="line"></div><div class="line"><span class="built_in">strcpy</span>(buffer, <span class="string">"hello"</span>);</div><div class="line"></div><div class="line"><span class="built_in">printf</span>(<span class="string">"%s\n"</span>, buffer); <span class="comment">// prints "hello"</span></div><div class="line"></div><div class="line"><span class="comment">// 释放先前分配的动态内存</span></div><div class="line"></div><div class="line"><span class="built_in">free</span>(buffer);</div></pre></td></tr></table></figure>
-<p>文档中对于<strong>malloc</strong>和<strong>free</strong>的说明：</p>
-<h5 id="malloc"><a href="#malloc" class="headerlink" title="malloc"></a>malloc</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">malloc(size_t n)</div><div class="line">Returns a pointer to a newly allocated chunk of at least n</div><div class="line">bytes, or null if no space is available. Additionally, on</div><div class="line">failure, errno is set to ENOMEM on ANSI C systems.</div><div class="line">If n is zero, malloc returns a minimum-sized chunk. (The</div><div class="line">minimum size is 16 bytes on most 32bit systems, and 24 or 32</div><div class="line">bytes on 64bit systems.) On most systems, size_t is an unsigned</div><div class="line">type, so calls with negative arguments are interpreted as</div><div class="line">requests for huge amounts of space, which will often fail. The</div><div class="line">maximum supported value of n differs across systems, but is in</div><div class="line">all cases less than the maximum representable value of a</div><div class="line">size_t.</div><div class="line">*/</div></pre></td></tr></table></figure>
-<h5 id="free"><a href="#free" class="headerlink" title="free"></a>free</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">free(void* p)</div><div class="line">Releases the chunk of memory pointed to by p, that had been</div><div class="line">previously allocated using malloc or a related routine such as</div><div class="line">realloc. It has no effect if p is null. It can have arbitrary</div><div class="line">(i.e., bad!) effects if p has already been freed.</div><div class="line">Unless disabled (using mallopt), freeing very large spaces will</div><div class="line">when possible, automatically trigger operations that give</div><div class="line">back unused memory to the system, thus reducing program</div><div class="line">footprint.</div><div class="line">*/</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span> &#123;</span></div><div class="line"></div><div class="line">INTERNAL_SIZE_T mchunk_prev_size; <span class="comment">/* 前一chunk的大小 (if free). */</span></div><div class="line"></div><div class="line">INTERNAL_SIZE_T mchunk_size; <span class="comment">/* 本chunk的大小（including overhead） */</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span>* <span class="title">fd</span>;</span> <span class="comment">/* double links -- used only if free. */</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span>* <span class="title">bk</span>;</span></div><div class="line"><span class="comment">/* Only used for large blocks: pointer to next larger size. */</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span>* <span class="title">fd_nextsize</span>;</span> <span class="comment">/* double links -- used only if free. */</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span>* <span class="title">bk_nextsize</span>;</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span>* <span class="title">mchunkptr</span>;</span></div></pre></td></tr></table></figure>
+<h4 id="Allocated-chunk"><a href="#Allocated-chunk" class="headerlink" title="Allocated chunk"></a>Allocated chunk</h4><p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1fr8zpw7syyj30u70dijv2.jpg" alt=""></p>
 <blockquote>
-<p>需要注意的是这些内存分配函数由标准库提供。这些函数在开发人员与操作系统之间提供了一个有效管理堆内存的中间层。开发人员有必要在使用完分配的内存后立即将其<strong>free</strong>。从内部来看，这些函数都使用了两种系统调用<strong>sbrk</strong>和<strong>mmap</strong>来申请或释放操作系统的堆内存。</p>
+<p>注意已分配的 chunk 的数据是如何使用下一个 chunk 的第一个属性(mchunk_prev_size)的。 mem 是返回给用户的指针。</p>
 </blockquote>
+<h4 id="Free-chunk"><a href="#Free-chunk" class="headerlink" title="Free chunk"></a>Free chunk</h4><p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1fr8zvkvatkj30ua0g40xe.jpg" alt=""></p>
+<blockquote>
+<p>Free 的 chunk 会组成循环双向链表。</p>
+<ul>
+<li><p>P(PREV_INUSE):当前一个 chunk (不是链表中的前一个，而是内存中连续的前一个) 处于 free 状态时(前一个 chunk 的大小存储在第一个结构体成员中) ，该标志被置为1。最开始初始的第一个 chunk 默认设置该位为0，如果设为1的话，我们无法确定前一个 chunk 的大小。</p>
+</li>
+<li><p>M(IS_MMAPPED):如果这个 chunk 是由 mmap 方式申请来的，则该标志位为1。当该标志位为1室，其他两个标志位会被忽略,因为通过 mmap 申请的 chunk 既不在 arena 中，也不是 free chunk。</p>
+</li>
+<li><p>A(NON_MAIN_ARENA):0表示该 chunk 位于 main arena 中，1表示 chunk 在 thread arena 中。</p>
+</li>
+</ul>
+</blockquote>
+<p><strong>Note:在 fastbins 中的 chunk 均为 allocated chunk,因为他们没有和相邻的 free chunk 合并</strong></p>
 </the>
       
     </div>
@@ -388,16 +420,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/12/8/" rel="next" title="Heap-exploitation_two">
-                <i class="fa fa-chevron-left"></i> Heap-exploitation_two
+              <a href="/2018/03/22/5/" rel="next" title="栈溢出入门总结">
+                <i class="fa fa-chevron-left"></i> 栈溢出入门总结
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2088/04/02/6/" rel="prev" title="Lookup's Daily">
-                Lookup's Daily <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/12/7/" rel="prev" title="Heap-exploitation_one">
+                Heap-exploitation_one <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -549,7 +581,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Heap-memory"><span class="nav-number">1.</span> <span class="nav-text">Heap memory</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#What-is-Heap-什么是堆"><span class="nav-number">1.1.</span> <span class="nav-text">What is Heap(什么是堆)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Using-dynamic-memory-使用动态内存"><span class="nav-number">1.2.</span> <span class="nav-text">Using dynamic memory(使用动态内存)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#malloc"><span class="nav-number">1.2.1.</span> <span class="nav-text">malloc</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#free"><span class="nav-number">1.2.2.</span> <span class="nav-text">free</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#深入-glibc-堆"><span class="nav-number">1.</span> <span class="nav-text">深入 glibc 堆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#额外资源"><span class="nav-number">1.1.</span> <span class="nav-text">额外资源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#malloc-chunk"><span class="nav-number">1.2.</span> <span class="nav-text">malloc_chunk</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Allocated-chunk"><span class="nav-number">1.3.</span> <span class="nav-text">Allocated chunk</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Free-chunk"><span class="nav-number">1.4.</span> <span class="nav-text">Free chunk</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
