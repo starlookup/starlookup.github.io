@@ -4,36 +4,11 @@
 
     
   <url>
-    <loc>http://yoursite.com/2088/04/02/6/</loc>
-    <lastmod>2018-05-12T16:12:38.825Z</lastmod>
-    <data>
-        <display>
-        <title>Lookup's Daily</title>
-        <pubTime>2088-04-02T13:37:02.000Z</pubTime>
-        
-        <tag>daily</tag>
-         
-        <tag>studying</tag>
-         
-         
-           
-             
-              <breadCrumb title="studying" url="http://yoursite.com/categories/studying/"/>
-          
-             
-              <breadCrumb title="daily" url="http://yoursite.com/categories/studying/daily/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2018/05/12/8/</loc>
-    <lastmod>2018-05-12T16:10:14.837Z</lastmod>
+    <lastmod>2018-05-12T16:16:22.605Z</lastmod>
     <data>
         <display>
-        <title>Heap-exploitation_two</title>
+        <title>Heap-exploitation-two</title>
         <pubTime>2018-05-11T16:03:02.000Z</pubTime>
         
         <tag>daily</tag>
@@ -55,11 +30,36 @@
     
   <url>
     <loc>http://yoursite.com/2018/05/12/7/</loc>
-    <lastmod>2018-05-12T15:04:40.266Z</lastmod>
+    <lastmod>2018-05-12T16:16:18.588Z</lastmod>
     <data>
         <display>
-        <title>Heap-exploitation_one</title>
+        <title>Heap-exploitation-one</title>
         <pubTime>2018-05-11T16:03:02.000Z</pubTime>
+        
+        <tag>daily</tag>
+         
+        <tag>studying</tag>
+         
+         
+           
+             
+              <breadCrumb title="studying" url="http://yoursite.com/categories/studying/"/>
+          
+             
+              <breadCrumb title="daily" url="http://yoursite.com/categories/studying/daily/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2088/04/02/6/</loc>
+    <lastmod>2018-05-12T16:12:38.825Z</lastmod>
+    <data>
+        <display>
+        <title>Lookup's Daily</title>
+        <pubTime>2088-04-02T13:37:02.000Z</pubTime>
         
         <tag>daily</tag>
          
