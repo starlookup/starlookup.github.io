@@ -9,8 +9,23 @@
         <category>daily</category>
       </categories>
       <tags>
-        <tag>daily</tag>
         <tag>studying</tag>
+        <tag>daily</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[how2heap-one]]></title>
+    <url>%2F2018%2F05%2F13%2F10%2F</url>
+    <content type="text"><![CDATA[how2heap 调试记录 first_fit.c 大概是展示一下 glibc malloc 的第一个运用。 源码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;string.h&gt;int main()&#123; fprintf(stderr, "This file doesn't demonstrate an attack, but shows the nature of glibc's allocator.\n"); fprintf(stderr, "glibc uses a first-fit algorithm to select a free chunk.\n"); fprintf(stderr, "If a chunk is free and large enough, malloc will select this chunk.\n"); fprintf(stderr, "This can be exploited in a use-after-free situation.\n"); fprintf(stderr, "Allocating 2 buffers. They can be large, don't have to be fastbin.\n"); char* a = malloc(512); char* b = malloc(256); char* c; fprintf(stderr, "1st malloc(512): %p\n", a); fprintf(stderr, "2nd malloc(256): %p\n", b); fprintf(stderr, "we could continue mallocing here...\n"); fprintf(stderr, "now let's put a string at a that we can read later \"this is A!\"\n"); strcpy(a, "this is A!"); fprintf(stderr, "first allocation %p points to %s\n", a, a); fprintf(stderr, "Freeing the first one...\n"); free(a); fprintf(stderr, "We don't need to free anything again. As long as we allocate less than 512, it will end up at %p\n", a); fprintf(stderr, "So, let's allocate 500 bytes\n"); c = malloc(500); fprintf(stderr, "3rd malloc(500): %p\n", c); fprintf(stderr, "And put a different string here, \"this is C!\"\n"); strcpy(c, "this is C!"); fprintf(stderr, "3rd allocation %p points to %s\n", c, c); fprintf(stderr, "first allocation %p points to %s\n", a, a); fprintf(stderr, "If we reuse the first allocation, it now holds the data from the third allocation.");&#125; 分析 运行情况如下 程序首先为 a 和 b 分别申请了 512bytes 与 256bytes 的空间。打印出来 a 和 b 的地址，并用 “this is A!” 对于 a 进行标记。随即 free 掉了 a。然后为 c 申请了 500bytes 的空间。然后用 “this is C!” 对于 c 进行标记。最后打印出 a,c 所对应的地址以及字符串。 首先在对 a 和 b malloc分配空间后。 注：为什么两个 chunk 之间会间隔 0x210 而不是 0x200 呢 ？ 可以查看我正在翻译的 heap-exploitation ,因为 chunk 结构体中，还有一部分存着 chunk 的头信息。而这正是所谓多出来的 0x10的空间。 在 free 后呢 可以很明显的看见 0x603000 那块显示 freed 状态，而与此同时 unsortbin 中添加进了刚 free 掉的 chunk。 而在为 c malloc申请 500bytes 之后。 我们发现第一个 chunk 又重新变回了 used 状态。原本属于 a 的内存空间 free 后有重新分配给了 c。导致 a 和 c 指向了同一个内存，输出相同的结果。 结论：当 free 掉一块 chunk 后,在申请内存大小略小于先前的空间，那么会优先将先前被释放的内存重新分配回来。]]></content>
+      <categories>
+        <category>studying</category>
+        <category>daily</category>
+        <category>pwn</category>
+      </categories>
+      <tags>
+        <tag>studying</tag>
+        <tag>daily</tag>
+        <tag>pwn</tag>
       </tags>
   </entry>
   <entry>
@@ -22,8 +37,8 @@
         <category>daily</category>
       </categories>
       <tags>
-        <tag>daily</tag>
         <tag>studying</tag>
+        <tag>daily</tag>
       </tags>
   </entry>
   <entry>
@@ -35,8 +50,8 @@
         <category>daily</category>
       </categories>
       <tags>
-        <tag>daily</tag>
         <tag>studying</tag>
+        <tag>daily</tag>
       </tags>
   </entry>
   <entry>
@@ -48,8 +63,8 @@
         <category>daily</category>
       </categories>
       <tags>
-        <tag>daily</tag>
         <tag>studying</tag>
+        <tag>daily</tag>
       </tags>
   </entry>
   <entry>
@@ -61,8 +76,8 @@
         <category>pwn</category>
       </categories>
       <tags>
-        <tag>pwn</tag>
         <tag>studying</tag>
+        <tag>pwn</tag>
       </tags>
   </entry>
   <entry>
@@ -74,8 +89,8 @@
         <category>pwn</category>
       </categories>
       <tags>
-        <tag>reading</tag>
         <tag>pwn</tag>
+        <tag>reading</tag>
       </tags>
   </entry>
   <entry>
