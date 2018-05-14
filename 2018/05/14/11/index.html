@@ -61,7 +61,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="studying,daily," />
 
 
 
@@ -77,15 +77,19 @@
 
 
 
-<meta name="description" content="人难免天生有自怜的情绪，唯有时刻保持清醒，才能看清真正的价值在哪里。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lookup&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/categories/daily/随笔/index.html">
+<meta name="description" content="每天翻一点，多读书，多看报，少玩手机，多睡觉">
+<meta name="keywords" content="studying,daily">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Heap-exploitation-four">
+<meta property="og:url" content="http://yoursite.com/2018/05/14/11/index.html">
 <meta property="og:site_name" content="Lookup&#39;s blog">
-<meta property="og:description" content="人难免天生有自怜的情绪，唯有时刻保持清醒，才能看清真正的价值在哪里。">
+<meta property="og:description" content="每天翻一点，多读书，多看报，少玩手机，多睡觉">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frazubrno4j30u8098q4p.jpg">
+<meta property="og:updated_time" content="2018-05-14T09:38:15.020Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lookup&#39;s blog">
-<meta name="twitter:description" content="人难免天生有自怜的情绪，唯有时刻保持清醒，才能看清真正的价值在哪里。">
+<meta name="twitter:title" content="Heap-exploitation-four">
+<meta name="twitter:description" content="每天翻一点，多读书，多看报，少玩手机，多睡觉">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frazubrno4j30u8098q4p.jpg">
 
 
 
@@ -103,7 +107,7 @@
   };
 </script>
 
-  <title> 分类: 随笔 | Lookup's blog </title>
+  <title> Heap-exploitation-four | Lookup's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -124,7 +128,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -245,47 +249,217 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        随笔
-        <small>分类</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Heap-exploitation-four
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-05-14T16:34:02+08:00" content="2018-05-14">
+              2018-05-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/studying/" itemprop="url" rel="index">
+                    <span itemprop="name">studying</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/studying/daily/" itemprop="url" rel="index">
+                    <span itemprop="name">daily</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>　　<strong>每天翻一点，多读书，多看报，少玩手机，多睡觉</strong></p>
+<p><excerpt in="" index="" |="" 首页摘要=""><br> <a id="more"></a></excerpt></p>
+<the rest="" of="" contents="" |="" 余下全文="">
 
-      <h1 class="post-title">
+<h3 id="Bins-and-chunks"><a href="#Bins-and-chunks" class="headerlink" title="Bins and chunks"></a>Bins and chunks</h3><blockquote>
+<p>一个 bin 就是由 free(non-allocated) chunk 组成的（单向或双向）的链表。bin 根据它们包含的 chunk 大小的不同也有不同的种类:</p>
+</blockquote>
+<ul>
+<li>1.Fast bin</li>
+<li>2.Unsorted bin</li>
+<li>3.Small bin</li>
+<li>4.Large bin</li>
+</ul>
+<blockquote>
+<p>Fast bins 使用以下方式维护：</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span> *<span class="title">mfastbinptr</span>;</span></div><div class="line"></div><div class="line">mfastbinptr fastbinsY[]; <span class="comment">// Array of pointers to chunks(一个指向 chunk 指针数组)</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>Unsorted, small and large bins 也是使用一个单向数组数组进行维护：</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span>* <span class="title">mchunkptr</span>;</span></div><div class="line"></div><div class="line">mchunkptr bins[]; <span class="comment">// Array of pointers to chunks</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>一开始，在初始化的期间， small bins、large bins 是空的。每一个 bin 在数组中都有两个值表示。第一个是指向链表头 ‘HEAD’ 的指针，第二个是指向链表尾 ‘TAIL’ 的指针。而对于 fast bins(单向链表) 来说，第二个值为 NULL。</p>
+</blockquote>
+<h4 id="Fast-bins"><a href="#Fast-bins" class="headerlink" title="Fast bins"></a>Fast bins</h4><blockquote>
+<p>一共有 10 个 fast bins。每个 bins 都是一个单向链表。在链表首部进行删除与添加操作（LIFO 先进后出）。有点像栈？</p>
+<p>每个 bin 有很多相同大小的 chunk。10个 bin 的所包含的 chunk 的大小为: 16，24,32,40,48,56,64,72,80 和 88。这里的大小是包含堆块的元数据的（a set of data that describes and gives information about other data）。存储 chunk 时，可以节省 4bytes 的空间（在指针为 4bytes 的平台上）。对于 allocated chunks 只有 prev_size 和 size 保存元数据。而下一个相邻的 chunk 的 prev_size 则会用于存储用户数据。相邻的两个 free fast chunk 不会被合并</p>
+</blockquote>
+<h4 id="Unsorted-bins"><a href="#Unsorted-bins" class="headerlink" title="Unsorted bins"></a>Unsorted bins</h4><blockquote>
+<p>一共只有 1 个 unsorted bin。Small chunk 和 large chunks 被 free  后会加入 unsorted bin 中。Unsorted bin 被建立的初始目的是作为一个缓存层来加快 chunk 的分配与释放。</p>
+</blockquote>
+<h4 id="Small-bins"><a href="#Small-bins" class="headerlink" title="Small bins"></a>Small bins</h4><blockquote>
+<p>一共有 62 个small bins。small bin 比 large bin 快，但是比 fasr bin 慢。每一个 bin 都是一个双向链表，在链表头部（HEAD）进行添加操作，在链表尾部（TAIL）进行删除操作。(FIFO 后进后出)。</p>
+<p>就像 fast bin 一样，每一个 bin 都包含 相同大小的 chunks。从 16，24, 32，… ,504 bytes ，共62个。</p>
+<p>当被 free 时，相邻的 small chunk 可能会合并，在添加到 unsorted bin 之前。</p>
+</blockquote>
+<h4 id="Large-bins"><a href="#Large-bins" class="headerlink" title="Large bins"></a>Large bins</h4><blockquote>
+<p>一共有 63 个 large bins。每一个 bin 都是一个双向链表。每一个 large bin 都有不同大小的 chunk ，并按照递减的顺序排列。（最大的 chunk 在 HEAD，最小的 chunk 在 TAIL）。添加和删除操作可以在链表中的任意位置进行。</p>
+<p>前 32 个 bins 包含的堆块都以 64bytes 大小间隔:</p>
+</blockquote>
+<ul>
+<li><p>1st bin: 512 - 568 bytes</p>
+</li>
+<li><p>2nd bin: 576 - 632 bytes</p>
+</li>
+</ul>
+<blockquote>
+<p>总结来说:（有点疑惑它的大小）</p>
+</blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1frazubrno4j30u8098q4p.jpg" alt=""></p>
+<blockquote>
+<p>和 small chunks 类似，当在 free 时，相邻的 large chunks 可能会在添加到 unsorted bins 之前进行合并。</p>
+<p>接下来还有两种特别的 chunk 不属于任何 bin 中。</p>
+</blockquote>
+<h4 id="Top-chunk"><a href="#Top-chunk" class="headerlink" title="Top chunk"></a>Top chunk</h4><blockquote>
+<p>Top chunk 是位于 arena 最顶端的 chunk。是 malloc 申请内存空间的途径。如果 malloc 需要申请更多的空间，top chunk 会使用 sbrk 系统调用来变大。Top chunk的PREV_INUSE标志总是被设置为1。</p>
+</blockquote>
+<h4 id="Last-remainder-chunk"><a href="#Last-remainder-chunk" class="headerlink" title="Last remainder chunk"></a>Last remainder chunk</h4><blockquote>
+<p>这是分割后剩下来的 chunk。有时候当我们无法得到一个特定大小的 chunk 时，一个更大的 chunk 会一分为二。一个返回给用户使用，另一个又会变成新的 last remainder chunk。</p>
+</blockquote>
+</the>
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2017/09/20/3/" itemprop="url">
-              
-                <span itemprop="name">致freshyear</span>
-              
-            </a>
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-20T14:22:22+08:00"
-              content="2017-09-20" >
-          09-20
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/studying/" rel="tag">#studying</a>
+          
+            <a href="/tags/daily/" rel="tag">#daily</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/13/10/" rel="next" title="how2heap-one">
+                <i class="fa fa-chevron-left"></i> how2heap-one
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2088/04/02/6/" rel="prev" title="Lookup's Daily">
+                Lookup's Daily <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </section>
 
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -293,6 +467,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -314,8 +492,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -400,6 +587,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bins-and-chunks"><span class="nav-number">1.</span> <span class="nav-text">Bins and chunks</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Fast-bins"><span class="nav-number">1.1.</span> <span class="nav-text">Fast bins</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unsorted-bins"><span class="nav-number">1.2.</span> <span class="nav-text">Unsorted bins</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Small-bins"><span class="nav-number">1.3.</span> <span class="nav-text">Small bins</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Large-bins"><span class="nav-number">1.4.</span> <span class="nav-text">Large bins</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Top-chunk"><span class="nav-number">1.5.</span> <span class="nav-text">Top chunk</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Last-remainder-chunk"><span class="nav-number">1.6.</span> <span class="nav-text">Last remainder chunk</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -496,6 +694,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
