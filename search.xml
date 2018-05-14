@@ -14,6 +14,21 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[how2heap-two]]></title>
+    <url>%2F2018%2F05%2F14%2F12%2F</url>
+    <content type="text"><![CDATA[how2heap 调试记录 fastbin_dup.c 滥用 fastbin freelist 导致 malloc 返回了已经分配的堆指针 源码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;int main()&#123; fprintf(stderr, "This file demonstrates a simple double-free attack with fastbins.\n"); fprintf(stderr, "Allocating 3 buffers.\n"); int *a = malloc(8); int *b = malloc(8); int *c = malloc(8); fprintf(stderr, "1st malloc(8): %p\n", a); fprintf(stderr, "2nd malloc(8): %p\n", b); fprintf(stderr, "3rd malloc(8): %p\n", c); fprintf(stderr, "Freeing the first one...\n"); free(a); fprintf(stderr, "If we free %p again, things will crash because %p is at the top of the free list.\n", a, a); // free(a); fprintf(stderr, "So, instead, we'll free %p.\n", b); free(b); fprintf(stderr, "Now, we can free %p again, since it's not the head of the free list.\n", a); free(a); fprintf(stderr, "Now the free list has [ %p, %p, %p ]. If we malloc 3 times, we'll get %p twice!\n", a, b, a, a); fprintf(stderr, "1st malloc(8): %p\n", malloc(8)); fprintf(stderr, "2nd malloc(8): %p\n", malloc(8)); fprintf(stderr, "3rd malloc(8): %p\n", malloc(8));&#125; 分析 运行执行结果如下 程序首先申请了 3 块大小为 8bytes 的内存给 a、b、c。 这时的 heap 情况 接着程序将 a free 掉了。 接着程序将 b free 掉了。 这里到了关键程序再次将 a free 掉了。 我们可以明显看到，fastbin 中形成了 0x602000 –&gt; 0x602020 –&gt; 0x602000 的循环。而这也导致我们再进行相同的地址申请，打印出的地址重复申请了 0x602000。 结论: 通过 fastbins 中的 double free ，我们可以得到一块堆块的指针。]]></content>
+      <categories>
+        <category>studying</category>
+        <category>daily</category>
+        <category>pwn</category>
+      </categories>
+      <tags>
+        <tag>studying</tag>
+        <tag>daily</tag>
+        <tag>pwn</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Heap-exploitation-four]]></title>
     <url>%2F2018%2F05%2F14%2F11%2F</url>
     <content type="text"><![CDATA[每天翻一点，多读书，多看报，少玩手机，多睡觉 Bins and chunks 一个 bin 就是由 free(non-allocated) chunk 组成的（单向或双向）的链表。bin 根据它们包含的 chunk 大小的不同也有不同的种类: 1.Fast bin 2.Unsorted bin 3.Small bin 4.Large bin Fast bins 使用以下方式维护： 1234typedef struct malloc_chunk *mfastbinptr;mfastbinptr fastbinsY[]; // Array of pointers to chunks(一个指向 chunk 指针数组) Unsorted, small and large bins 也是使用一个单向数组数组进行维护： 1234typedef struct malloc_chunk* mchunkptr;mchunkptr bins[]; // Array of pointers to chunks 一开始，在初始化的期间， small bins、large bins 是空的。每一个 bin 在数组中都有两个值表示。第一个是指向链表头 ‘HEAD’ 的指针，第二个是指向链表尾 ‘TAIL’ 的指针。而对于 fast bins(单向链表) 来说，第二个值为 NULL。 Fast bins 一共有 10 个 fast bins。每个 bins 都是一个单向链表。在链表首部进行删除与添加操作（LIFO 先进后出）。有点像栈？ 每个 bin 有很多相同大小的 chunk。10个 bin 的所包含的 chunk 的大小为: 16，24,32,40,48,56,64,72,80 和 88。这里的大小是包含堆块的元数据的（a set of data that describes and gives information about other data）。存储 chunk 时，可以节省 4bytes 的空间（在指针为 4bytes 的平台上）。对于 allocated chunks 只有 prev_size 和 size 保存元数据。而下一个相邻的 chunk 的 prev_size 则会用于存储用户数据。相邻的两个 free fast chunk 不会被合并 Unsorted bins 一共只有 1 个 unsorted bin。Small chunk 和 large chunks 被 free 后会加入 unsorted bin 中。Unsorted bin 被建立的初始目的是作为一个缓存层来加快 chunk 的分配与释放。 Small bins 一共有 62 个small bins。small bin 比 large bin 快，但是比 fasr bin 慢。每一个 bin 都是一个双向链表，在链表头部（HEAD）进行添加操作，在链表尾部（TAIL）进行删除操作。(FIFO 后进后出)。 就像 fast bin 一样，每一个 bin 都包含 相同大小的 chunks。从 16，24, 32，… ,504 bytes ，共62个。 当被 free 时，相邻的 small chunk 可能会合并，在添加到 unsorted bin 之前。 Large bins 一共有 63 个 large bins。每一个 bin 都是一个双向链表。每一个 large bin 都有不同大小的 chunk ，并按照递减的顺序排列。（最大的 chunk 在 HEAD，最小的 chunk 在 TAIL）。添加和删除操作可以在链表中的任意位置进行。 前 32 个 bins 包含的堆块都以 64bytes 大小间隔: 1st bin: 512 - 568 bytes 2nd bin: 576 - 632 bytes 总结来说:（有点疑惑它的大小） 和 small chunks 类似，当在 free 时，相邻的 large chunks 可能会在添加到 unsorted bins 之前进行合并。 接下来还有两种特别的 chunk 不属于任何 bin 中。 Top chunk Top chunk 是位于 arena 最顶端的 chunk。是 malloc 申请内存空间的途径。如果 malloc 需要申请更多的空间，top chunk 会使用 sbrk 系统调用来变大。Top chunk的PREV_INUSE标志总是被设置为1。 Last remainder chunk 这是分割后剩下来的 chunk。有时候当我们无法得到一个特定大小的 chunk 时，一个更大的 chunk 会一分为二。一个返回给用户使用，另一个又会变成新的 last remainder chunk。]]></content>
@@ -102,8 +117,8 @@
         <category>pwn</category>
       </categories>
       <tags>
-        <tag>reading</tag>
         <tag>pwn</tag>
+        <tag>reading</tag>
       </tags>
   </entry>
   <entry>
