@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>http://yoursite.com/2018/05/15/13/</loc>
+    <lastmod>2018-05-15T13:30:57.151Z</lastmod>
+    <data>
+        <display>
+        <title>Heap-exploitation-five</title>
+        <pubTime>2018-05-15T12:47:02.000Z</pubTime>
+        
+        <tag>studying</tag>
+         
+        <tag>daily</tag>
+         
+         
+           
+             
+              <breadCrumb title="studying" url="http://yoursite.com/categories/studying/"/>
+          
+             
+              <breadCrumb title="daily" url="http://yoursite.com/categories/studying/daily/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2018/05/14/12/</loc>
     <lastmod>2018-05-14T14:46:20.758Z</lastmod>
     <data>
