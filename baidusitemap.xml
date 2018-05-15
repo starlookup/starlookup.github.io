@@ -4,6 +4,36 @@
 
     
   <url>
+    <loc>http://yoursite.com/2018/05/15/14/</loc>
+    <lastmod>2018-05-15T14:50:30.348Z</lastmod>
+    <data>
+        <display>
+        <title>how2heap-three</title>
+        <pubTime>2018-05-15T13:33:02.000Z</pubTime>
+        
+        <tag>studying</tag>
+         
+        <tag>daily</tag>
+         
+        <tag>pwn</tag>
+         
+         
+           
+             
+              <breadCrumb title="studying" url="http://yoursite.com/categories/studying/"/>
+          
+             
+              <breadCrumb title="daily" url="http://yoursite.com/categories/studying/daily/"/>
+          
+             
+              <breadCrumb title="pwn" url="http://yoursite.com/categories/studying/daily/pwn/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2018/05/15/13/</loc>
     <lastmod>2018-05-15T13:30:57.151Z</lastmod>
     <data>
