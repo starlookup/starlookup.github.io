@@ -14,6 +14,21 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[how2heap-four]]></title>
+    <url>%2F2018%2F05%2F16%2F16%2F</url>
+    <content type="text"><![CDATA[how2heap 调试记录 fastbin_dup_consolidate.c 通过在fastbin freelist和unsorted bin freelist上设置一个指针来促使malloc返回一个已经分配的堆指针。 源码1234567891011121314151617181920212223242526272829303132333435#include &lt;stdio.h&gt;#include &lt;stdint.h&gt;#include &lt;stdlib.h&gt;int main() &#123; void* p1 = malloc(0x40); void* p2 = malloc(0x40); fprintf(stderr, "Allocated two fastbins: p1=%p p2=%p\n", p1, p2); fprintf(stderr, "Now free p1!\n"); free(p1); void* p3 = malloc(0x400); fprintf(stderr, "Allocated large bin to trigger malloc_consolidate(): p3=%p\n", p3); fprintf(stderr, "In malloc_consolidate(), p1 is moved to the unsorted bin.\n"); free(p1); fprintf(stderr, "Trigger the double free vulnerability!\n"); fprintf(stderr, "We can pass the check in malloc() since p1 is not fast top.\n"); fprintf(stderr, "Now p1 is in unsorted bin and fast bin. So we'will get it twice: %p %p\n", malloc(0x40), malloc(0x40));&#125; 分析 执行情况 首先申请了两个 chunk ,返回给 p1,p2 指针。然后 free 掉了 p1。然后又 malloc 了个 chunk 返回给 p3。通过分配大的 bin 来触发 malloc_consolidate()，然后 p1 被移到 unsorted bin，这样就绕过了 malloc() 的检查。 通过 double free，再进行两次 malloc(),就返回了两次 0x602010。 结论 ：通过 malloc 申请 大得 chunk，触发double free，来获得已分配的堆指针。]]></content>
+      <categories>
+        <category>studying</category>
+        <category>daily</category>
+        <category>pwn</category>
+      </categories>
+      <tags>
+        <tag>studying</tag>
+        <tag>daily</tag>
+        <tag>pwn</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Heap-exploitation-six]]></title>
     <url>%2F2018%2F05%2F16%2F15%2F</url>
     <content type="text"><![CDATA[每天翻一点，多读书，多看报，少玩手机，多睡觉 core functions(核心函数)void * _int_malloc (mstate av, size_t bytes) 1.更新 bytes 来照顾对齐。 2.检查 av 是否为 NULL。 3.缺少可用的 arena (当 av 为 NULL时)，用 mmap 调用 sysmalloc 来获得堆块。如果成功，则调用 alloc_perturb。返回指针。 4. 如果 chunk 大小在 fastbins 的范围内。 i.根据申请的堆块大小在 fastbins 数组里获取一个指向合适 bin 的索引 ii.移除那个 bin 第一个 chunk ,并用 victim 指针指向他。 iii.如果 victim == NULL,则退出继续到下一种情况(smallbin)。 iv.如果 victim 不是 NULL，检查 chunk 的大小是否属于要求的那个 bin,如果不属于则抛出一个异常 (“malloc(): memory corruption (fast)”)。 v.调用 alloc_perturb 并返回指针。 如果 chunk 大小在 smallbins 的范围内。 i.根据申请的堆块大小在 smallbins 数组里获取一个指向合适 bin 的索引。 ii.如果这个 bin 中没有 chunk，则移到下一个情形。这个检查是通过比较 bin 和 bin–&gt;bk 这两个指针来进行的。 iii.使 victim 等于 bin–&gt;bk(bin中的最后一个 chunk)。如果他为 NULL(在初始化过程中会发生)，就调用 malloc_consolidate 且跳过 bins 是否相同的检查。 iv.如果 victim 不是 NULL，则检查 victim-&gt;bk-&gt;fd 和 victim 是否相等。如果他们不想等则抛出异常 (“malloc(): smallbin double linked list corrupted”)。 v.为victim设置下一个堆块(内存意义上的,并非指双向链表中)的PREV_INUSE位为1 vi.从这个 bin 中移除这个 chunk。 vii.根据av为该堆块设置相应的arena位 viii.调用alloc_perturb并返回堆块指针 如果大小不在 smallbins 中 i. 根据申请的堆块大小,在largebin数组中获取一个指向合适bin的索引 ii.检查 av 是否有 fastchunks,这是通过av-&gt;flags中的FASTCHUNKS_BIT位来进行检查的, 如果确实有fastchunks,那么就调用av中的malloc_consolidate 5.如果没有任何指针返回吗，那么只会是以下几种情况: i.chunk 大小在 fastbin 范围里，但是没有 fastchunk 可用 ii.chunk 大小在 smallbin 范围里，但是没有 smallchunk 可用。（在初始化过程中调用malloc_consolidate） iii.chunk 大小在 largebin 范围里。 6.接下来没有被分类的 chunk 被检查，遍历 unsorted bin。 i.victim 指针指向当前处理的堆块 ii.检查 victim 的 chunk 大小是否在最小范围(2*SIZE_SZ)和最大范围(av-&gt;system_mem)之间, 不在范围内的话则抛出error(“malloc(): memory corruption”) iii.如果(申请的 chun 大小在smallbin范围)并且( victim 是last remainder chunk)并且同时(它是 unsorted bin 中唯一的 chunk)同时(该 chunk 的大小&gt;=所需求的大小) 将该堆块分成两部分 1.第一个 chunk 匹配申请的大小，并且返回。 2.剩下的 chunk 变成新的 last remainder chunk ,并插入到 unsorted bin 中： 1.为两个 chunk 设置好对应的chunk_size和chunk_prev_size 2.在调用alloc_perturb后返回第一个堆块 iv.如果上述情形都不满足, 进行如下控制. 在unsorted bin中移除victim, 如果victim的大小刚好满足所申请的堆块大小, 那么就在调用alloc_perturb后返回该堆块的指针 v.如果victim的大小在smallbin范围内, 那么就将该堆块添加到对应的smallbin的首部 vi.不然就加到合适的 largebin 中，并维持原有的秩序。 i.检查最后一个 chunk(最小的)，如果 victim 小于 last chunk，则加入到最后。 ii.不然, 循环遍历寻找一个大小恰好大于等于victim大小的堆块, 并将victim插入到这个堆块后面. 如果恰好相等, 则将其插入到第二个的位置上]]></content>
