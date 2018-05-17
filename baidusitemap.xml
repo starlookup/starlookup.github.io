@@ -4,6 +4,36 @@
 
     
   <url>
+    <loc>http://yoursite.com/2018/05/17/19/</loc>
+    <lastmod>2018-05-17T14:25:57.946Z</lastmod>
+    <data>
+        <display>
+        <title>algorithm-one</title>
+        <pubTime>2018-05-17T13:36:02.000Z</pubTime>
+        
+        <tag>studying</tag>
+         
+        <tag>daily</tag>
+         
+        <tag>algorithm</tag>
+         
+         
+           
+             
+              <breadCrumb title="studying" url="http://yoursite.com/categories/studying/"/>
+          
+             
+              <breadCrumb title="daily" url="http://yoursite.com/categories/studying/daily/"/>
+          
+             
+              <breadCrumb title="algorithm" url="http://yoursite.com/categories/studying/daily/algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2018/05/17/18/</loc>
     <lastmod>2018-05-17T13:02:14.309Z</lastmod>
     <data>

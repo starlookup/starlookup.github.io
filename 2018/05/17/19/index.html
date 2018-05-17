@@ -61,7 +61,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="studying,daily," />
+  <meta name="keywords" content="studying,daily,algorithm," />
 
 
 
@@ -77,17 +77,17 @@
 
 
 
-<meta name="description" content="每天翻一点，多读书，多看报，少玩手机，多睡觉">
-<meta name="keywords" content="studying,daily">
+<meta name="description" content="普通算法练习，学习总不是坏事">
+<meta name="keywords" content="studying,daily,algorithm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Heap-exploitation-five">
-<meta property="og:url" content="http://yoursite.com/2018/05/15/13/index.html">
+<meta property="og:title" content="algorithm-one">
+<meta property="og:url" content="http://yoursite.com/2018/05/17/19/index.html">
 <meta property="og:site_name" content="Lookup&#39;s blog">
-<meta property="og:description" content="每天翻一点，多读书，多看报，少玩手机，多睡觉">
-<meta property="og:updated_time" content="2018-05-15T13:30:57.151Z">
+<meta property="og:description" content="普通算法练习，学习总不是坏事">
+<meta property="og:updated_time" content="2018-05-17T14:25:57.946Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Heap-exploitation-five">
-<meta name="twitter:description" content="每天翻一点，多读书，多看报，少玩手机，多睡觉">
+<meta name="twitter:title" content="algorithm-one">
+<meta name="twitter:description" content="普通算法练习，学习总不是坏事">
 
 
 
@@ -105,7 +105,7 @@
   };
 </script>
 
-  <title> Heap-exploitation-five | Lookup's blog </title>
+  <title> algorithm-one | Lookup's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -268,7 +268,7 @@
             
             
               
-                Heap-exploitation-five
+                algorithm-one
               
             
           </h1>
@@ -280,8 +280,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-05-15T20:47:02+08:00" content="2018-05-15">
-              2018-05-15
+            <time itemprop="dateCreated" datetime="2018-05-17T21:36:02+08:00" content="2018-05-17">
+              2018-05-17
             </time>
           </span>
 
@@ -313,6 +313,18 @@
 
                 
                 
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/studying/daily/algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">algorithm</span>
+                  </a>
+                </span>
+
+                
+                
 
               
             </span>
@@ -339,57 +351,18 @@
       
 
       
-        <p>　　<strong>每天翻一点，多读书，多看报，少玩手机，多睡觉</strong></p>
+        <p>　　<strong> 普通算法练习，学习总不是坏事</strong></p>
 <p><excerpt in="" index="" |="" 首页摘要=""><br> <a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-<h3 id="Internal-functions-内部函数"><a href="#Internal-functions-内部函数" class="headerlink" title="Internal functions(内部函数)"></a>Internal functions(内部函数)</h3><blockquote>
-<p>这里列举了一些在内部使用的常见函数。需要注意的是有些函数是直接使用 <strong>#define</strong> 定义得。因此，调用函数的更改实际上在调用之后得到了保留。且我们假设没有设立<strong>MALLOC_DEBUG</strong>。</p>
+<h3 id="河内之塔"><a href="#河内之塔" class="headerlink" title="河内之塔"></a>河内之塔</h3><h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><blockquote>
+<p>河内之塔(TowersofHanoi)是法国人M.Claus(Lucas)于1883年从泰国带至法国的，河内为越战时<br>北越的首都，即现在的胡志明市； 1883年法国数学家 EdouardLucas曾提及这个故事，据说创世<br>纪时Benares有一座波罗教塔，是由三支钻石棒（ Pag）所支撑，开始时神在第一根棒上放置64<br>个由上至下依由小至大排列的金盘（ Disc） ，并命令僧侣将所有的金盘从第一根石棒移至第三根<br>石棒，且搬运过程中遵守大盘子在小盘子之下的原则，若每日仅搬一个盘子，则当盘子全数搬<br>运完毕之时，此塔将毁损， 而也就是世界末日来临之时</p>
 </blockquote>
-<h4 id="arena-get-ar-ptr-size"><a href="#arena-get-ar-ptr-size" class="headerlink" title="arena_get(ar_ptr,size)"></a>arena_get(ar_ptr,size)</h4><blockquote>
-<p>申请一块 arena 并锁定相应的互斥量。<strong>at_ptr</strong> 指向对应的 arena。<strong>size</strong> 提示需要立即申请多少内存。</p>
+<h4 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h4><blockquote>
+<p>小时候玩过这个游戏，但是没想过这么多吧，只记得这应该是迭代关系。其实仔细想想就是一个迭代关系。假如共有 n 个金盘，把它分为 n-1 个金盘和 1 个金盘，将最后一个盘子移到 c 柱子上后，后面就是如何将另外 n-1 个盘子移到 c 柱子上了。这个时候最后一个盘子相当于不存在了，问题就变成如何将 n-1 个盘子移到 c 柱子上了。同理再不断这样分，就体现了一个迭代关系。</p>
 </blockquote>
-<h4 id="sysmalloc-TODO"><a href="#sysmalloc-TODO" class="headerlink" title="sysmalloc[TODO]"></a>sysmalloc[TODO]</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">sysmalloc handles malloc cases requiring more memory from the system.</div><div class="line">On entry, it is assumed that av-&gt;top does not have enough</div><div class="line">space to service request for nb bytes, thus requiring that av-&gt;top</div><div class="line">be extended or replaced.</div><div class="line">*/</div></pre></td></tr></table></figure>
-<h4 id="void-alloc-perturb-char-p-size-t-n"><a href="#void-alloc-perturb-char-p-size-t-n" class="headerlink" title="void alloc_perturb(char *p, size_t n)"></a>void alloc_perturb(char *p, size_t n)</h4><blockquote>
-<p>如果 <strong>perturb_byte</strong>(使用M_PERTURB的malloc的可调参数,默认为 0 )不是0的话。就会将 <strong>n</strong> 通过 <strong>p</strong> 设为 <strong>perturb_byte</strong> ^ 0xff</p>
-</blockquote>
-<h4 id="void-free-perturb-char-p-size-t-n"><a href="#void-free-perturb-char-p-size-t-n" class="headerlink" title="void free_perturb (char *p, size_t n)"></a>void free_perturb (char *p, size_t n)</h4><blockquote>
-<p>如果 <strong>perturb_byte</strong>(使用M_PERTURB的malloc的可调参数,默认为 0 )不是0的话。就会将 <strong>n</strong> 通过 <strong>p</strong> 设为 <strong>perturb_byte</strong></p>
-</blockquote>
-<h4 id="void-malloc-init-state-mstate-av"><a href="#void-malloc-init-state-mstate-av" class="headerlink" title="void malloc_init_state (mstate av)"></a>void malloc_init_state (mstate av)</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">Initialize a malloc_state struct.</div><div class="line">This is called only from within malloc_consolidate, which needs</div><div class="line">be called in the same contexts anyway. It is never called directly</div><div class="line">outside of malloc_consolidate because some optimizing compilers try</div><div class="line">to inline it at all call points, which turns out not to be an</div><div class="line">optimization at all. (Inlining it in malloc_consolidate is fine though.)</div><div class="line">*/</div></pre></td></tr></table></figure>
-<blockquote>
-<p>1.对于非 fastbins,会为每一个 bin 创建空的循环链表。</p>
-<p>2.为 <strong>av</strong> 设置 FASTCHUNKS_BIT 标志位。</p>
-<p>3.初始化 <strong>av–&gt;top</strong> 指向第一个 unsorted chunk。</p>
-</blockquote>
-<h4 id="unlink-AV-P-BK-FD"><a href="#unlink-AV-P-BK-FD" class="headerlink" title="unlink(AV, P, BK, FD)"></a>unlink(AV, P, BK, FD)</h4><blockquote>
-<p>这个函数定义了一个宏来从一个 bin 移除一个 chunk。</p>
-<p>1.检查 chunk 的大小是否等于 next chunk 的 prev_size。如果不等于则抛出一个异常(“corrupted size vs. prev_size”)。</p>
-<p>2.检查 P-&gt;fd-&gt;bk == P 以及 P-&gt;bk-&gt;fd == P。不然就抛出个异常(“corrupted double-linked<br>list”)</p>
-<p>3.调整相邻的 chunk 的 <strong>fd</strong> 和 <strong>bk</strong>，方便移除操作。</p>
-<p>i. Set P-&gt;fd-&gt;bk = P-&gt;bk .</p>
-<p>ii. Set P-&gt;bk-&gt;fd = P-&gt;fd .</p>
-</blockquote>
-<h4 id="void-malloc-consolidate-mstate-av"><a href="#void-malloc-consolidate-mstate-av" class="headerlink" title="void malloc_consolidate(mstate av)"></a>void malloc_consolidate(mstate av)</h4><blockquote>
-<p>这是一个 free() 的特殊版本。</p>
-<ol>
-<li>检查 global_max_fast 是否为 0 (未初始化av时)。如果为 0 ，用 av 作为参数调用 malloc_init_state 并返回。</li>
-</ol>
-<p>2.如果 global_max_fast 非零，则为 av 清除 FASTCHUNKS_BIT 标志</p>
-<p>3.遍历 fastbin 数组。</p>
-<blockquote>
-<p>i.如果非空值，则锁定当前的 fastbin 堆块并继续。</p>
-<p>ii.如果前一个 chunk (内存意义上的)没有被使用的话, 则在前一个 chunk 进行 unlink 操作。</p>
-<p>iii.如果后一个 chunk（内存意义上的）不是 top chunk:</p>
-<blockquote>
-<p>  i.如果下一个 chunk 没有被使用的话，则在下一个 chunk 执行 unlink 操作。</p>
-<p>  ii. 如果前一个与后一个 chunk 都处于 free 状态的话，则将他们合并，且加到 unsorted bin 中去。</p>
-</blockquote>
-<p>iv. 如果下一个堆块(内存意义上的)是 top chunk，则将堆块和 top chunk 合并。</p>
-</blockquote>
-</blockquote>
-<p><strong>注意</strong>：对于 chunk 是否处于 free 是根据PREV_IN_USE标志判断，因此，fastbin 堆块并不会被认为是空闲状态。</p>
-</the>
+<h4 id="自己的解法"><a href="#自己的解法" class="headerlink" title="自己的解法"></a>自己的解法</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">hanio</span><span class="params">(<span class="keyword">int</span> num,<span class="keyword">char</span> A,<span class="keyword">char</span> B,<span class="keyword">char</span> C)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">if</span> (num == <span class="number">1</span>)</div><div class="line"></div><div class="line">	&#123;</div><div class="line"></div><div class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Move "</span> &lt;&lt; num &lt;&lt; <span class="string">"sheet from "</span> &lt;&lt; A &lt;&lt; <span class="string">" to "</span> &lt;&lt; C &lt;&lt; <span class="built_in">endl</span>;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">else</span></div><div class="line"></div><div class="line">	&#123;</div><div class="line"></div><div class="line">		hanio(num - <span class="number">1</span>, A, C, B);</div><div class="line"></div><div class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Move "</span> &lt;&lt; num - <span class="number">1</span> &lt;&lt; <span class="string">"sheet from "</span> &lt;&lt; A &lt;&lt; <span class="string">" to "</span> &lt;&lt; C &lt;&lt; <span class="built_in">endl</span>;</div><div class="line"></div><div class="line">		hanio(num - <span class="number">1</span>, B, A, C);</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> num = <span class="number">0</span>;</div><div class="line"></div><div class="line">	<span class="keyword">char</span> A = <span class="string">'A'</span>;</div><div class="line"></div><div class="line">	<span class="keyword">char</span> B = <span class="string">'B'</span>;</div><div class="line"></div><div class="line">	<span class="keyword">char</span> C = <span class="string">'C'</span>;</div><div class="line"></div><div class="line">	<span class="built_in">cin</span> &gt;&gt; num;</div><div class="line"></div><div class="line">	hanio(num, A, B, C);</div><div class="line"></div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="官方解法"><a href="#官方解法" class="headerlink" title="官方解法"></a>官方解法</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line">voidhanoi(intn,charA,charB,charC)&#123;</div><div class="line"></div><div class="line"><span class="keyword">if</span>(n==<span class="number">1</span>)&#123;</div><div class="line"></div><div class="line"><span class="built_in">printf</span>(<span class="string">"Movesheet%dfrom%cto%c\n"</span>,n,A,C);</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">hanoi(n<span class="number">-1</span>,A,C,B);</div><div class="line"></div><div class="line"><span class="built_in">printf</span>(<span class="string">"Movesheet%dfrom%cto%c\n"</span>,n,A,C);</div><div class="line"></div><div class="line">hanoi(n<span class="number">-1</span>,B,A,C);</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line">intmain()&#123;</div><div class="line"></div><div class="line"><span class="keyword">int</span> n;</div><div class="line"></div><div class="line"><span class="built_in">printf</span>(<span class="string">"请输入盘数： "</span>);</div><div class="line"></div><div class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</div><div class="line"></div><div class="line">hanoi(n,<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>);</div><div class="line"></div><div class="line"><span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></the>
       
     </div>
 
@@ -414,6 +387,8 @@
           
             <a href="/tags/daily/" rel="tag">#daily</a>
           
+            <a href="/tags/algorithm/" rel="tag">#algorithm</a>
+          
         </div>
       
 
@@ -421,16 +396,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/14/12/" rel="next" title="how2heap-two">
-                <i class="fa fa-chevron-left"></i> how2heap-two
+              <a href="/2018/05/17/18/" rel="next" title="how2heap-five">
+                <i class="fa fa-chevron-left"></i> how2heap-five
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/15/14/" rel="prev" title="how2heap-three">
-                how2heap-three <i class="fa fa-chevron-right"></i>
+              <a href="/2088/04/02/6/" rel="prev" title="Lookup's Daily">
+                Lookup's Daily <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -582,7 +557,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Internal-functions-内部函数"><span class="nav-number">1.</span> <span class="nav-text">Internal functions(内部函数)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#arena-get-ar-ptr-size"><span class="nav-number">1.1.</span> <span class="nav-text">arena_get(ar_ptr,size)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sysmalloc-TODO"><span class="nav-number">1.2.</span> <span class="nav-text">sysmalloc[TODO]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#void-alloc-perturb-char-p-size-t-n"><span class="nav-number">1.3.</span> <span class="nav-text">void alloc_perturb(char *p, size_t n)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#void-free-perturb-char-p-size-t-n"><span class="nav-number">1.4.</span> <span class="nav-text">void free_perturb (char *p, size_t n)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#void-malloc-init-state-mstate-av"><span class="nav-number">1.5.</span> <span class="nav-text">void malloc_init_state (mstate av)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#unlink-AV-P-BK-FD"><span class="nav-number">1.6.</span> <span class="nav-text">unlink(AV, P, BK, FD)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#void-malloc-consolidate-mstate-av"><span class="nav-number">1.7.</span> <span class="nav-text">void malloc_consolidate(mstate av)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#河内之塔"><span class="nav-number">1.</span> <span class="nav-text">河内之塔</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目"><span class="nav-number">1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#想法"><span class="nav-number">1.2.</span> <span class="nav-text">想法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自己的解法"><span class="nav-number">1.3.</span> <span class="nav-text">自己的解法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#官方解法"><span class="nav-number">1.4.</span> <span class="nav-text">官方解法</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
