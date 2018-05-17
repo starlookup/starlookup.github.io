@@ -84,7 +84,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/05/16/15/index.html">
 <meta property="og:site_name" content="Lookup&#39;s blog">
 <meta property="og:description" content="每天翻一点，多读书，多看报，少玩手机，多睡觉">
-<meta property="og:updated_time" content="2018-05-16T12:22:36.480Z">
+<meta property="og:updated_time" content="2018-05-17T07:14:34.398Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Heap-exploitation-six">
 <meta name="twitter:description" content="每天翻一点，多读书，多看报，少玩手机，多睡觉">
@@ -388,7 +388,7 @@
 <p>2.剩下的 chunk 变成新的 last remainder chunk ,并插入到 unsorted bin 中：</p>
 <blockquote>
 <p>1.为两个 chunk 设置好对应的chunk_size和chunk_prev_size</p>
-<p>2.在调用alloc_perturb后返回第一个堆块</p>
+<p>2.在调用 alloc_perturb 后返回第一个堆块</p>
 </blockquote>
 </blockquote>
 <p>iv.如果上述情形都不满足, 进行如下控制. 在unsorted bin中移除victim, 如果victim的大小刚好满足所申请的堆块大小, 那么就在调用alloc_perturb后返回该堆块的指针</p>
@@ -396,8 +396,39 @@
 <p>vi.不然就加到合适的 largebin 中，并维持原有的秩序。</p>
 <blockquote>
 <p>i.检查最后一个 chunk(最小的)，如果 victim 小于 last chunk，则加入到最后。</p>
-<p>ii.不然, 循环遍历寻找一个大小恰好大于等于victim大小的堆块, 并将victim插入到这个堆块后面. 如果恰好相等, 则将其插入到第二个的位置上</p>
+<p>ii.不然, 循环遍历寻找一个大小恰好大于等于 victim 大小的堆块, 并将 victim 插入到这个堆块后面. 如果恰好相等, 则将其插入到第二个的位置上</p>
+<p>vii. 重复这整个步骤最多 MAX_ITERS(10000) 次或者所有的堆块都插入到 unsorted bin 中合适的位置</p>
 </blockquote>
+</blockquote>
+<ol>
+<li>再检查完 unsorted chunk后，检查如果所需 chunk 大小不在 smallbin中，那么检查 largebins。</li>
+</ol>
+<blockquote>
+<p>i.根据申请的大小, 从largebin数组中获取一个合适的bin的索引</p>
+<p>ii.如果最大的 chunk （bin 中的第一个）大于所申请的大小：</p>
+<blockquote>
+<p>i.从链表尾部开始迭代, 直到找到一个大于等于申请大小的最小堆块 victim。</p>
+<p>ii.调用 unlink 从这个 bin 中去掉 victim。</p>
+<p>iii.为 victim 堆块计算 remainder_size(remainder_size 大小为 victim 的堆块大小减去所申请的堆块大小)</p>
+<p>iv.如果 remainder_size &gt;= MINSIZE(包含头信息后最小的 chunk 大小)，将 chunk 一分为二。不然将整个 victim 整个返回。将 remainder chunk 插入到 unsorted bin 中(插到尾部)。在 unsorted bin 中会检查 unsorted_chunks(av)-&gt;fd-&gt;bk 是否等于unsorted_chunks(av). 不等的话抛出异常 (“malloc(): corrupted unsorted chunks”)</p>
+<p>v.在调用 alloc_perturb 后返回 victim 堆块</p>
+</blockquote>
+</blockquote>
+<p>8.到现在我们已经检查了 unsorted bin 以及 fast,small,large bin。要注意的是我们会根据所申请的 chunk 大小来检查每个 bin(fast或small), 重复以下步骤直到所有的 bin 都被检查完.</p>
+<blockquote>
+<p>i. bin 的索引通过自增来检查下一个 bin。</p>
+<p>ii.使用 av-&gt;binmap 来跳过空的 bin</p>
+<p>iii.victim 指向当前 bin 的尾部。</p>
+<p>iv.使用 binmap 确保跳过的 bin(在上述第二个步骤中)确实是空的. 然而这还不能确保所有的空白 bin 会被跳过, 还需要检查 victim 是否为空. 如果为空, 那么再次跳过该 bin 并重复以上步骤(或继续本次循环)直到到达一个非空的 bin。</p>
+<p>v.切分堆块( victim 指向非空 bi n中的最后一个堆块)成两部分, 将 remainder chunk插入到 unsorted bin 中(插入到尾部). 在 unsorted bin 中检查 unsorted_chunks(av)-&gt;fd-&gt;bk 是否等于 unsorted_chunks(av), 如果不等,则抛出一个异常 (“malloc(): corrupted unsorted chunks 2”)</p>
+<p>vi.在调用 alloc_perturb 后返回 victim 堆块。</p>
+</blockquote>
+<p>9.如果还是没能找到非空bin, 那么会使用top chunk来满足需求</p>
+<blockquote>
+<p>i.victim指向av-&gt;top</p>
+<p>ii.如果 size of top chunk &gt;= requested size + MINSIZE, 那么就将其分成两部分, 在这里, 剩下的remainder chun会变成新的top chunk, 另外一个chunk则会在调用alloc_perturb后返回给用户</p>
+<p>iii.观察 av 是否有 fastchunks, 这是通过 av-&gt;flags 中的 FASTCHUNKS_BIT 来检查的. 如果有 fastchunks, 就对 av 调用 malloc_consolidate 并返回到步骤6(我们检查unsorted bin的地方)</p>
+<p>iv.如果 av 没有 fastchunks, 那么就调用 sysmalloc 并返回调用 alloc_perturb 获得的指针</p>
 </blockquote>
 </blockquote>
 </the>
@@ -512,7 +543,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
