@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Lookup's Daily]]></title>
-    <url>%2F2088%2F04%2F02%2F6%2F</url>
-    <content type="text"><![CDATA[每天记一下 2018-4-2 1.pwnable刷了一题 2.感觉数据挖掘课好水呀，有点难受 3.身边一个师傅进了 chamd5 ，两个进了fp 为他们高兴，有点羡慕 4.Linux堆内存管理深入分析 5.清华大学 操作系统课程 6.secwiki 2018-4-3 1.今天满课，痛苦，晚上还有实验，我的天。。。 2.pwnable刷了一题 3.ROP 4.matlab作业 2018-4-4 1.Tencent讲座，见到 Pwn2Own 大佬值了 2.pwnable 一题 3.看了几小时书 4.写实验报告（真心烦这个。。。） 2018-4-5 1.西安植物园逛一下 2.头号玩家也太好看了吧 3.强网杯题目复盘ing 2018-4-6 1.补作业ing ,毕业要紧，毕业要紧 2018-4-7 1.我竟然调个Docker调了半天，我真是服了，唉，但基本熟悉了 2.pwnable刷题ing 3.强网杯接着复盘 2018-4-8 1.体育课爽呀，一点力气都没了，丧的一批 2.协会换届了，时间过得也太快了，自己还是这么菜 3.入手一个ipad,美滋滋，学习更有动力了呢（假装学习） 2018-4-9 1.补完三个实验报告。。。我是弄不懂实验报告这东西到底有啥用，实验10分钟，报告1小时。。。 2.真的是都花在实验报告上了，好气啊！！！ 2018-4-10 1.今天满课，感觉这样下去不行，要选择性的翘课了 2.pwnable一题 3.reversing一题 4.练习c++ 5.堆相关 2018-4-11 1.巴萨输球，勇士输球，一天都压抑的很 2.上午实验课，帮别人找bug，竟然没找到，老师一找就出来了。。。还是要多写代码 3.晚上出去锻炼了会，总算心情好了，状态回来了 2018-4-12 1.又是满课，就不谈了 2.pwnable一题 3.reversing一题 3.c++继续码（准备最近恶补一下编程了） 2018-4-13 1.思想课上的电影，看的莫名感触 2.c++练习 3.晚上实验。。。 4.捣鼓了一下平板，假装学习（逃） 5.DDCTF看了一下 2018-4-14 全天赛艇比赛，运动完是真的爽 2018-4-15 1.练习c++ 2.做DDCTF 3.阅读 2018-4-16 1.上午满课 2.练习c++ 3.pwn题一刷 2018-4-17 1.整天满课 2.晚上DDCTF第一题逆向啃了一晚上，不知道哪儿做错了，方程解出来不对 2018-4-18 1.上午做完信号与系统作业（毕业要紧） 2.下午复习操作系统课程 3.Play basketball（和院队一起训练，原来打比赛这么复杂） 4.感觉每天写的太过粗略，以后每天要写得更为详细 2018-4-19~21 1.重新复习前段时间学习，补补笔记，感觉效果还是不错的 2.加强锻炼吧 3.刷题也不能断 4.逆向能力感觉还差了不少呀，多练练吧 5.堆方面的终于有个大概了 2018-4-28~5-1 1.前段时间运气一直不太好，本来高高兴兴能去TCTF线下赛，结果。。。只能怪自己太菜 2.这三天认真弄完了数模，虽然和安全关系不大，但是主要是锻炼自己的思考能力，以及编程能力，肝了3天，结果无所谓，关键确实有收获 3.计划着这学期，着重看c++,以及操作系统，CTF跟着大家一起玩，一直学习就好了，比赛真的越来越难了 2018-5-2 c++学习 2.我最近一直疑惑到底是专注于学习一个东西，还是同时学习几个比较好 3.准备信安作品赛 2018-5-3 1.c++学习 2.复盘ctf 2018-5-4 1.锻炼身体 2.为学校ctf出题 3.信安作品赛 4.收拾宿舍，换季了，也该收拾收拾了 2018-5-5~2018-5-6 1.为学校里面的ctf出题，给大一学弟学妹玩的，也出了两个逆向题，我发现人太菜，连出题思路都很窄。不过还好最好还是用心弄出来了两道题，希望可以玩的开心。 2018-5-7 1.复习信号，毕业要紧，毕业要紧。。。 2018-5-8 1.复现堆的一个漏洞，做了一个相关的pwn 2.c++练习 3.阅读PDF 2018-5-9 1.how2heap更一波 2.c++练习 3.信安作品赛准备 2018-5-10 1.0ctfbabyheap 2.how2heap 3.c++练习 4.信安作品赛准备 5.最近基础知识学了很多，要进行适当的总结了。 2018-5-11 1.上午打了两个篮球全场 2.下午实现操作系统作业 3.准备信安作品赛，校内审核通过了 4.晚上突然告诉我，CTF题有问题，害的我慌得一批 5.总结最近学的东西，翻译翻译外国文章 2018-5-12 1.上午完成操作系统作业 2.去玩了会网络空间安全技术大赛，感觉还行 3.下午加晚上实验课（有点无语） 4.翻译外国文章 2018-5-13 1.实验报告。。。 2.下午6个小时的实验。。。 3.翻译外国文章 4.调试how2heap 2018-5-14 1.每天翻译 2.每天调试 3.复盘CTF 2018-5-15 1.每天翻译 2.每天调试 3.复盘CTF 2018-5-16 1.每天刷一道 pwn，re 2.翻译 3.调试 how2heap]]></content>
-      <categories>
-        <category>studying</category>
-        <category>daily</category>
-      </categories>
-      <tags>
-        <tag>studying</tag>
-        <tag>daily</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[algorithm-two]]></title>
     <url>%2F2018%2F05%2F19%2F22%2F</url>
     <content type="text"><![CDATA[普通算法练习，学习总不是坏事 题目 想法 这题其实第一反应想到的都是二维数组来做啦，当然可行是绝对可行的，但是总感觉有点笨拙。我竟然看了半天答案才反应过来他是怎么做的。唉╮(╯▽╰)╭。。。这也许就是菜吧。答案是用的是排列组合相关来进行乘的。所以数学真的很奇妙，巴斯卡三角形里面所蕴含的规律还真是不好少。这题弄清楚数学规则后，还要考虑排版的问题，这自然设计的判断。整体还是不是很难，关键如何高效写出。 自己解法123456789101112131415161718192021222324252627282930313233343536373839#include &lt;stdlib.h&gt;#include &lt;iostream&gt;#include &lt;iomanip&gt;using namespace std;#define N 12 //总行数int main()&#123; int num[N][N] = &#123;0&#125;; int i = 0; //循环行数 int j = 0; //循环行内个数 int k = 0; //控制输出 for (i = 0; i &lt; N; i++) &#123; for (j = 0; j &lt; N; j++) &#123; num[i][j] = 1; &#125; &#125; for (i = 0; i &lt; N; i++) &#123; for (j = 0; j &lt; (N - i); j++) &#123; cout &lt;&lt; " "; &#125; for (k = 0; k &lt;= i; k++) &#123; if (i &gt; 1 &amp;&amp; k != 0 &amp;&amp; k != i) &#123; num[i][k] = num[i - 1][k - 1] + num[i - 1][k]; &#125; cout &lt;&lt;" " &lt;&lt; setw(3) &lt;&lt; num[i][k] &lt;&lt; " "; &#125; cout &lt;&lt; endl; &#125; system("pause"); return 0;&#125; 官方解法12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849long combi(int n, int r) &#123; int i; long p = 1; for (i = 1; i &lt;= r; i++) p = p * (n - i + 1) / i; //这句十分关键 return p;&#125;void main() &#123; int n, r, t; for (n = 0; n &lt;= N; n++) &#123; for (r = 0; r &lt;= n; r++) &#123; int i;/* 排版设定开始 */ if (r == 0) &#123; for (i = 0; i &lt;= (N - n); i++) printf(" "); &#125; else &#123; printf(" "); &#125;/* 排版设定结束 */ printf("%3d ", combi(n, r)); &#125; printf("\n"); &#125; system("pause");&#125;]]></content>
@@ -32,6 +19,19 @@
     <title><![CDATA[Heap-exploitation-nine]]></title>
     <url>%2F2018%2F05%2F19%2F21%2F</url>
     <content type="text"><![CDATA[每天翻一点，多读书，多看报，少玩手机，多睡觉 Heap Exploitation glibc 库提供了很多函数,例如 malloc 和 free 来帮助开发者根据样例来管理 heap 内存。 下面是一些开发者的责任： free 掉所有他/她 malloc 获得到的内存。 free 相同的内存不超过一次。 确定所使用的内存不超过所申请的内存，换种说法，就是防止堆溢出。 Shellphish, 来自UC Santa Barbara的著名 CTF 团队，在 how2heap 上列举了各种堆利用技术。 下面描述了这些攻击的总结： Attack Target Technique First Fit 它不是一个攻击，它展示了 glibc 的本质 — DoubleFree 让 malloc 返回了一个已经被分配的 chunk 两次 free 一个 chunk 来破坏 fastbin Forgingchunks 让 malloc 返回一个几乎任意的指针 扰乱 fastbin 链接结构 UnlinkExploit 获取几乎任意写的权限 释放一个损坏的 chunk 且利用 unlink ShrinkingFreeChunks 让 malloc 返回与已分配的 chunk 重叠的 chunk 通过减小大小来破坏 free chunk House ofSpirit 让 malloc 返回一个几乎任意的指针 强制释放伪造的 chunk House ofLore 让 malloc 返回一个几乎任意的指针 扰乱 smallbin 的链接结构 House ofForce 让 malloc 返回一个几乎任意的指针 溢出到 top chunk 的头 House ofEinherjar 让 malloc 返回一个几乎任意的指针 溢出大个字节到 chunk]]></content>
+      <categories>
+        <category>studying</category>
+        <category>daily</category>
+      </categories>
+      <tags>
+        <tag>studying</tag>
+        <tag>daily</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Heap-exploitation-ten]]></title>
+    <url>%2F2018%2F05%2F19%2F23%2F</url>
+    <content type="text"><![CDATA[每天翻一点，多读书，多看报，少玩手机，多睡觉 First-fit behavior 这项技术描述了 glibc 分配器的 first fit 行为。无论什么时候 chunk 被释放(除了 fast chunk),都会加入到 unsorted bin 中,且插入到链表头部。当申请新的堆块时，在一开始会查找 unsorted bins 因为此时 small bins 还是空的.查找操作从链表的尾部开始查找，如果 unsorted bin 中存在一个简单的 chunk,就不会再进行精确的检查，且如果该 chunk 的大小大于等于所申请的大小。则一分为二并返回。也就确保了先进先出的规则。 考虑以下示例代码: 1234char *a = malloc(300); // 0x***010char *b = malloc(250); // 0x***150free(a);a = malloc(250); // 0x***010 unsorted bin 变化： ‘a’ freed head -&gt; a -&gt; tail ‘malloc’ request. head -&gt; a2 -&gt; tail [ ‘a1’ is returned ] 因为所申请的 chunk 大小完全(250 bytes)小于 a chunk 大小(300 bytes), a chunk 被一分为二为 a1 chunk 与 a2 chunk.这符合 _int_malloc 里的 [6. iii.]。 这在 fast chunk 里面同样成立。只是不会插入到 unsorted bin 中，而是插入到 fastbin 中。正如前面所说一样，fastbin 是一个单链表并且 chunk 的插入删除操作都在链表首部进行。 考虑以下代码: 123456789101112char *a = malloc(20); // 0xe4b010char *b = malloc(20); // 0xe4b030char *c = malloc(20); // 0xe4b050char *d = malloc(20); // 0xe4b070free(a);free(b);free(c);free(d);a = malloc(20); // 0xe4b070b = malloc(20); // 0xe4b050c = malloc(20); // 0xe4b030d = malloc(20); // 0xe4b010 我们使用 20 bytes 确保，chunk 在 free 后会添加到 fastbin 中，而不是 unsorted bin。]]></content>
       <categories>
         <category>studying</category>
         <category>daily</category>

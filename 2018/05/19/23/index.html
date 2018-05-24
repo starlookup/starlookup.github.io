@@ -80,13 +80,13 @@
 <meta name="description" content="每天翻一点，多读书，多看报，少玩手机，多睡觉">
 <meta name="keywords" content="studying,daily">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Heap-exploitation-eight">
-<meta property="og:url" content="http://yoursite.com/2018/05/19/20/index.html">
+<meta property="og:title" content="Heap-exploitation-ten">
+<meta property="og:url" content="http://yoursite.com/2018/05/19/23/index.html">
 <meta property="og:site_name" content="Lookup&#39;s blog">
 <meta property="og:description" content="每天翻一点，多读书，多看报，少玩手机，多睡觉">
-<meta property="og:updated_time" content="2018-05-19T02:50:08.513Z">
+<meta property="og:updated_time" content="2018-05-24T06:58:20.972Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Heap-exploitation-eight">
+<meta name="twitter:title" content="Heap-exploitation-ten">
 <meta name="twitter:description" content="每天翻一点，多读书，多看报，少玩手机，多睡觉">
 
 
@@ -105,7 +105,7 @@
   };
 </script>
 
-  <title> Heap-exploitation-eight | Lookup's blog </title>
+  <title> Heap-exploitation-ten | Lookup's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -268,7 +268,7 @@
             
             
               
-                Heap-exploitation-eight
+                Heap-exploitation-ten
               
             
           </h1>
@@ -343,108 +343,32 @@
 <p><excerpt in="" index="" |="" 首页摘要=""><br> <a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-<h3 id="Security-Checks"><a href="#Security-Checks" class="headerlink" title="Security Checks"></a>Security Checks</h3><blockquote>
-<p>这是 glibc 实现目前检测和防护堆相关攻击的安全检查简单摘要。</p>
+<h3 id="First-fit-behavior"><a href="#First-fit-behavior" class="headerlink" title="First-fit behavior"></a>First-fit behavior</h3><blockquote>
+<p>这项技术描述了 glibc 分配器的 first fit 行为。无论什么时候 chunk 被释放(除了 fast chunk),都会加入到 unsorted bin 中,且插入到链表头部。当申请新的堆块时，在一开始会查找 unsorted bins 因为此时 small bins 还是空的.查找操作从链表的尾部开始查找，如果 unsorted bin 中存在一个简单的 chunk,就不会再进行精确的检查，且如果该 chunk 的大小大于等于所申请的大小。则一分为二并返回。也就确保了先进先出的规则。</p>
+<p>考虑以下示例代码:</p>
 </blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Function</th>
-<th style="text-align:left">Security Check</th>
-<th style="text-align:left">Error</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">unlink</td>
-<td style="text-align:left">chunk size 是否等于 next chunk(内存意义上的) prev_size</td>
-<td style="text-align:left">corrupted<br>size vs.<br>prev_size</td>
-</tr>
-<tr>
-<td style="text-align:left">unlink</td>
-<td style="text-align:left">检查是否 P-&gt;fd-&gt;bk == P 和 P-&gt;bk-&gt;fd == P *</td>
-<td style="text-align:left">corrupted<br>double-linked<br>list</td>
-</tr>
-<tr>
-<td style="text-align:left">_int_malloc</td>
-<td style="text-align:left">当从 fastbin 中移除第一个 chunk(来满足 malloc 的要求),检查 chunk 大小是否在 fast chunk 的大小范围内</td>
-<td style="text-align:left">malloc():<br>memory<br>corruption<br>(fast)</td>
-</tr>
-<tr>
-<td style="text-align:left">_int_malloc</td>
-<td style="text-align:left">当从 smallbin 中移除最后一 chunk(victim) (来满足 malloc 的要求),检查 victim-&gt;bk-&gt;fd 和 victim 是否相等</td>
-<td style="text-align:left">malloc():<br>smallbin<br>double linked<br>list corrupted</td>
-</tr>
-<tr>
-<td style="text-align:left">_int_malloc</td>
-<td style="text-align:left">当迭代 unsorted bin, 检查当前 chunk 的大小是否在 minimum ( 2*SIZE_SZ ) 和<br>maximum ( av-&gt;system_mem ) 范围内</td>
-<td style="text-align:left">malloc():<br>memory<br>corruption</td>
-</tr>
-<tr>
-<td style="text-align:left">_int_malloc</td>
-<td style="text-align:left">当将 last remainder chunk 插入到 unsorted bin中时(在分隔 large chunk 后), 检查unsorted_chunks(av)-&gt;fd-&gt;bk == unsorted_chunks(av)</td>
-<td style="text-align:left">malloc():<br>corrupted<br>unsorted<br>chunks</td>
-</tr>
-<tr>
-<td style="text-align:left">_int_malloc</td>
-<td style="text-align:left">当将 last remainder chunk 插入 unsorted bin<br>(after splitting a fast or a small chunk), check whether<br>unsorted_chunks(av)-&gt;fd-&gt;bk == unsorted_chunks(av)</td>
-<td style="text-align:left">malloc():<br>corrupted<br>unsorted<br>chunks 2</td>
-</tr>
-<tr>
-<td style="text-align:left">_int_free</td>
-<td style="text-align:left">检查 p ** 是否在 p + chunksize(p) 之前 (去避免覆盖)</td>
-<td style="text-align:left">free(): invalid<br>pointer</td>
-</tr>
-<tr>
-<td style="text-align:left">_int_free</td>
-<td style="text-align:left">检查 chunk的大小至少为 MINSIZE 或者是<br>MALLOC_ALIGNMENT 倍数</td>
-<td style="text-align:left">free(): invalid<br>size</td>
-</tr>
-<tr>
-<td style="text-align:left">_int_free</td>
-<td style="text-align:left">chunk 的大小 在 fastbin 大小范围, 检查 next chunk 大小 在不在 minimum and maximum ( av-&gt;system_mem )之间。</td>
-<td style="text-align:left">free(): invalid<br>next size<br>(fast)</td>
-</tr>
-<tr>
-<td style="text-align:left">_int_free</td>
-<td style="text-align:left">当将 fast chunk 插入到 fastbin (插到头部 ), 检查已经在头部的 chunk  与即将插入的 Chunk 是否相同</td>
-<td style="text-align:left">double free<br>or corruption<br>(fasttop)</td>
-</tr>
-<tr>
-<td style="text-align:left">_int_free</td>
-<td style="text-align:left">当插入 fast chunk进入 fastbin (插到头部), 检查头部 chunk 的大小是否与即将插入的 chunk 相同</td>
-<td style="text-align:left">invalid fastbin<br>entry (free)</td>
-</tr>
-<tr>
-<td style="text-align:left">_int_free</td>
-<td style="text-align:left">如果 chunk 的大小不在 fastbin 的大小范围内, 也不是通过 mmap 映射得到的chunk, 检查 chunk 是否为 top chunk</td>
-<td style="text-align:left">double free<br>or corruption<br>(top)</td>
-</tr>
-<tr>
-<td style="text-align:left">_int_free</td>
-<td style="text-align:left">检查 next chunk (内存意义上的)是否在 arena 的范围内</td>
-<td style="text-align:left">double free<br>or corruption<br>(out)</td>
-</tr>
-<tr>
-<td style="text-align:left">_int_free</td>
-<td style="text-align:left">检查 next chunk 的 PREV_INUSE 位是否为1</td>
-<td style="text-align:left">double free<br>or corruption<br>(!prev)</td>
-</tr>
-<tr>
-<td style="text-align:left">_int_free</td>
-<td style="text-align:left">检查 next chunk 的大小在the<br>minimum and maximum size ( av-&gt;system_mem )范围之内</td>
-<td style="text-align:left">free(): invalid<br>next size<br>(normal)</td>
-</tr>
-<tr>
-<td style="text-align:left">_int_free</td>
-<td style="text-align:left">当插入合并后的 chunk 到 unsorted bin 时, 检查是否 unsorted_chunks(av)-&gt;fd-&gt;bk == unsorted_chunks(av)<br></td>
-<td style="text-align:left">free():<br>corrupted<br>unsorted<br>chunks</td>
-</tr>
-</tbody>
-</table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> *a = <span class="built_in">malloc</span>(<span class="number">300</span>); <span class="comment">// 0x***010</span></div><div class="line"><span class="keyword">char</span> *b = <span class="built_in">malloc</span>(<span class="number">250</span>); <span class="comment">// 0x***150</span></div><div class="line"><span class="built_in">free</span>(a);</div><div class="line">a = <span class="built_in">malloc</span>(<span class="number">250</span>); <span class="comment">// 0x***010</span></div></pre></td></tr></table></figure>
 <blockquote>
-<p>*: ‘P’ refers to the chunk being unlinked</p>
-<p>**: ‘p’ refers to the chunk being freed</p>
+<p>unsorted bin 变化：</p>
+</blockquote>
+<ol>
+<li>‘a’ freed</li>
+</ol>
+<blockquote>
+<p>head -&gt; a -&gt; tail</p>
+</blockquote>
+<ol>
+<li>‘malloc’ request.</li>
+</ol>
+<blockquote>
+<p>head -&gt; a2 -&gt; tail [ ‘a1’ is returned ]</p>
+<p>因为所申请的 chunk 大小完全(250 bytes)小于 a chunk 大小(300 bytes), a chunk 被一分为二为 a1 chunk 与 a2 chunk.这符合 _int_malloc 里的 [6. iii.]。</p>
+<p>这在 fast chunk 里面同样成立。只是不会插入到 unsorted bin 中，而是插入到 fastbin 中。正如前面所说一样，fastbin 是一个单链表并且 chunk 的插入删除操作都在链表首部进行。</p>
+<p>考虑以下代码: </p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> *a = <span class="built_in">malloc</span>(<span class="number">20</span>); <span class="comment">// 0xe4b010</span></div><div class="line"><span class="keyword">char</span> *b = <span class="built_in">malloc</span>(<span class="number">20</span>); <span class="comment">// 0xe4b030</span></div><div class="line"><span class="keyword">char</span> *c = <span class="built_in">malloc</span>(<span class="number">20</span>); <span class="comment">// 0xe4b050</span></div><div class="line"><span class="keyword">char</span> *d = <span class="built_in">malloc</span>(<span class="number">20</span>); <span class="comment">// 0xe4b070</span></div><div class="line"><span class="built_in">free</span>(a);</div><div class="line"><span class="built_in">free</span>(b);</div><div class="line"><span class="built_in">free</span>(c);</div><div class="line"><span class="built_in">free</span>(d);</div><div class="line">a = <span class="built_in">malloc</span>(<span class="number">20</span>); <span class="comment">// 0xe4b070</span></div><div class="line">b = <span class="built_in">malloc</span>(<span class="number">20</span>); <span class="comment">// 0xe4b050</span></div><div class="line">c = <span class="built_in">malloc</span>(<span class="number">20</span>); <span class="comment">// 0xe4b030</span></div><div class="line">d = <span class="built_in">malloc</span>(<span class="number">20</span>); <span class="comment">// 0xe4b010</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>我们使用 20 bytes 确保，chunk 在 free 后会添加到 fastbin 中，而不是 unsorted bin。</p>
 </blockquote>
 </the>
       
@@ -478,16 +402,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/17/19/" rel="next" title="algorithm-one">
-                <i class="fa fa-chevron-left"></i> algorithm-one
+              <a href="/2018/05/19/20/" rel="next" title="Heap-exploitation-eight">
+                <i class="fa fa-chevron-left"></i> Heap-exploitation-eight
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/19/23/" rel="prev" title="Heap-exploitation-ten">
-                Heap-exploitation-ten <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/19/21/" rel="prev" title="Heap-exploitation-nine">
+                Heap-exploitation-nine <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -639,7 +563,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Security-Checks"><span class="nav-number">1.</span> <span class="nav-text">Security Checks</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#First-fit-behavior"><span class="nav-number">1.</span> <span class="nav-text">First-fit behavior</span></a></li></ol></div>
             
           </div>
         </section>
