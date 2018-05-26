@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[TCTF之行]]></title>
+    <url>%2F2018%2F05%2F26%2F24%2F</url>
+    <content type="text"><![CDATA[我感觉对我来说是十分珍贵的机会 协会里面大三、大四都没有时间，大二厉害的师傅都有其他事情，于是我才有了这次十分珍贵的机会。我自己水平我自己心里清楚，我还没达到打这种比赛的级别。所以成绩什么的，反正很差就是了 writeup持续更新 体会 感觉自己也算见过世面了吧（嘻嘻）。看见各大战队的各位只在博客上见过得师傅，说不激动是假的。真的都太强了，有种见偶像的感觉吧。也意识到了自己的不足，有了学习的目标吧，感觉也知道怎么学了。所以谁想自己菜呢？加油吧。哦，对了，这次主办方真的是下足了功夫，无论环境、题目、设施都精心准备了。弄得我感觉自己的实力都配不上这么精心的准备。]]></content>
+      <categories>
+        <category>studying</category>
+        <category>daily</category>
+      </categories>
+      <tags>
+        <tag>studying</tag>
+        <tag>daily</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[algorithm-two]]></title>
     <url>%2F2018%2F05%2F19%2F22%2F</url>
     <content type="text"><![CDATA[普通算法练习，学习总不是坏事 题目 想法 这题其实第一反应想到的都是二维数组来做啦，当然可行是绝对可行的，但是总感觉有点笨拙。我竟然看了半天答案才反应过来他是怎么做的。唉╮(╯▽╰)╭。。。这也许就是菜吧。答案是用的是排列组合相关来进行乘的。所以数学真的很奇妙，巴斯卡三角形里面所蕴含的规律还真是不好少。这题弄清楚数学规则后，还要考虑排版的问题，这自然设计的判断。整体还是不是很难，关键如何高效写出。 自己解法123456789101112131415161718192021222324252627282930313233343536373839#include &lt;stdlib.h&gt;#include &lt;iostream&gt;#include &lt;iomanip&gt;using namespace std;#define N 12 //总行数int main()&#123; int num[N][N] = &#123;0&#125;; int i = 0; //循环行数 int j = 0; //循环行内个数 int k = 0; //控制输出 for (i = 0; i &lt; N; i++) &#123; for (j = 0; j &lt; N; j++) &#123; num[i][j] = 1; &#125; &#125; for (i = 0; i &lt; N; i++) &#123; for (j = 0; j &lt; (N - i); j++) &#123; cout &lt;&lt; " "; &#125; for (k = 0; k &lt;= i; k++) &#123; if (i &gt; 1 &amp;&amp; k != 0 &amp;&amp; k != i) &#123; num[i][k] = num[i - 1][k - 1] + num[i - 1][k]; &#125; cout &lt;&lt;" " &lt;&lt; setw(3) &lt;&lt; num[i][k] &lt;&lt; " "; &#125; cout &lt;&lt; endl; &#125; system("pause"); return 0;&#125; 官方解法12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849long combi(int n, int r) &#123; int i; long p = 1; for (i = 1; i &lt;= r; i++) p = p * (n - i + 1) / i; //这句十分关键 return p;&#125;void main() &#123; int n, r, t; for (n = 0; n &lt;= N; n++) &#123; for (r = 0; r &lt;= n; r++) &#123; int i;/* 排版设定开始 */ if (r == 0) &#123; for (i = 0; i &lt;= (N - n); i++) printf(" "); &#125; else &#123; printf(" "); &#125;/* 排版设定结束 */ printf("%3d ", combi(n, r)); &#125; printf("\n"); &#125; system("pause");&#125;]]></content>
