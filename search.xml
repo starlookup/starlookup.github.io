@@ -14,7 +14,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Heap-exploitation-eleven]]></title>
+    <title><![CDATA[Heap-exploitation-twelve]]></title>
     <url>%2F2018%2F05%2F26%2F25%2F</url>
     <content type="text"><![CDATA[每天翻一点，多读书，多看报，少玩手机，多睡觉 Double Free 多次释放资源可能导致内存泄漏。 分配器的数据结构被破坏，可以被攻击者利用。 在下面的示例程序中，fastbin块将被释放两次。 现在，为了避免glibc发生’double free或corruption（fasttop）’安全检查，另一个块将在两个空闲空间之间释放。 这意味着相同的块将由两个不同的’malloc’返回。 这两个指针都会指向相同的内存地址。 如果其中之一处于攻击者的控制之下，他/她可以修改导致各种攻击（包括代码执行）的其他指针的内存。（谷歌翻译能看懂直接贴上来了）。 123456789a = malloc(10); // 0xa04010b = malloc(10); // 0xa04030c = malloc(10); // 0xa04050free(a);free(b); // To bypass "double free or corruption (fasttop)" checkfree(a); // Double Free !!d = malloc(10); // 0xa04010e = malloc(10); // 0xa04030f = malloc(10); // 0xa04010 - Same as 'd' ! ‘a’ freed. head -&gt; a -&gt; tail ‘b’ freed. head -&gt; b -&gt; a -&gt; tail ‘a’ freed again. head -&gt; a -&gt; b -&gt; a -&gt; tail ‘malloc’ request for ‘d’. head -&gt; b -&gt; a -&gt; tail [ ‘a’ is returned ] ‘malloc’ request for ‘e’. head -&gt; a -&gt; tail [ ‘b’ is returned ] ‘malloc’ request for ‘f’. head -&gt; tail [ ‘a’ is returned ] 现在，’d’和’f’指针指向相同的内存地址。 任何一个变化都会影响另一个。 要注意, 这个例子对那些大小在smallbin范围内的堆块不适用. 在第一次释放时, ‘a’的next chunk将会把’prev_inuse’标志设为0, 在第二次释放时, 会因为改标志为0而抛出error(double free or corruption (!prev)”)]]></content>
       <categories>
