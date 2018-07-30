@@ -4,12 +4,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/05/26/25/</loc>
-    <lastmod>2018-05-27T13:14:06.872Z</lastmod>
+    <loc>http://yoursite.com/2018/07/30/27/</loc>
+    <lastmod>2018-07-30T14:37:14.301Z</lastmod>
     <data>
         <display>
         <title>Heap-exploitation-twelve</title>
-        <pubTime>2018-05-26T13:31:02.000Z</pubTime>
+        <pubTime>2018-07-30T14:32:02.000Z</pubTime>
         
         <tag>studying</tag>
          
@@ -29,12 +29,62 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/05/27/24/</loc>
-    <lastmod>2018-05-27T12:47:28.240Z</lastmod>
+    <loc>http://yoursite.com/2018/05/28/26/</loc>
+    <lastmod>2018-06-08T08:09:21.488Z</lastmod>
+    <data>
+        <display>
+        <title>Heap-exploitation-twelve</title>
+        <pubTime>2018-05-28T12:07:02.000Z</pubTime>
+        
+        <tag>studying</tag>
+         
+        <tag>daily</tag>
+         
+         
+           
+             
+              <breadCrumb title="studying" url="http://yoursite.com/categories/studying/"/>
+          
+             
+              <breadCrumb title="daily" url="http://yoursite.com/categories/studying/daily/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/05/27/25/</loc>
+    <lastmod>2018-06-08T08:08:41.554Z</lastmod>
     <data>
         <display>
         <title>Heap-exploitation-eleven</title>
-        <pubTime>2018-05-27T12:07:02.000Z</pubTime>
+        <pubTime>2018-05-27T13:31:02.000Z</pubTime>
+        
+        <tag>studying</tag>
+         
+        <tag>daily</tag>
+         
+         
+           
+             
+              <breadCrumb title="studying" url="http://yoursite.com/categories/studying/"/>
+          
+             
+              <breadCrumb title="daily" url="http://yoursite.com/categories/studying/daily/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/05/25/24/</loc>
+    <lastmod>2018-05-28T13:42:51.621Z</lastmod>
+    <data>
+        <display>
+        <title>Heap-exploitation-thirteen</title>
+        <pubTime>2018-05-25T12:07:02.000Z</pubTime>
         
         <tag>studying</tag>
          
