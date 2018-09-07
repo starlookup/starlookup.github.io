@@ -2,32 +2,6 @@
 <search>
   <entry>
     <title><![CDATA[Heap-exploitation-twelve]]></title>
-    <url>%2F2018%2F07%2F30%2F27%2F</url>
-    <content type="text"><![CDATA[又要开始写博客了 立个flag 前段时间忙着期末考试复习呀，信息安全作品赛，忙着办出国的各种手续。终于这些事情都过去了，我可以接着学习自己想学了。顺利顺利出国，作品赛也拿到了一等奖，期末考试考的也还可以。一切好像顺顺利利。但是感觉自己作品赛把队友给坑惨了，所以自己也很难受。还好结果还可以，不然心态都崩了。啥也不说了，接着学习吧，暑假把 pwnable.tw 好好刷刷，谢谢博客啥的。]]></content>
-      <categories>
-        <category>studying</category>
-        <category>daily</category>
-      </categories>
-      <tags>
-        <tag>studying</tag>
-        <tag>daily</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Heap-exploitation-twelve]]></title>
-    <url>%2F2018%2F05%2F28%2F26%2F</url>
-    <content type="text"><![CDATA[每天翻一点，多读书，多看报，少玩手机，多睡觉 Unlink Exploit]]></content>
-      <categories>
-        <category>studying</category>
-        <category>daily</category>
-      </categories>
-      <tags>
-        <tag>studying</tag>
-        <tag>daily</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Heap-exploitation-eleven]]></title>
     <url>%2F2018%2F05%2F27%2F25%2F</url>
     <content type="text"><![CDATA[每天翻一点，多读书，多看报，少玩手机，多睡觉 Double Free 多次释放资源可能导致内存泄漏。 分配器的数据结构被破坏，可以被攻击者利用。 在下面的示例程序中，fastbin块将被释放两次。 现在，为了避免glibc发生’double free或corruption（fasttop）’安全检查，另一个块将在两个空闲空间之间释放。 这意味着相同的块将由两个不同的’malloc’返回。 这两个指针都会指向相同的内存地址。 如果其中之一处于攻击者的控制之下，他/她可以修改导致各种攻击（包括代码执行）的其他指针的内存。（谷歌翻译能看懂直接贴上来了）。 123456789a = malloc(10); // 0xa04010b = malloc(10); // 0xa04030c = malloc(10); // 0xa04050free(a);free(b); // To bypass "double free or corruption (fasttop)" checkfree(a); // Double Free !!d = malloc(10); // 0xa04010e = malloc(10); // 0xa04030f = malloc(10); // 0xa04010 - Same as 'd' ! ‘a’ freed. head -&gt; a -&gt; tail ‘b’ freed. head -&gt; b -&gt; a -&gt; tail ‘a’ freed again. head -&gt; a -&gt; b -&gt; a -&gt; tail ‘malloc’ request for ‘d’. head -&gt; b -&gt; a -&gt; tail [ ‘a’ is returned ] ‘malloc’ request for ‘e’. head -&gt; a -&gt; tail [ ‘b’ is returned ] ‘malloc’ request for ‘f’. head -&gt; tail [ ‘a’ is returned ] 现在，’d’和’f’指针指向相同的内存地址。 任何一个变化都会影响另一个。 要注意, 这个例子对那些大小在smallbin范围内的堆块不适用. 在第一次释放时, ‘a’的next chunk将会把’prev_inuse’标志设为0, 在第二次释放时, 会因为改标志为0而抛出error(double free or corruption (!prev)”)]]></content>
       <categories>
@@ -40,7 +14,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Heap-exploitation-thirteen]]></title>
+    <title><![CDATA[Heap-exploitation-eleven]]></title>
     <url>%2F2018%2F05%2F25%2F24%2F</url>
     <content type="text"><![CDATA[每天翻一点，多读书，多看报，少玩手机，多睡觉 Forging chunks块被释放后，它被插入到一个binlist中。 但是，指针在程序中仍然可用。 如果攻击者控制了这个指针，他/她可以修改链接列表结构，并插入他/她自己的’伪造’块。 下面显示的示例程序显示了在fastbin freelist情况的利用：（谷歌翻译真好用.jpg） 123456789101112131415161718192021222324struct forged_chunk &#123;size_t prev_size;size_t size;struct forged_chunk *fd;struct forged_chunk *bck;char buf[10]; // padding&#125;;// First grab a fast chunka = malloc(10); // 'a' points to 0x219c010// Create a forged chunkstruct forged_chunk chunk; // At address 0x7ffc6de96690chunk.size = 0x20; // This size should fall in the same fastbindata = (char *)&amp;chunk.fd; // Data starts here for an allocated chunkstrcpy(data, "attacker's data");// Put the fast chunk back into fastbinfree(a);// Modify 'fd' pointer of 'a' to point to our forged chunk*((unsigned long long *)a) = (unsigned long long)&amp;chunk;// Remove 'a' from HEAD of fastbin// Our forged chunk will now be at the HEAD of fastbinmalloc(10); // Will return 0x219c010victim = malloc(10); // Points to 0x7ffc6de966a0printf("%s\n", victim); // Prints "attacker's data" !! 伪造的块大小参数设置为等于0x20，以便它通过安全检查“malloc（）：memory corruption（fast）”。 该检查检查块的大小是否落入该特定fastbin的范围内。 另外请注意，分配的块的数据从’fd’指针开始。 在上述程序中，这也是明显的，因为受害点位于’伪块’之前0x10（0x8 + 0x8）字节处。 ‘a’ freed. head -&gt; a -&gt; tail a’s fd pointer changed to point to ‘forged chunk’. head -&gt; a -&gt; forged chunk -&gt; undefined (fd of forged chunk will in fact be holding attacker’s data) ‘malloc’ request head -&gt; forged chunk -&gt; undefined ‘malloc’ request by victim head -&gt; undefined [ forged chunk is returned to the victim ] 如果这里同一个 bin 再进行一次 malloc 申请 fast chunk 将导致段错误(segmentation fault) 尽管我们申请10字节大小并且设置伪造堆块的大小为32(0x20)bytes, 但是都在32bytes的fastbins 堆块范围内. small chunk 和 large chunk 的攻击方法我们将在 House of Lore 见到 上述代码运行在64位上, 如果要在32位上运行, 请将 unsigned long long 换成 unisgned int , 指针由8bytes变成了4bytes. 同样伪造堆块，这里用更小的17bytes左右也能奏效， 而不是使用32bytes。]]></content>
       <categories>
@@ -324,19 +298,6 @@
       <tags>
         <tag>reading</tag>
         <tag>bin</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[致freshyear]]></title>
-    <url>%2F2017%2F09%2F20%2F3%2F</url>
-    <content type="text"><![CDATA[不知不觉一年已过 曾经的Freshyear懵懂 当我带着新鲜感与好奇踏入大学的大门，遇见了我的舍友们(即使是现在在我看来我随便选的一个宿舍，依然是整个学院最好的宿舍，因为在这里我遇见了他们)从一个大佬舍友那儿我第一次听到了C语言这种东西，我才知道了电脑原来不止可以玩游戏,但也只是知道这一点而已。 成长技术 大一的我，刚开始真的什么都不知道，加入了很多组织，我成功进入了很多组织，但是却唯一在我最在乎的信安协会失败了（现在也很难受╮(╯▽╰)╭，过几天再去面试祝我好运吧）。但是还好协会一直比较自由，我一直在其中蹭着学习。 正在我迷茫的时候，我遇到了我在大学里最为感激的两个人，一个就是我的大佬舍友，一个是我的实验班学长。没有他们，也许我还只是原地打转的那个少年。我从web入手，从前端写起，没事打打ctf,每个星期日常去协会膜吴神，抱着对实验班的憧憬，学习着。后来真的进入了实验班，遇到了各位师傅。在我看来我和师傅们差距不止一点，但是我觉得我很满足了，我对自己一直要求的是，只要自己认为自己在进步就好了。用金男神的话，只要一直学习就好了。 暑假我决定转二进制方向，不是因为其他，只是自己内心是真的喜欢，学习那些底层知识，去逆一个程序，内心真的会有满足感。所以找到自己喜欢的方向，其实真的很重要。也希望自己可以一直坚持下去。其实有时候自己真的很自卑就好了，我认识那些大师傅们，也许我大学毕业都达不到他们高中毕业的水平（不是也许是一定。。。）。但是我还记得我写出自己的第一个网站（宿舍论坛）的那种兴奋，还记得自己逆掉第一个程序的满足。这些就已经够了，又何必在乎其他呢。 其实也不是每个人都要选择技术道路，大学也只是完善自己的过程，找到自己喜欢的，选择自己的方向，坚持下去就好了呀。 朋友 在这个学校里，我认识了很多人，他们也许有的是技术大佬，有的是游戏大神，有的是男神。但是我最好的朋友（除了我的舍友）永远是辩论队的小可爱们。我以前在初中以及高中因为一些小事，对于朋友有种抵触感，我不再信任任何人。辩论队的小伙伴让我又回到了从前那个爱笑的我。在大学里有时候一定的社交也许是必要的，但是如果找不到那群真正让自己开心的那帮人，一切也就没有了任何价值了。所以也很感谢辩论队的小伙伴。 学习 拿了个三等奖学金就很美滋滋，没想到我这个垃圾也有拿到奖学金的日子，炫耀一下，O(∩_∩)O哈哈~。大二一定要拿个二等奖学金。╭(╯^╰)╮ 感慨 不知不觉一年就过去了，我也终于变成了曾经自己口中的学长了。但是自己却觉得自己配不上学长这个词吧。无论是从技术方面，还是从辩论方面，以及学习方面。真的是离我心中学长这个词差的太远了吧。也希望自己可以继续奋斗下去吧，不求什么结果，只要自己问心无愧就好。毕竟前面的路还太长太长。。。 博客有时候不更新，主要还是觉得自己学的东西太基础了吧，我觉得有价值的还是会记录的]]></content>
-      <categories>
-        <category>daily</category>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>daily</tag>
-        <tag>随笔</tag>
       </tags>
   </entry>
 </search>
