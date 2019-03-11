@@ -61,7 +61,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="studying,pwn," />
 
 
 
@@ -77,15 +77,25 @@
 
 
 
-<meta name="description" content="人难免天生有自怜的情绪，唯有时刻保持清醒，才能看清真正的价值在哪里。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lookup&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="趁着有一些闲余，简单总结了一下栈溢出相关的知识">
+<meta name="keywords" content="studying,pwn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="栈溢出入门总结">
+<meta property="og:url" content="http://yoursite.com/2018/03/22/栈溢出入门总结/index.html">
 <meta property="og:site_name" content="Lookup&#39;s blog">
-<meta property="og:description" content="人难免天生有自怜的情绪，唯有时刻保持清醒，才能看清真正的价值在哪里。">
+<meta property="og:description" content="趁着有一些闲余，简单总结了一下栈溢出相关的知识">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1fpi7qfoop4j30f30igq5f.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1fpi81rptm5j30gr0lwjva.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1fpi89vddxxj30c80cktah.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1fpksbi5zbej30ds09rgn1.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1fpkuk8w19lj30h705f3zy.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1fpkuqvj0a4j30l804pt9r.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1fpkuvkb26aj30h00dytbp.jpg">
+<meta property="og:updated_time" content="2018-03-21T16:14:56.564Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lookup&#39;s blog">
-<meta name="twitter:description" content="人难免天生有自怜的情绪，唯有时刻保持清醒，才能看清真正的价值在哪里。">
+<meta name="twitter:title" content="栈溢出入门总结">
+<meta name="twitter:description" content="趁着有一些闲余，简单总结了一下栈溢出相关的知识">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006wmzAzly1fpi7qfoop4j30f30igq5f.jpg">
 
 
 
@@ -103,7 +113,7 @@
   };
 </script>
 
-  <title> Lookup's blog </title>
+  <title> 栈溢出入门总结 | Lookup's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -124,9 +134,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -246,9 +254,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -268,278 +276,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2019/03/11/Heap_exploitation/" itemprop="url">
-                  Heap-exploitation-one
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2019-03-11T00:03:02+08:00" content="2019-03-11">
-              2019-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/studying/" itemprop="url" rel="index">
-                    <span itemprop="name">studying</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/studying/daily/" itemprop="url" rel="index">
-                    <span itemprop="name">daily</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>　　<strong>每天翻一点，多读书，多看报，少玩手机，多睡觉</strong></p>
-<p><excerpt in="" index="" |="" 首页摘要=""><br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2019/03/11/Heap_exploitation/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/11/13/how2heap/" itemprop="url">
-                  how2heap
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-11-13T23:09:02+08:00" content="2018-11-13">
-              2018-11-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/studying/" itemprop="url" rel="index">
-                    <span itemprop="name">studying</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/studying/daily/" itemprop="url" rel="index">
-                    <span itemprop="name">daily</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/studying/daily/pwn/" itemprop="url" rel="index">
-                    <span itemprop="name">pwn</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>　　<strong> how2heap 调试记录</strong></p>
-<p><excerpt in="" index="" |="" 首页摘要=""><br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2018/11/13/how2heap/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/03/22/栈溢出入门总结/" itemprop="url">
-                  栈溢出入门总结
-                </a>
+                栈溢出入门总结
               
             
           </h1>
@@ -610,299 +347,196 @@
       
 
       
-        
-          <p>　　<strong>趁着有一些闲余，简单总结了一下栈溢出相关的知识</strong></p>
-<p><excerpt in="" index="" |="" 首页摘要=""><br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2018/03/22/栈溢出入门总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+        <p>　　<strong>趁着有一些闲余，简单总结了一下栈溢出相关的知识</strong></p>
+<p><excerpt in="" index="" |="" 首页摘要=""><br> <a id="more"></a></excerpt></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>缓冲区溢出一直是被大家所熟知的安全问题，更是非常常用的攻击手段。而其中栈溢出即是向栈中写入超出限度的数据，而达到攻击目的（例如：获取系统权限）。即使现在防护手段巨多，但是攻击手段也更是不断更新。大体上来说，栈溢出一般是在溢出的数据中包含攻击指令或者想要覆盖的地址，来达到执行的目的。</p>
+</blockquote>
+<h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><ul>
+<li>栈：非常重要的先进后出的一种数据结构，一般常见操作 <strong>进栈</strong>（PUSH）与 <strong>出栈</strong>（POP）。</li>
+<li>标记：<strong>栈顶</strong>（TOP）与 <strong>栈底</strong>（BASE）。</li>
+<li>相关寄存器：</li>
+</ul>
+<blockquote>
+<p>1.<strong>ESP（栈指针寄存器）</strong>指向函数调用的栈顶地址,而在这注意函数调用的栈，由高地址往低地址衍生，即压栈则 ESP-[num],出栈则 ESP+[num] 。</p>
+<p>2.<strong>EBP（基址指针寄存器）</strong>指向函数调用的栈底地址 ，函数执行时不变，可用来基于此确定一些参数和变量的位置，方便计算。</p>
+<p>3.<strong>EIP（指令寄存器）</strong>指向下一条要执行的指令，确保函数的进行。（栈溢出攻击主要修改目标）</p>
+</blockquote>
+<ul>
+<li>函数调用过程（假设函数A调用了函数 B，A 即调用函数，B 即为被调用函数）</li>
+</ul>
+<blockquote>
+<p>1.B 的参数会被<strong>逆序</strong>压入栈中（没有参数可忽略），将 A 函数调用后的下一条指令作为返回地址压栈。</p>
+</blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1fpi7qfoop4j30f30igq5f.jpg" alt=""></p>
+<blockquote>
+<p>2.将 A 函数的栈底值压入栈中，再将 ESP 值传给 EBP，这样保存了调用函数 A 的栈底值，且现在 EBP 指向了被调用函数B的栈底值，然后压入函数B的局部变量。</p>
+</blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1fpi81rptm5j30gr0lwjva.jpg" alt=""></p>
+<blockquote>
+<p>3.被调用函数 B 执行完后，局部变量全部出栈，恢复到ESP == EBP 的状态，在将 A 的栈底地址出栈，赋给 EBP，然后再将返回地址出栈，赋给 EIP，整个状态又恢复到了之前一样。</p>
+</blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1fpi89vddxxj30c80cktah.jpg" alt=""></p>
+<blockquote>
+<p>注：如果函数B中调用了其他函数，过程类似。</p>
+</blockquote>
+<ul>
+<li>常见函数调用约定:</li>
+</ul>
+<blockquote>
+<p>1.stdcall (WinAPI):1）参数从右往左入栈 2）被调用函数自己修改堆栈 3）编译函数名字格式_name@num（name是函数名，num是参数大小）</p>
+<p>2.cdecl (C/C++):1）参数从右往左入栈 2）被调用函数不维护堆栈，调用者负责清理维护 3）编译函数名字格式_name</p>
+<p>3.fastcall (速度快):1）用ECX和EDX传送前两个 DWORD(4字节) 或更小的参数，其他从右往左入栈 2）被调用函数自己修改堆栈 3）函数修饰方法有两种说法(1)与stdcall相同(2)@name@num</p>
+</blockquote>
+<h2 id="常见攻击手段"><a href="#常见攻击手段" class="headerlink" title="常见攻击手段"></a>常见攻击手段</h2><ul>
+<li>shellcode：修改函数返回地址，让其执行你编写的一段指令。<blockquote>
+<p>要做到shellcode的执行，要将返回地址覆盖掉变成你想执行的指令的起始地址，可以用汇编语言写再生成机器码。</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>注：注意构造的时候使用字符串相关，不要使用“x00”，会导致截断。且shellcode无法绕过ALSR的防护。</p>
+</blockquote>
+<ul>
+<li>return2libc：修改函数返回地址，让其执行已有的函数<blockquote>
+<p>这几种攻击方法大同小异，这里是要确定你想要执行的函数，将其的地址去覆盖掉返回地址。例如system(“/bin/sh”)就是一个目标函数。</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>注：开启ALSR后，函数执行的绝对地址不确定，便很难操作。</p>
+</blockquote>
+<ul>
+<li>ROP：修改函数返回地址，让其执行已有的部分指令<blockquote>
+<p>ROP与return2libc极其相似，只是有时候缺乏已有的目标函数，所以通过不断构造执行想要执行的指令来达到目的。想要执行的指令一般被称为           <strong>gadget</strong></p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>引用一下别人帖子的入门例子</li>
+</ul>
+</blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1fpksbi5zbej30ds09rgn1.jpg" alt=""></p>
+<blockquote>
+<p>使用 gcc x.c -fno-stack-protector -m32 -o x 命令，关掉canary保护，这里其实只需要调用grant()函数即可。所以我们要计算 buffer 与保存返回地址的地址之间的差距。</p>
+</blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1fpkuk8w19lj30h705f3zy.jpg" alt=""></p>
+<blockquote>
+<p>可以看到buffer首地址0xffffd080,根据我上面写的函数调用栈变化可知 exploitable()函数执行前 esp 保存的值是所需要的值</p>
+</blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1fpkuqvj0a4j30l804pt9r.jpg" alt=""></p>
+<blockquote>
+<p>可得0xffffd09c.这样我们的到了所需的两个地址 0xffffd09c 与 0xffffd080。两者差值十进制28。</p>
+<p>再由</p>
+</blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/006wmzAzly1fpkuvkb26aj30h00dytbp.jpg" alt=""></p>
+<blockquote>
+<p>s得到grant()函数地址值，注意用小端序进行覆盖。exp为 python -c’print”A”* 28 +” xcb  x84  x04  x08”‘ ; cat  - | ./x</p>
+<p>注：这里的例子只是一个很简单的例子，ROP是非常重要的攻击方法，系统学习，这里推荐<a href="http://cb.drops.wiki/drops/tips-6597.html" target="_blank" rel="external">蒸米师傅一步一步学ROP</a>，且gdb可以安装一个peda方便分析。</p>
+</blockquote>
+<ul>
+<li>hijack GOT：修改某个会被调用的函数的地址，让其执行另一个函数</li>
+</ul>
+<blockquote>
+<p>概念</p>
+<p>1.先介绍一些概念，程序在生成可执行文件时，会用静态链接与动态链接的两种方式将外部函数连接到程序中。两者区别在于，静态链接会将外部函数的全部代码连接其中，而动态链接不导入外部函数的全部代码，只是在运行时将动态链接库加载到内存，发生调用则去动态链接库定位相关函数。这时便引出了接下来的两个概念。</p>
+<p>2.GOT 与 PLT。GOT 全称是全局偏移量表（Global Offset Table），GOT 存储在数据段中，存储内容是外部函数在内存中的确切地址,程序运行时可被修改。PLT 全称是程序链接表（Procedure Linkage Table），PLT 存储于代码段之中，存储外部函数的入口点，每个PLT入口项对应于一个GOT项，不可被修改，运行之前就已经固定下来。</p>
+<p>3.在这基础上，程序是怎样调用外部函数的呢？当程序调用了一个外部函数时，首先去PLT中找到函数所对应的入口点，又因为PLT入口项对应于一个GOT项，跳转到了GOT中。GOT在调用之前，GOT的初始值是PLT对应的某个片段。所以在进入GOT中发现该函数第一次调用，会从GOT返回PLT确定函数的确切地址，覆盖掉GOT的初始值（整个过程也被称为延迟重定位）。之后程序如果在调用此函数，只需通过PLT跳转到相关GOT，直接获得函数地址，去执行相关操作。</p>
+<p>注：若对相关知识感兴趣，推荐阅读《程序员的自我修养》，我也会更新书籍的读书笔记，提取自认为重要的知识点，方便巩固。 </p>
+<p>攻击原理：这种攻击方式，基于延迟重定向，即使开启了 ALSR，也是可以操作的。我们需找到一个程序会执行的函数 X，而我们想要执行的函数 Y，正常情况下的程序必然不会执行， GOT 表中没有 Y的地址值，但有 X 的。首先从GOT中确定 X 的地址，因为动态链接库中函数相对位置固定，因此可以通过 X 的执行地址 ，确定 Y 的执行地址。确定了相关地址，利用 ROP 可执行目的操作。</p>
+</blockquote>
+<h2 id="常见防护手段"><a href="#常见防护手段" class="headerlink" title="常见防护手段"></a>常见防护手段</h2><ul>
+<li><p>注：这些防护手段并不是完全安全，已经公开出一些绕过这些防护手段的方式，且网上有个checksec脚本可检查可执行文件开启哪些防护措施</p>
+</li>
+<li><p>ALSR（Address space layout randomization）：地址空间布局随机化 </p>
+<blockquote>
+<p>这种技术使共享库，堆栈和堆被占用的内存的地址随机化。使攻击者想去构造攻击语句，却无法确定相关地址，使之无法执行</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>可绕过攻击：ROP</p>
+</blockquote>
+<ul>
+<li>NX（No-eXecute/windows平台为DEP）：不可执行  <blockquote>
+<p>通常堆栈和堆被标记为不可执行，从而防止攻击者执行驻留在这些区域的内存中的代码。</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>可绕过攻击：ROP</p>
+</blockquote>
+<ul>
+<li>Stack Canaries : 金丝雀 <blockquote>
+<p>编译器在堆栈帧的局部变量之后和保存的返回地址之前放置一个随机化保护值 在函数返回之前检查此保护，如果它不相同，然后程序退出。</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>可绕过攻击：infoleak </p>
+</blockquote>
+</the>
+      
+    </div>
+
+    <div>
+      
         
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/01/31/格式化字符串漏洞学习/" itemprop="url">
-                  格式化字符串漏洞学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-01-31T18:47:02+08:00" content="2018-01-31">
-              2018-01-31
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/reading/" itemprop="url" rel="index">
-                    <span itemprop="name">reading</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/reading/pwn/" itemprop="url" rel="index">
-                    <span itemprop="name">pwn</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
+            <a href="/tags/studying/" rel="tag">#studying</a>
           
-
-          
-            
-          
-
-          
-
-          
-          
-
+            <a href="/tags/pwn/" rel="tag">#pwn</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>　　<strong>最近看了几篇格式化字符串漏洞的帖子，师傅们都写得很好，自己稍微总结一下，方便复习</strong></p>
-<p><excerpt in="" index="" |="" 首页摘要=""><br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2018/01/31/格式化字符串漏洞学习/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/31/格式化字符串漏洞学习/" rel="next" title="格式化字符串漏洞学习">
+                <i class="fa fa-chevron-left"></i> 格式化字符串漏洞学习
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/11/13/how2heap/" rel="prev" title="how2heap">
+                how2heap <i class="fa fa-chevron-right"></i>
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2017/12/14/程序员的自我修养_一/" itemprop="url">
-                  《程序员的自我修养》读书笔记一
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-12-14T13:22:02+08:00" content="2017-12-14">
-              2017-12-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/reading/" itemprop="url" rel="index">
-                    <span itemprop="name">reading</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/reading/bin/" itemprop="url" rel="index">
-                    <span itemprop="name">bin</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>　　<strong>这本书还是因幡师傅推荐给我的，看到swing师傅blog里也写过这本书读书笔记，想想自己也来写一个吧</strong></p>
-<p><excerpt in="" index="" |="" 首页摘要=""><br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/12/14/程序员的自我修养_一/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -910,6 +544,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -931,8 +569,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -1017,6 +664,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景知识"><span class="nav-number">2.</span> <span class="nav-text">背景知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见攻击手段"><span class="nav-number">3.</span> <span class="nav-text">常见攻击手段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见防护手段"><span class="nav-number">4.</span> <span class="nav-text">常见防护手段</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -1113,6 +771,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
