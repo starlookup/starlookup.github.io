@@ -50,8 +50,23 @@
       </categories>
       <tags>
         <tag>studying</tag>
-        <tag>pwn</tag>
         <tag>daily</tag>
+        <tag>pwn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[python_pip 换源]]></title>
+    <url>%2F2018%2F03%2F28%2Fpython_pip%E6%8D%A2%E6%BA%90%2F</url>
+    <content type="text"><![CDATA[python pip（pypi） 换成国内源 原因 我们在使用 python 的时候，经常需要安装各种模块（如 pwntools），最常用的就是 pip。但是由于我们经常发现下载安装速度很慢。且我们在 Linux 环境下可能不方便配置代理。那么就可以配置国内的 pypi 源。 实现 在 Linux 环境下我们只需要建立 ~/.pip/pip.conf 即可。（没有的话，只用自己新建即可。）我们可以使用清华大学的 pypi 源。在文件里写入 12[global] index-url = https://pypi.tuna.tsinghua.edu.cn/simple 我使用的是自己学校的源，但是只能校内使用，所以就不推荐了。]]></content>
+      <categories>
+        <category>studying</category>
+        <category>daily</category>
+        <category>config</category>
+      </categories>
+      <tags>
+        <tag>studying</tag>
+        <tag>daily</tag>
+        <tag>config</tag>
       </tags>
   </entry>
   <entry>

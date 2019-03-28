@@ -4,6 +4,36 @@
 
     
   <url>
+    <loc>http://yoursite.com/2018/03/28/python_pip%E6%8D%A2%E6%BA%90/</loc>
+    <lastmod>2019-03-28T01:52:11.078Z</lastmod>
+    <data>
+        <display>
+        <title>python_pip 换源</title>
+        <pubTime>2018-03-28T01:37:02.000Z</pubTime>
+        
+        <tag>studying</tag>
+         
+        <tag>daily</tag>
+         
+        <tag>config</tag>
+         
+         
+           
+             
+              <breadCrumb title="studying" url="http://yoursite.com/categories/studying/"/>
+          
+             
+              <breadCrumb title="daily" url="http://yoursite.com/categories/studying/daily/"/>
+          
+             
+              <breadCrumb title="config" url="http://yoursite.com/categories/studying/daily/config/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2019/03/11/notes/</loc>
     <lastmod>2019-03-11T13:57:02.703Z</lastmod>
     <data>
@@ -88,9 +118,9 @@
         
         <tag>studying</tag>
          
-        <tag>pwn</tag>
-         
         <tag>daily</tag>
+         
+        <tag>pwn</tag>
          
          
            
