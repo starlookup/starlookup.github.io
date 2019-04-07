@@ -87,7 +87,7 @@
 <meta property="og:image" content="https://blog.csdn.net/Hanpu_Liang/article/details/78172537">
 <meta property="og:image" content="https://blog.csdn.net/Hanpu_Liang/article/details/78172537">
 <meta property="og:image" content="https://blog.csdn.net/Hanpu_Liang/article/details/78173909">
-<meta property="og:updated_time" content="2019-04-07T08:13:29.730Z">
+<meta property="og:updated_time" content="2019-04-07T10:40:38.961Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="日常小笔记">
 <meta name="twitter:description" content="平时记得一点小笔记">
@@ -680,7 +680,9 @@
 <li>~= 不等于</li>
 <li>diff 微分和差分函数</li>
 </ul>
-<h2 id="遗传算法"><a href="#遗传算法" class="headerlink" title="遗传算法"></a>遗传算法</h2><p> <img src="https://blog.csdn.net/Hanpu_Liang/article/details/78172537" alt="遗传算法简单介绍与MATLAB实现（一)"><br> <img src="https://blog.csdn.net/Hanpu_Liang/article/details/78172537" alt="遗传算法简单介绍与MATLAB实现（二)"><br> <img src="https://blog.csdn.net/Hanpu_Liang/article/details/78173909" alt="遗传算法简单介绍与MATLAB实现（三)"></p>
+<h2 id="遗传算法"><a href="#遗传算法" class="headerlink" title="遗传算法"></a>遗传算法</h2><p> <img src="https://blog.csdn.net/Hanpu_Liang/article/details/78172537" alt="遗传算法简单介绍与MATLAB实现(一)"><br> <img src="https://blog.csdn.net/Hanpu_Liang/article/details/78172537" alt="遗传算法简单介绍与MATLAB实现(二)"><br> <img src="https://blog.csdn.net/Hanpu_Liang/article/details/78173909" alt="遗传算法简单介绍与MATLAB实现(三)"></p>
+</li>
+</ul>
 <h1 id="汇编语言"><a href="#汇编语言" class="headerlink" title="汇编语言"></a>汇编语言</h1><h2 id="X86"><a href="#X86" class="headerlink" title="X86"></a>X86</h2><h3 id="X86汇编语言从实模式到保护模式"><a href="#X86汇编语言从实模式到保护模式" class="headerlink" title="X86汇编语言从实模式到保护模式"></a>X86汇编语言从实模式到保护模式</h3><ul>
 <li>处理器的引脚有很多，其中一部分使用来将参与运算的数字送入处理器内部。有些引脚是复用的。</li>
 <li>指令F4H表示让处理器停机，当处理器取得并执行这条指令后就停止工作。</li>
@@ -704,9 +706,8 @@
 <li>Secure By Default 原则就是 白名单、黑名单原则、也是最小权限原则。</li>
 <li>纵深防御原则、数据与代码分离原则、不可预测性原则(ALSR)</li>
 <li>UTM 统一威胁管理</li>
-<li>安全是一门朴素的学问，也是一种平衡的艺术。</li>
-</ul>
-<h3 id="第二篇-客户端脚本安全"><a href="#第二篇-客户端脚本安全" class="headerlink" title="第二篇 客户端脚本安全"></a>第二篇 客户端脚本安全</h3><ul>
+<li><p>安全是一门朴素的学问，也是一种平衡的艺术。</p>
+<h3 id="第二篇-客户端脚本安全"><a href="#第二篇-客户端脚本安全" class="headerlink" title="第二篇 客户端脚本安全"></a>第二篇 客户端脚本安全</h3></li>
 <li><p>使用 fastcgi 的 PHP 应用默认不安全</p>
 </li>
 <li><p>同源策略是一种约定。它是浏览器最核心也最基本的安全功能。可以说 Web 是构建在同源策略上的，浏览器只是针对同源策略的一种实现。</p>
@@ -727,46 +728,44 @@
 <li><p>目前各个浏览器的拦截恶意网址的功能都是基于”黑名单“的。</p>
 </li>
 <li><p>CSP 安全策略 是由服务器端返回一个 HTTP 头，并在其中描述页面应该遵守的安全策略。</p>
+<h3 id="跨站脚本攻击（XSS）"><a href="#跨站脚本攻击（XSS）" class="headerlink" title="跨站脚本攻击（XSS）"></a>跨站脚本攻击（XSS）</h3></li>
+<li><p>由于 JS 的强大功能以及网站前端应用的复杂化，是否跨域已经不重要了。</p>
 </li>
-</ul>
-<h3 id="跨站脚本攻击（XSS）"><a href="#跨站脚本攻击（XSS）" class="headerlink" title="跨站脚本攻击（XSS）"></a>跨站脚本攻击（XSS）</h3><ul>
-<li>由于 JS 的强大功能以及网站前端应用的复杂化，是否跨域已经不重要了。</li>
 <li>XSS根据效果不同。分成（1）反射性XSS，黑客往往需要诱使用户”点击”一个恶意链接，才能攻击成功。反射性XSS也叫做“非持久型XSS”（2）存储型XSS，会把用户输入的数据“存储”在服务器端。也叫做“持久型XSS”（3）DOM Based XSS，从效果上来说是反射性XSS。通过修改页面的DOM节点形成的XSS，称之为 DOM Based XSS。</li>
 <li>“Cookie 劫持”并非所有的时候都会有效果。有的网站可能会在Set-Cookie时给关键Cookie植入HttpOnly标识；有的网站则可能会把Cookie与客户端IP绑定，从而使得XSS窃取的Cookie失去意义。</li>
 <li>疑点总结：document.body.appendChild()、DOM、XMLHttpRequest</li>
 <li>如果存在存储型 XSS，则比较容易发起 XSS Worm 攻击</li>
 <li>HttpOnly 解决的是XSS后的Cookie劫持攻击。如果该Cookie设置了HttpOnly，则这种攻击会失败，因为JS取不到Cookie的值。</li>
 <li>XSS攻击主要发生在MVC架构中的View层。XSS的本质还是一种“HTML注入”，用户的数据被当成了HTML代码一部分来执行。</li>
-<li>DOM Based XSS 是从Js中输出数据到HTML页面里。</li>
-</ul>
-<h3 id="跨站点请求伪造-CSRF"><a href="#跨站点请求伪造-CSRF" class="headerlink" title="跨站点请求伪造(CSRF)"></a>跨站点请求伪造(CSRF)</h3><ul>
-<li>CSRF 全名是 Cross Site Request Forgery</li>
+<li><p>DOM Based XSS 是从Js中输出数据到HTML页面里。</p>
+<h3 id="跨站点请求伪造-CSRF"><a href="#跨站点请求伪造-CSRF" class="headerlink" title="跨站点请求伪造(CSRF)"></a>跨站点请求伪造(CSRF)</h3></li>
+<li><p>CSRF 全名是 Cross Site Request Forgery</p>
+</li>
 <li>浏览器所持有的Cookie 分为两种：一种是”session cookie”，又称“临时Cookie”；另一种是”Third-party Cookie”,也称为“本地Cookie”。区别在于本地cookie是服务器在Set-cookie时指定了Expire时间，只有到 Expire时间后Cookie才会失效。而session cookie 则没有指定Expire 时间，所以浏览器关闭后，就失效了。</li>
 <li>如果网站返回给浏览器的HTTP头中包含有P3P头，则在某种程度来说，将允许浏览器发送到第三方Cookie。</li>
 <li>CSRF防御：验证、Referer Check (防止图片盗链，检查请求是否来自合法的源。缺陷在于，服务器并非什么时候都能取到Referer)。</li>
-<li>一致的做法就是 Anti CSRF Token，CSRF重要操作的所有参数都是可以被攻击者猜测到的。攻击者只有预测出URL的所有参数与参数值，才能伪造一个成功的请求。就是保持原参数不变，新增一个参数Token。Token参数的值是随机的。</li>
-</ul>
-<h3 id="点击劫持（ClickJacking）"><a href="#点击劫持（ClickJacking）" class="headerlink" title="点击劫持（ClickJacking）"></a>点击劫持（ClickJacking）</h3><ul>
-<li>点击劫持是一种视觉上的欺骗手段。攻击者使用一个透明的、不可见的iframe，覆盖在一个网页上。</li>
+<li><p>一致的做法就是 Anti CSRF Token，CSRF重要操作的所有参数都是可以被攻击者猜测到的。攻击者只有预测出URL的所有参数与参数值，才能伪造一个成功的请求。就是保持原参数不变，新增一个参数Token。Token参数的值是随机的。</p>
+<h3 id="点击劫持（ClickJacking）"><a href="#点击劫持（ClickJacking）" class="headerlink" title="点击劫持（ClickJacking）"></a>点击劫持（ClickJacking）</h3></li>
+<li><p>点击劫持是一种视觉上的欺骗手段。攻击者使用一个透明的、不可见的iframe，覆盖在一个网页上。</p>
+</li>
 <li>点击劫持攻击与CSRF有异曲同工之妙。</li>
 <li>防御 ClickJacking 是通过 frame busting（通常可以写JS代码，禁止iframe嵌套）、X-Frame-Options（一个HTTP头）</li>
-<li>iframe头部</li>
-</ul>
-<h3 id="HTML5安全"><a href="#HTML5安全" class="headerlink" title="HTML5安全"></a>HTML5安全</h3><ul>
-<li>iframe的sandbox，<iframe>标签加载的内容将被视为一个独立的”源“。</iframe></li>
+<li><p>iframe头部</p>
+<h3 id="HTML5安全"><a href="#HTML5安全" class="headerlink" title="HTML5安全"></a>HTML5安全</h3></li>
+<li><p>iframe的sandbox，<iframe>标签加载的内容将被视为一个独立的”源“。</iframe></p>
+</li>
 <li>HTML5最大的创新之一<canvas>，该标签可以在页面中直接操作图片对象。</canvas></li>
-<li>HTML5中制定了一个API，postMessage。postMessage允许每一个window（包括当前窗口、弹出窗口、iframes等）对象往其他的窗口发送文本消息，从而实现跨窗口的消息传递。这个功能是不受同源策略限制的。</li>
-</ul>
-<h3 id="注入攻击"><a href="#注入攻击" class="headerlink" title="注入攻击"></a>注入攻击</h3><ul>
-<li>注入攻击本质是把用户输入的数据当作代码执行。这里有两个关键条件，一是用户能够控制输入，二是原本程序要执行的代码，拼接了用户输入的数据</li>
+<li><p>HTML5中制定了一个API，postMessage。postMessage允许每一个window（包括当前窗口、弹出窗口、iframes等）对象往其他的窗口发送文本消息，从而实现跨窗口的消息传递。这个功能是不受同源策略限制的。</p>
+<h3 id="注入攻击"><a href="#注入攻击" class="headerlink" title="注入攻击"></a>注入攻击</h3></li>
+<li><p>注入攻击本质是把用户输入的数据当作代码执行。这里有两个关键条件，一是用户能够控制输入，二是原本程序要执行的代码，拼接了用户输入的数据</p>
+</li>
 <li>盲注，就是在服务器没有错误回显时完成的注入攻击。</li>
 <li>Timing Attack 。在MySQL中有一个BENCHMARK(count,expr)函数，它是将expr执行count次数。使得结果返回的时间比平时要长；通过时间长短的变化，可以判断注入语句是否执行成功。</li>
 <li>防御SQL注入，使用预编译语句、使用存储过程、检查数据类型、使用安全函数</li>
 <li>XML注入、CRLF（\r\n）注入</li>
-<li></li>
-</ul>
-<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><ul>
-<li>git  status 查看当前文件夹的状态</li>
+<li><h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1></li>
+<li><p>git  status 查看当前文件夹的状态</p>
+</li>
 <li>git init 初始化git 仓库</li>
 <li>git add 添加文件</li>
 <li>git commit -m 提交</li>
@@ -784,7 +783,38 @@
 <li>BIOS自检与初始化，检测系统中的一些关键设备能否存在和能否正常工作，进行初始化，并将控制权交给后续引导程序。</li>
 <li>MBR，Master Boot Record。</li>
 <li>DBR(DOS Boot Record)、OBR（OS Boot Record）、 分区引导记录（PBR，Partition Boot Record）</li>
-<li>在计算机系统引导阶段获得控制权（BootKit:BIOS木马、MBR木马）</li>
+<li><p>在计算机系统引导阶段获得控制权（BootKit:BIOS木马、MBR木马）</p>
+</li>
+<li><p>实模式，寻址方式 20位寻址（段+偏移），1M空间；不能对内存进行分页管理；不支持优先级</p>
+</li>
+<li>板胡模式，常态工作模式，支持32位寻址，支持内存分页机制，支持优先级机制</li>
+<li>虚拟8086模式，为了在保护模式下兼容8086程序，虚拟8086模式是以任务的形式在保护模式上执行 的，支持任务切换和内存分页。</li>
+<li>用户模式（Ring 0）、内核模式（Ring 3）</li>
+<li>X86 Windows默认使用二级页表来把虚拟地址转译成物理地址。一个32位地址被划为三个单独部分：页目录索引、页表索引、字节索引。</li>
+<li>并口（PATA）速度慢 &lt;133MB/s，电源线：4针；串口（SATA）速度快，150/300/600MB/s。</li>
+<li>FAT32 引导扇区：1.分区大小 2.簇的大小 3.FAT表个数与大小 4.分区引导程序</li>
+<li>FAT（File Allocation Table 文件分配表）1.记录数据存储区每一个簇的使用情况2.形成每个文件的簇链表</li>
+<li>簇：文件系统将磁盘空间以一定数目的扇区为单位进行划分，这样的单位称为簇。每个扇区大小为512字节，簇的大小一般是512B\1KB\2KB\4KB\8KB\16KB等。簇是进行文件空间分配的最小单位。</li>
+<li>FAT区用每一个FAT项来记录每一个簇的占用情况。FAT表中表项个数等于簇的个数。表项FAT32：32位，4字节，可表达最大簇号空间为4G。</li>
+<li>簇链：一个文件所占用簇的序号形成的单向链表</li>
+<li>PE: 1.DOS MZ header 2.DOS stub 3.PE header 4.Section table 5. section 1。。。</li>
+<li>PE header 1.字串 “PE\0\0” 、2.映像文件头（FileHeader）、3.可选文件头（OptionalHeader）</li>
+<li>可选文件头大小在映像文件头中。可选文件头定义了PE文件的很多关键信息。例如内存镜像加载地址、程序入口点、本程序在内存中的镜像大小、文件头大小。</li>
+<li>ImageBase :PE文件在内存中的优先装载地址 </li>
+<li>RAV地址：Relative Virtual Address ，相对虚拟地址，他是相对内存中ImageBase的偏移位置</li>
+<li>对齐粒度：代码节的代码实际长度为0x46字节，文件中节对齐粒度为0x200，内存中节对齐粒度为0x1000字节。</li>
+<li>可选文件头中的一些关键字段，AddressOfEntryPoint PE装载器准备运行的PE文件的第一条指令的RVA；ImageBase PE文件的优先装载地址 ，SectionAlignment 内存中节对齐粒度 ，FileAlignment 文件中节对齐的粒度。</li>
+<li>可以修改 AddressOfEntryPoint 来实现任意代码执行。</li>
+<li>可选头中还有非常重要的“目录”部分。有输出表、输入表、资源表等。</li>
+<li>节表是紧挨着PE header的一个结构数组。每一个节军队应一个节表项</li>
+<li>节是可执行文件的核心部分。比较常见的有代码节、数据节、引入函数节、资源节（图标）、引出函数节（DLL）、重定位节（DLL）。</li>
+<li>数据节分为已初始化的数据节（.data），已初始化的数据节中放的是在编译时可就以确定的数据。未初始化的数据节（.bbs），一般放有未初始化的全局变量和静态变量，在文件中不占用空间，但是在内存中占用空间。</li>
+<li>引入函数节(.rdata)。是被程序调用但其执行代码又不在程序中的函数。这些函数位于一个或者多个DLL中，在调用者中只保留了函数信息，如函数名及其驻留的DLL。</li>
+<li>引入目录表（Import Directory Table）。从PE 文件定位到引入目录表（IDT）是利用PE可选头的DataDirectory。引入目录表由一系列的IMAGE_IMPORT_DESCRIPTOR结构组成。结构数量与DLL文件数量相同。结构包括5个部分，Import Name Table RVA(指向函数名字序号信息)、Time Data Stamp、Forwarder Chain、Name RVA(名字)、Import Address Table RVA</li>
+<li>IMPORT Name Tables DATA最高位为0时，表示通过函数名引入，只想Hint/Name RVA;为1时，表示通过序号引入函数</li>
+<li>IAT（IMPORT Address Table）引入地址表:DWORD数组。在文件中时，其内容与Import Name Table完全一样、在内存中每个双字中存放着对应引入函数的地址。</li>
+<li>引出函数节（.edata）。本文件向其他程序提供调用函数的列表、函数所在的地址及具体代码实现。关键结构 ：引出目录表。引出目录表也是通过可选文件头的DataDirectory来定位。导出函数名字与导出地址表不是一对一的关系。一个是因为有些函数有多个名字，还有是因为有些函数没有名字。</li>
+<li>先从函数名字表找函数序号对应，然后去函数序号表，定位函数的序号B。然后去函数地址表找对应的地址RVA。</li>
 </ul>
 <h1 id="美剧英语记录"><a href="#美剧英语记录" class="headerlink" title="美剧英语记录"></a>美剧英语记录</h1><h2 id="Old-Friends"><a href="#Old-Friends" class="headerlink" title="Old Friends"></a>Old Friends</h2><ul>
 <li>sophisticated screening process 成熟的辨别方法</li>
@@ -815,8 +845,6 @@
 <li>chord 和弦</li>
 <li>insane 疯了</li>
 <li>jealousy 妒忌 </li>
-</ul>
-</li>
 </ul>
 
       
