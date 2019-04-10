@@ -1,0 +1,977 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="pwn,reading," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这系列文章是我个人觉得非常值得记录的文章，其实堆上的东西确实相较于栈上的门槛更高了。而且东西多很难记住，但是我就不信我天天看，天天刷题，还记不住你。">
+<meta name="keywords" content="pwn,reading">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux堆内存管理深入分析_阅读笔记">
+<meta property="og:url" content="http://yoursite.com/2018/05/30/Linux堆内存管理深入分析_读书笔记/index.html">
+<meta property="og:site_name" content="Lookup&#39;s blog">
+<meta property="og:description" content="这系列文章是我个人觉得非常值得记录的文章，其实堆上的东西确实相较于栈上的门槛更高了。而且东西多很难记住，但是我就不信我天天看，天天刷题，还记不住你。">
+<meta property="og:image" content="http://epo.alicdn.com/image/41u4skqanfb0.png">
+<meta property="og:image" content="http://epo.alicdn.com/image/41u4snuicn70.png">
+<meta property="og:updated_time" content="2019-04-10T09:52:28.466Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux堆内存管理深入分析_阅读笔记">
+<meta name="twitter:description" content="这系列文章是我个人觉得非常值得记录的文章，其实堆上的东西确实相较于栈上的门槛更高了。而且东西多很难记住，但是我就不信我天天看，天天刷题，还记不住你。">
+<meta name="twitter:image" content="http://epo.alicdn.com/image/41u4skqanfb0.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Linux堆内存管理深入分析_阅读笔记 | Lookup's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Lookup's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            友链
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Linux堆内存管理深入分析_阅读笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-05-30T16:38:20+08:00" content="2018-05-30">
+              2018-05-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/reading/" itemprop="url" rel="index">
+                    <span itemprop="name">reading</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/reading/pwn/" itemprop="url" rel="index">
+                    <span itemprop="name">pwn</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>　　<strong>这系列文章是我个人觉得非常值得记录的文章，其实堆上的东西确实相较于栈上的门槛更高了。而且东西多很难记住，但是我就不信我天天看，天天刷题，还记不住你。</strong></p>
+<p><excerpt in="" index="" |="" 首页摘要=""><br> <a id="more"></a></excerpt></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<h3 id="Linux堆内存管理深入分析"><a href="#Linux堆内存管理深入分析" class="headerlink" title="Linux堆内存管理深入分析"></a><a href="https://www.freebuf.com/articles/system/104144.html" target="_blank" rel="external">Linux堆内存管理深入分析</a></h3><h4 id="1-堆内存管理简介"><a href="#1-堆内存管理简介" class="headerlink" title="1. 堆内存管理简介"></a>1. 堆内存管理简介</h4><blockquote>
+<p>当前针对各大平台主要有如下几种堆内存管理机制：</p>
+<p>dlmalloc – General purpose allocator</p>
+<p><strong>ptmalloc2 – glibc</strong></p>
+<p>jemalloc – FreeBSD and Firefox</p>
+<p>tcmalloc – Google</p>
+<p>libumem – Solaris</p>
+</blockquote>
+<p>当前在 Linux 平台 *mallo本质上都是通过系统调用 brk 或者 mmap 实现的。两者区别在于 brk 是将数据段(.data)的最高地址指针_edata往高地址推；而 mmap 实在进程的虚拟地址空间中（堆和栈中间，称为文件映射区域的地方）找一块空闲的虚拟内存。</p>
+<ul>
+<li><strong>malloc小于128k的内存，使用brk分配内存，将_edata往高地址推(只分配虚拟空间，不对应物理内存(因此没有初始化)</strong></li>
+<li><strong>malloc大于128k的内存，使用mmap分配内存，在堆和栈之间找一块空闲内存分配(对应独立内存，而且初始化为0)</strong></li>
+<li><strong>brk分配的内存需要等到高地址内存释放以后才能释放（例如，在B释放之前，A是不可能释放的，这就是内存碎片产生的原因，什么时候紧缩看下面），而mmap分配的内存可以单独释放。</strong></li>
+</ul>
+<h4 id="2-arena-介绍"><a href="#2-arena-介绍" class="headerlink" title="2.arena 介绍"></a>2.arena 介绍</h4><ul>
+<li>不是每个线程都有自己独立的 arena 的。arena 的个数是跟系统中处理器的核心数量有关。</li>
+</ul>
+<blockquote>
+<p>For <a href="https://github.com/sploitfun/lsploits/blob/master/glibc/malloc/malloc.c#L1754" target="_blank" rel="external">32 bit</a> systems:<br>     Number of arena = 2 <em> number of cores + 1.<br>For <a href="https://github.com/sploitfun/lsploits/blob/master/glibc/malloc/malloc.c#L1754" target="_blank" rel="external">64 bit</a> systems:<br>     Number of arena = 8 </em> number of cores + 1.</p>
+</blockquote>
+<ul>
+<li>如果出现线程数量超过了 arena 个数时是怎么办的呢？</li>
+</ul>
+<ol>
+<li>首先，glibc malloc循环遍历所有可用的arenas，在遍历的过程中，它会尝试lock该arena。如果成功lock(该arena当前对应的线程并未使用堆内存则表示可lock)，比如将main arena成功lock住，那么就将main arena返回给用户，即表示该arena被线程3共享使用。</li>
+<li>而如果没能找到可用的arena，那么就将线程3的malloc操作阻塞，直到有可用的arena为止。</li>
+<li>现在，如果线程3再次调用malloc的话，glibc malloc就会先尝试使用最近访问的arena(此时为main arena)。如果此时main arena可用的话，就直接使用，否则就将线程3阻塞，直到main arena再次可用为止</li>
+</ol>
+<h4 id="3-堆管理介绍"><a href="#3-堆管理介绍" class="headerlink" title="3.堆管理介绍"></a>3.堆管理介绍</h4><p>主要涉及到3种数据结构</p>
+<ol>
+<li>heap_info:即 Heap Header,因为一个<strong>thread arena</strong>（注意：不包含<strong><strong> main thread </strong></strong>）可以包含多个heaps，所以为了便于管理，就给每个heap分配一个heap header。那么在什么情况下一个thread arena会包含多个heaps呢?在当前heap不够用的时候，malloc会通过系统调用 mmap 申请新的堆空间，新的堆空间会被添加到当前thread arena中，便于管理。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">typedef struct _heap_info</div><div class="line">&#123;</div><div class="line">  mstate ar_ptr; /* Arena for this heap. */</div><div class="line">  struct _heap_info *prev; /* Previous heap. */</div><div class="line">  size_t size;   /* Current size in bytes. */</div><div class="line">  size_t mprotect_size; /* Size in bytes that has been mprotected</div><div class="line">                           PROT_READ|PROT_WRITE.  */</div><div class="line">  /* Make sure the following data is properly aligned, particularly</div><div class="line">     that sizeof (heap_info) + 2 * SIZE_SZ is a multiple of</div><div class="line">     MALLOC_ALIGNMENT. */</div><div class="line">  char pad[-6 * SIZE_SZ &amp; MALLOC_ALIGN_MASK];</div><div class="line">&#125; heap_info;</div></pre></td></tr></table></figure>
+<ol>
+<li>malloc_state:即 Arena Header。每个thread只含有一个Arena Header。Arena Header包含bins的信息、top chunk以及最后一个remainder chunk等</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">struct malloc_state</div><div class="line">&#123;</div><div class="line">  /* Serialize access.  */</div><div class="line">  mutex_t mutex;</div><div class="line"></div><div class="line">   /* Flags (formerly in max_fast).  */</div><div class="line">  int flags;</div><div class="line"></div><div class="line">   /* Fastbins */</div><div class="line">  mfastbinptr fastbinsY[NFASTBINS];</div><div class="line"></div><div class="line">   /* Base of the topmost chunk — not otherwise kept in a bin */</div><div class="line">  mchunkptr top;</div><div class="line"></div><div class="line">   /* The remainder from the most recent split of a small request */</div><div class="line">  mchunkptr last_remainder;</div><div class="line"></div><div class="line">   /* Normal bins packed as described above */</div><div class="line">  mchunkptr bins[NBINS * 2 - 2];</div><div class="line"></div><div class="line">   /* Bitmap of bins */</div><div class="line">  unsigned int binmap[BINMAPSIZE];</div><div class="line"></div><div class="line">   /* Linked list */</div><div class="line">  struct malloc_state *next;</div><div class="line"></div><div class="line">   /* Linked list for free arenas.  */</div><div class="line">  struct malloc_state *next_free;</div><div class="line"></div><div class="line">   /* Memory allocated from the system in this arena.  */</div><div class="line">  INTERNAL_SIZE_T system_mem;</div><div class="line">  INTERNAL_SIZE_T max_system_mem;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ol>
+<li>malloc_chunk:即Chunk Header，一个heap被分为多个chunk，至于每个chunk的大小，这是根据用户的请求决定的，也就是说用户调用malloc(size)传递的size参数“就是”chunk的大小(这里给“就是”加上引号，说明这种表示并不准确，但是为了方便理解就暂时这么描述了，详细说明见后文)。每个chunk都由一个结构体malloc_chunk表示</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">struct malloc_chunk &#123;</div><div class="line">  /* #define INTERNAL_SIZE_T size_t */</div><div class="line">  INTERNAL_SIZE_T      prev_size;  /* Size of previous chunk (if free).  */</div><div class="line">  INTERNAL_SIZE_T      size;       /* Size in bytes, including overhead. */</div><div class="line">  struct malloc_chunk* fd;         /* double links — used only if free. 这两个指针只在free chunk中存在*/</div><div class="line">  struct malloc_chunk* bk;</div><div class="line"></div><div class="line">   /* Only used for large blocks: pointer to next larger size.  */</div><div class="line">  struct malloc_chunk* fd_nextsize; /* double links — used only if free. */</div><div class="line">  struct malloc_chunk* bk_nextsize;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ul>
+<li><p><em>1. Main thread不含有多个heaps所以也就不含有heap_info结构体。当需要更多堆空间的时候，就通过扩展sbrk的heap segment来获取更多的空间，直到它碰到内存mapping区域为止。</em></p>
+<p><em>2. 不同于thread arena，main arena的arena header并不是sbrk heap segment的一部分，而是一个全局变量！因此它属于libc.so的data segment。</em></p>
+</li>
+</ul>
+<p><img src="http://epo.alicdn.com/image/41u4skqanfb0.png" alt=""></p>
+<p><img src="http://epo.alicdn.com/image/41u4snuicn70.png" alt=""></p>
+<h4 id="5-对-chunk-的理解"><a href="#5-对-chunk-的理解" class="headerlink" title="5.对 chunk 的理解"></a>5.对 chunk 的理解</h4><ul>
+<li>Chunk总共分为4类：1)allocated chunk; 2)free chunk; 3)top chunk; 4)Last remainder chunk。从本质上来说，所有类型的chunk都是内存中一块连续的区域，只是通过该区域中<strong>特定位置的某些标识符</strong>加以区分。</li>
+</ul>
+<blockquote>
+<p>发展历史：</p>
+<p>1.只有一个简单的头部，缺点在于 free 操作很难完成。</p>
+<p>2.带边界标记（加了个尾部，尾部是头部的副本），性能损耗大。</p>
+<p>3.头部优化，本来只记录了本 chunk 的 allocate/free 状态，现在加一个前面的 chunk 的状态记录位。且只有 free chunk 有尾部，而 allocated chunk 没有。</p>
+<p>4.再进化就是只保存前一个 chunk 的状态，而当前  chunk 的状态只用看下一个 chunk 即可。然后另外两个状态位就可以记录当前 chunk 是 mmap 的还是 brk 的；以及当前 chunk 是否属于thread arena。然后将尾部放置于头部之前，如果前一个 chunk allocated 则属于前一 chunk 的部分，如果是 free 则记录前一个 chunk 的大小。</p>
+</blockquote>
+<ul>
+<li><p>该结构体通过每个chunk的prev_size和size构成了隐式链表，而后续的fd, bk等指针并不是作用于隐式链表的，而是用于后文会介绍的用于加快内存分配和释放效率的显示链表bin(还记得bin么？用于记录同一类型free chunk的链表)，并且这些指针跟prev_size一样只在free chunk中存在。</p>
+</li>
+<li><p>Top chunk：当一个chunk处于一个arena的最顶部(即最高内存地址处)的时候，就称之为top chunk。该chunk并<strong>不属于任何**</strong>bin**，而是在系统当前的所有free chunk(无论那种bin)都无法满足用户请求的内存大小的时候，将此chunk当做一个应急消防员，分配给用户使用。如果top chunk的大小比用户请求的大小要大的话，就将该top chunk分作两部分：1）用户请求的chunk；2）剩余的部分成为新的top chunk。否则，就需要扩展heap或分配新的heap了——在main arena中通过sbrk扩展heap，而在thread arena中通过mmap分配新的heap。</p>
+</li>
+<li>Last remainder chunk：</li>
+</ul>
+<h4 id="6-Bin"><a href="#6-Bin" class="headerlink" title="6.Bin"></a>6.Bin</h4><blockquote>
+<p><strong>使用隐式链表来管理内存chunk总会涉及到内存的遍历，效率极低。对此glibc malloc引入了显示链表技术来提高堆内存分配和释放的效率。</strong></p>
+</blockquote>
+<ul>
+<li><p>在 glibc malloc 中这些链表统称为 bin，链表中的”结点“就是各个 chunk，其中 bin 中的 chunk 都是 free 的，且 bin 中各个 chunk 大小一样。</p>
+</li>
+<li><p>Bin 有 4 类：</p>
+</li>
+</ul>
+<blockquote>
+<p>1) Fast bin</p>
+<p>2) Unsorted bin</p>
+<p>3) Small bin</p>
+<p>4) Large bin</p>
+</blockquote>
+<p>在glibc中用于记录bin的数据结构有两种，分别如下所示：</p>
+<p><strong>fastbinsY</strong>: 这是一个数组，用于记录所有的fast bins；</p>
+<p><strong>bins</strong>: 这也是一个数组，用于记录除fast bins之外的所有bins。事实上，一共有126个bins，分别是：</p>
+<blockquote>
+<p>bin 1 为unsorted bin;</p>
+<p>bin 2 到63为small bin;</p>
+<p>bin 64到126为large bin。</p>
+</blockquote>
+<h5 id="Fast-bin"><a href="#Fast-bin" class="headerlink" title="Fast bin"></a>Fast bin</h5><ul>
+<li>chunk size为<a href="https://github.com/sploitfun/lsploits/blob/master/glibc/malloc/malloc.c?spm=a313e.7916648.0.0.aKGnqF#L1249" target="_blank" rel="external">16</a>到<a href="https://github.com/sploitfun/lsploits/blob/master/glibc/malloc/malloc.c?spm=a313e.7916648.0.0.aKGnqF#L1600" target="_blank" rel="external">80</a>字节的chunk就叫做fast chunk。</li>
+<li>文中有个非常重要的定义：</li>
+</ul>
+<blockquote>
+<p>1) 只要说到chunk size，那么就表示该malloc_chunk的实际整体大小；</p>
+<p>2) 而说到chunk unused size，就表示该malloc_chunk中刨除诸如prev_size, size, fd和bk这类辅助成员之后的实际可用的大小。因此，对free chunk而言，其实际可用大小总是比实际整体大小<strong>少16字节</strong>。</p>
+</blockquote>
+<ul>
+<li>下面是 fast bin 的一些特性：</li>
+</ul>
+<blockquote>
+<p>1) fast bin的个数——10个</p>
+<p>2) 每个fast bin都是一个单链表(<strong>只使用fd指针</strong>)。为什么使用单链表呢？因为在fast bin中无论是添加还是移除fast chunk，都是对“<strong>链表尾</strong>”进行操作，而不会对某个中间的fast chunk进行操作。更具体点就是LIFO(后入先出)算法：添加操作(free内存)就是将新的fast chunk加入链表尾，删除操作(malloc内存)就是将链表尾部的fast chunk删除。需要注意的是，为了实现LIFO算法，fastbinsY数组中每个fastbin元素均指向了该链表的rear end（尾结点），而尾结点通过其fd指针指向前一个结点，依次类推，如图2-1所示。</p>
+<p>3) chunk size：10个fast bin中所包含的fast chunk size是按照步进8字节排列的，即第一个fast bin中所有fast chunk size均为16字节，第二个fast bin中为24字节，依次类推。在进行malloc初始化的时候，最大的fast chunk size被设置为80字节(chunk unused size为64字节)，因此默认情况下大小为16到80字节的chunk被分类到fast chunk。详情如图2-1所示。</p>
+<p>4) 不会对free chunk进行合并操作。鉴于设计fast bin的初衷就是进行快速的<strong>小内存</strong>分配和释放，因此系统将属于fast bin的chunk的P(未使用标志位)总是设置为1，这样即使当fast bin中有某个chunk同一个free chunk相邻的时候，系统也不会进行自动合并操作，而是保留两者。虽然这样做可能会造成额外的碎片化问题，但瑕不掩瑜。</p>
+<p>5) malloc(fast chunk)操作：即用户通过malloc请求的大小属于fast chunk的大小范围(注意：用户请求size加上16字节就是实际内存chunk size)。在初始化的时候fast bin支持的最大内存大小以及所有fast bin链表都是空的，所以当最开始使用malloc申请内存的时候，即使申请的内存大小属于fast chunk的内存大小(即16到80字节)，它也不会交由fast bin来处理，而是向下传递交由small bin来处理，如果small bin也为空的话就交给unsorted bin处理</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/* Maximum size of memory handled in fastbins.  */</div><div class="line">static INTERNAL_SIZE_T global_max_fast;</div><div class="line"> </div><div class="line">/* offset 2 to use otherwise unindexable first 2 bins */</div><div class="line">/*这里SIZE_SZ就是sizeof(size_t)，在32位系统为4，64位为8，fastbin_index就是根据要malloc的size来快速计算该size应该属于哪一个fast bin，即该fast bin的索引。因为fast bin中chunk是从16字节开始的，所有这里以8字节为单位(32位系统为例)有减2*8 = 16的操作！*/</div><div class="line">#define fastbin_index(sz) \</div><div class="line">  ((((unsigned int) (sz)) &gt;&gt; (SIZE_SZ == 8 ? 4 : 3)) - 2)</div><div class="line"> </div><div class="line"> </div><div class="line">/* The maximum fastbin request size we support */</div><div class="line">#define MAX_FAST_SIZE     (80 * SIZE_SZ / 4)</div><div class="line"> </div><div class="line">#define NFASTBINS  (fastbin_index (request2size (MAX_FAST_SIZE)) + 1)</div></pre></td></tr></table></figure>
+<ul>
+<li>fast bin 是怎么进行初始化的呢？</li>
+</ul>
+<blockquote>
+<p>当我们第一次调用malloc(fast bin)的时候，系统执行_int_malloc函数，该函数首先会发现当前fast bin为空，就转交给small bin处理，进而又发现small bin 也为空，就调用malloc_consolidate函数对malloc_state结构体进行初始化，malloc_consolidate函数主要完成以下几个功能：</p>
+<p><strong>a.</strong> 首先判断当前malloc_state结构体中的fast bin是否为空，如果为空就说明整个malloc_state都没有完成初始化，需要对malloc_state进行初始化。</p>
+<p><strong>b.</strong> malloc_state的初始化操作由函数malloc_init_state(av)完成，该函数先初始化除fast bin之外的所有的bins(构建双链表，详情见后文small bins介绍)，再初始化fast bins。</p>
+</blockquote>
+<ul>
+<li>free(fast chunk)操作：这个操作很简单，主要分为两步：先通过chunksize函数根据传入的地址指针获取该指针对应的chunk的大小；然后根据这个chunk大小获取该chunk所属的fast bin，然后再将此chunk添加到该fast bin的链尾即可。整个操作都是在_int_free函数中完成。</li>
+</ul>
+<h5 id="unsorted-bin"><a href="#unsorted-bin" class="headerlink" title="unsorted bin"></a>unsorted bin</h5><ul>
+<li><p>利用unsorted bin，可以加快内存的分配和释放操作，因为整个操作都不再需要花费额外的时间去查找合适的bin了。</p>
+<p>Unsorted bin的特性如下：</p>
+<blockquote>
+<p>1) unsorted bin的个数： 1个。unsorted bin是一个由free chunks组成的循环双链表。</p>
+<p>2) Chunk size: 在unsorted bin中，对chunk的大小并没有限制，任何大小的chunk都可以归属到unsorted bin中。这就是前言说的特例了，不过特例并非仅仅这一个，后文会介绍。</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="small-bin"><a href="#small-bin" class="headerlink" title="small bin"></a>small bin</h5><ul>
+<li>小于512字节的chunk称之为small chunk，small bin就是用于管理small chunk的。就内存的分配和释放速度而言，small bin比larger bin快，但比fast bin慢。</li>
+<li>Small bin的特性如下：</li>
+</ul>
+<blockquote>
+<p>1) small bin个数：62个。每个small bin也是一个由对应free chunk组成的循环双链表。同时Small bin采用FIFO(先入先出)算法：内存释放操作就将新释放的chunk添加到链表的front end(前端)，分配操作就从链表的rear end(尾端)中获取chunk。</p>
+<p>2) chunk size: 同一个small bin中所有chunk大小是一?样的，且第一个small bin中chunk大小为16字节，后续每个small bin中chunk的大小依次增加8字节，即最后一个small bin的chunk为16 + 62 * 8 = 512字节。</p>
+<p>3) 合并操作：相邻的free chunk需要进行合并操作，即合并成一个大的free chunk。具体操作见下文free(small chunk)介绍。</p>
+<p>4) malloc(small chunk)操作：类似于fast bins，最初所有的small bin都是空的，因此在对这些small bin完成初始化之前，即使用户请求的内存大小属于small chunk也不会交由small bin进行处理，而是交由unsorted bin处理，如果unsorted bin也不能处理的话，glibc malloc就依次遍历后续的所有bins，找出第一个满足要求的bin，如果所有的bin都不满足的话，就转而使用top chunk，如果top chunk大小不够，那么就扩充top chunk，这样就一定能满足需求了</p>
+</blockquote>
+<ul>
+<li>那么glibc malloc是如何初始化这些bins的呢？因为这些bin属于malloc_state结构体，所以在初始化malloc_state的时候就会对这些bin进行初始化</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">malloc_init_state (mstate av)</div><div class="line">&#123;</div><div class="line">  int i;</div><div class="line">  mbinptr bin;</div><div class="line"> </div><div class="line">  /* Establish circular links for normal bins */</div><div class="line">  for (i = 1; i &lt; NBINS; ++i)</div><div class="line">    &#123;</div><div class="line">      bin = bin_at (av, i);</div><div class="line">      bin-&gt;fd = bin-&gt;bk = bin;</div><div class="line">&#125;</div><div class="line">……</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>free(small chunk)：当释放small chunk的时候，先检查该chunk相邻的chunk是否为free，如果是的话就进行合并操作：将这些chunks合并成新的chunk，然后将它们从small bin中移除，<strong>最后将新的chunk添加到unsorted bin中</strong>。</li>
+</ul>
+<h5 id="large-bin"><a href="#large-bin" class="headerlink" title="large bin"></a>large bin</h5><ul>
+<li>大于512字节的chunk称之为large chunk</li>
+<li>Large bin的特性如下:</li>
+</ul>
+<blockquote>
+<p>1) large bin的数量：63个。Large bin类似于small bin，只是需要注意两点：一是同一个large bin中每个chunk的大小可以不一样，但必须处于某个给定的范围(特例2) ；二是large chunk可以添加、删除在large bin的任何一个位置。</p>
+<p>在这63个large bins中，前32个large bin依次以64字节步长为间隔，即第一个large bin中chunk size为512~575字节，第二个large bin中chunk size为576 ~ 639字节。紧随其后的16个large bin依次以512字节步长为间隔；之后的8个bin以步长4096为间隔；再之后的4个bin以32768字节为间隔；之后的2个bin以262144字节为间隔；剩下的chunk就放在最后一个large bin中。</p>
+<p>鉴于同一个large bin中每个chunk的大小不一定相同，因此为了加快内存分配和释放的速度，就将同一个large bin中的所有chunk按照chunk size进行<strong>从大到小的排列</strong>：最大的chunk放在链表的front end，最小的chunk放在rear end。</p>
+<p>2) 合并操作：类似于small bin。</p>
+<p>3) malloc(large chunk)操作：</p>
+<p>初始化完成之前的操作类似于small bin，这里主要讨论large bins初始化完成之后的操作。首先确定用户请求的大小属于哪一个large bin，然后判断该large bin中最大的chunk的size是否大于用户请求的size(只需要对比链表中front end的size即可)。如果大于，就从rear end开始遍历该large bin，找到第一个size相等或接近的chunk，分配给用户。如果该chunk大于用户请求的size的话，就将该chunk拆分为两个chunk：前者返回给用户，且size等同于用户请求的size；剩余的部分做为一个新的chunk<strong>添加到unsorted bin中。</strong></p>
+<p>如果该large bin中最大的chunk的size小于用户请求的size的话，那么就依次查看后续的large bin中是否有满足需求的chunk，不过需要注意的是鉴于bin的个数较多(不同bin中的chunk极有可能在不同的内存页中)，如果按照上一段中介绍的方法进行遍历的话(即遍历每个bin中的chunk)，就可能会发生多次内存页中断操作，进而严重影响检索速度，所以glibc malloc设计了Binmap结构体来帮助提高bin-by-bin检索的速度。Binmap记录了各个bin中是否为空，通过bitmap可以避免检索一些空的bin。如果通过binmap找到了下一个非空的large bin的话，就按照上一段中的方法分配chunk，否则就使用top chunk来分配合适的内存。</p>
+<p>4) Free(large chunk)：类似于small chunk。</p>
+</blockquote>
+</the>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/pwn/" rel="tag">#pwn</a>
+          
+            <a href="/tags/reading/" rel="tag">#reading</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/13/how2heap/" rel="next" title="how2heap">
+                <i class="fa fa-chevron-left"></i> how2heap
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/11/Heap_exploitation/" rel="prev" title="Heap-exploitation">
+                Heap-exploitation <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="仰望" />
+          <p class="site-author-name" itemprop="name">仰望</p>
+          <p class="site-description motion-element" itemprop="description">人难免天生有自怜的情绪，唯有时刻保持清醒，才能看清真正的价值在哪里。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+		  <br>
+		<span id="busuanzi_container_site_uv">
+		<b><span id="busuanzi_value_site_uv"></span></b><br>
+		<span class="site-state-item-name">访客</span>
+		</span>
+		<br>
+		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=30814948&auto=0&height=66"></iframe>
+
+        </nav>
+
+        
+		<div align="left" font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif>
+		<b><h1>个人简介</h1></b>
+		<p>姓名：仰望&nbspQQ:541135204<br>
+		星座：巨蟹座&nbsp
+		爱好：学习(哈哈)<br>
+		</div>
+		<br>
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/starlookup" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:starlookup@gmail.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelop"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux堆内存管理深入分析"><span class="nav-number">1.</span> <span class="nav-text">Linux堆内存管理深入分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-堆内存管理简介"><span class="nav-number">1.1.</span> <span class="nav-text">1. 堆内存管理简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-arena-介绍"><span class="nav-number">1.2.</span> <span class="nav-text">2.arena 介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-堆管理介绍"><span class="nav-number">1.3.</span> <span class="nav-text">3.堆管理介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-对-chunk-的理解"><span class="nav-number">1.4.</span> <span class="nav-text">5.对 chunk 的理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-Bin"><span class="nav-number">1.5.</span> <span class="nav-text">6.Bin</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Fast-bin"><span class="nav-number">1.5.1.</span> <span class="nav-text">Fast bin</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#unsorted-bin"><span class="nav-number">1.5.2.</span> <span class="nav-text">unsorted bin</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#small-bin"><span class="nav-number">1.5.3.</span> <span class="nav-text">small bin</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#large-bin"><span class="nav-number">1.5.4.</span> <span class="nav-text">large bin</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">仰望</span>
+</div>
+
+<div class="powered-by">
+  由 Lookup 倾情所造
+</div>
+
+<div class="theme-info">
+  主题 -
+ Freshyear
+
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  
+  <!-- 背景动画 -->
+<script type="text/javascript" src="/js/src/particle.js"></script>
+
+
+</body>
+</html>
