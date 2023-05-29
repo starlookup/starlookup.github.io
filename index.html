@@ -168,48 +168,28 @@
 <li><p>由于与行为有关而警告队员或教练员时，不要停止比赛。如果警告是必须的，在比赛计时钟停止或球成死球时提出。如果有必要中断比赛，必须宣判技术犯规。</p>
 </li>
 </ul>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-05-11T18:02:02.000Z" title="2023/5/12 02:02:02">2023-05-12</time>发表</span><span class="level-item"><time dateTime="2023-05-12T07:50:06.973Z" title="2023/5/12 15:50:06">2023-05-12</time>更新</span><span class="level-item">3 分钟读完 (大约485个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/05/12/%E8%AF%84%E5%AE%A1%E5%B7%A5%E4%BD%9C/">评审工作记录</a></h1><div class="content"><span id="more"></span>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-05-11T18:02:02.000Z" title="2023/5/12 02:02:02">2023-05-12</time>发表</span><span class="level-item"><time dateTime="2023-05-29T09:06:12.767Z" title="2023/5/29 17:06:12">2023-05-29</time>更新</span><span class="level-item">3 分钟读完 (大约482个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/05/12/%E8%AF%84%E5%AE%A1%E5%B7%A5%E4%BD%9C/">评审工作记录</a></h1><div class="content"><span id="more"></span>
 
 <p>第一次认真写一篇论文评审，做一次小记录</p>
 <h3 id="Summary-Of-The-Paper"><a href="#Summary-Of-The-Paper" class="headerlink" title="Summary Of The Paper:"></a>Summary Of The Paper:</h3><blockquote>
 <p>这篇文章提出了一个 Lipschitz 约束的 VAE 变体用于实现差分隐私保证的数据合成方案。现有的主流数据合成方案是基于 DP-SGD 以及 PATE 框架结合 GAN、VAE、Diffusion Model等生成模型。本文章主要贡献点是针对常规 DP 添加噪声影响模型精度以及隐私预算有限问题，提出利用Lipschitz 约束实现独立于训练样本数量的差分隐私保证方法。</p>
 </blockquote>
 <h4 id="Main-Review"><a href="#Main-Review" class="headerlink" title="Main Review:"></a>Main Review:</h4><ul>
-<li><p>Strength of the paper:</p>
-<ol>
-<li><pre><code>证明过程清晰
-</code></pre>
-<ol start="2">
-<li><pre><code>针对 VAE的无噪声 DP 有一定创新性（Lipschitz 结合 DP工作不是一个很新的概念，应用到 VAE 中目前我个人没见过，）
-</code></pre>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>Weakness of the paper:</p>
-<ol>
-<li><pre><code>实验完备性不足：
-</code></pre>
-a)	数据质量没有实验数据：对于数据合成方案上，文章中强调不仅隐私保护效果更好，且数据质量更佳。在数据质量上并没有实验支撑，例如下游任务的精度，原数据集相似度等指标。<br>b)	对比方案不足：没有对比例如 DP-GAN、PATE-GAN、G-PATE、DataLens以及DP-Diffusion model等一系列其他数据合成主流方案<br>c)	数据集支撑不足：仅仅只对 mnist 数据集进行了实验，应该多扩展一些常见数据集<ol start="2">
-<li><pre><code>文中描述方案隐私保护效果对比 VAE-DPSGD，然而由实验图中可知，对于 MIA（成员推理攻击） 的保护效果并没有 VAE-DPSGD 好，且没有数据质量的实验数据前提下，方案优势并不明显。
-</code></pre>
-<ol start="3">
-<li><pre><code>所选 Lipschitz 常数与隐私保证之间的联系需要量化
-</code></pre>
-<ol start="4">
-<li><pre><code>文中写作错误
-</code></pre>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
+<li>Strength of the paper:</li>
 </ul>
+<ol>
+<li>证明过程清晰</li>
+<li>针对 VAE的无噪声 DP 有一定创新性,Lipschitz 结合 DP工作不是一个很新的概念，应用到 VAE 中目前我个人没见过</li>
+</ol>
+<ul>
+<li>Weakness of the paper:</li>
+</ul>
+<ol>
+<li>实验完备性不足：<br> a) 数据质量没有实验数据：对于数据合成方案上，文章中强调不仅隐私保护效果更好，且数据质量更佳。在数据质量上并没有实验支撑，例如下游任务的精度，原数据集相似度等指标。<br> b) 对比方案不足：没有对比例如 DP-GAN、PATE-GAN、G-PATE、DataLens以及DP-Diffusion model等一系列其他数据合成主流方案<br> c) 数据集支撑不足：仅仅只对 mnist 数据集进行了实验，应该多扩展一些常见数据集</li>
+<li>文中描述方案隐私保护效果对比 VAE-DPSGD，然而由实验图中可知，对于 MIA（成员推理攻击） 的保护效果并没有 VAE-DPSGD 好，且没有数据质量的实验数据前提下，方案优势并不明显。</li>
+<li>所选 Lipschitz 常数与隐私保证之间的联系需要量化</li>
+<li>文中写作错误</li>
+</ol>
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-05-09T18:02:02.000Z" title="2023/5/10 02:02:02">2023-05-10</time>发表</span><span class="level-item"><time dateTime="2023-05-10T07:21:44.925Z" title="2023/5/10 15:21:44">2023-05-10</time>更新</span><span class="level-item">1 分钟读完 (大约171个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/05/10/%E5%A4%A7%E4%BD%AC%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/">大佬工作总结</a></h1><div class="content"><h3 id="目前身边学术做的非常好的同学的工作总结（进行参考）"><a href="#目前身边学术做的非常好的同学的工作总结（进行参考）" class="headerlink" title="目前身边学术做的非常好的同学的工作总结（进行参考）"></a>目前身边学术做的非常好的同学的工作总结（进行参考）</h3><blockquote>
 <p>他本身是做联邦学习安全加固（同态加密）</p>
 </blockquote>
