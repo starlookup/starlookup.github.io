@@ -28,7 +28,7 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="仰望" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags">标签</a></li><li class="is-active"><a href="#" aria-current="page">科研</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2099-12-11T18:02:02.000Z" title="2099/12/12 02:02:02">2099-12-12</time>发表</span><span class="level-item"><time dateTime="2023-05-29T09:03:58.619Z" title="2023/5/29 17:03:58">2023-05-29</time>更新</span><span class="level-item">4 分钟读完 (大约544个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2099/12/12/%E5%AD%A6%E6%9C%AF%E5%AE%9A%E7%90%86%E6%80%A7%E7%BB%93%E8%AE%BA%E8%AE%B0%E5%BD%95/">学术定理性结论记录</a></h1><div class="content"><span id="more"></span>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="仰望" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags">标签</a></li><li class="is-active"><a href="#" aria-current="page">科研</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2099-12-11T18:02:02.000Z" title="2099/12/12 02:02:02">2099-12-12</time>发表</span><span class="level-item"><time dateTime="2023-07-07T03:16:53.877Z" title="2023/7/7 11:16:53">2023-07-07</time>更新</span><span class="level-item">6 分钟读完 (大约965个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2099/12/12/%E5%AD%A6%E6%9C%AF%E5%AE%9A%E7%90%86%E6%80%A7%E7%BB%93%E8%AE%BA%E8%AE%B0%E5%BD%95/">学术定理性结论记录</a></h1><div class="content"><span id="more"></span>
 
 <h3 id="学术论文阅读结论记录"><a href="#学术论文阅读结论记录" class="headerlink" title="学术论文阅读结论记录"></a>学术论文阅读结论记录</h3><blockquote>
 <p>阅读论文过程中，别人的一些结论进行记录，在自己工作中进行引用</p>
@@ -58,6 +58,37 @@
 <li>数据增强会使的同一个样本在数据集重复出现，会有影响</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Membership Inference Attacks From First principles</span><br></pre></td></tr></table></figure>
+
+<ol start="11">
+<li><p>成员推理攻击在复杂的数据集上要有效得多（在复杂的数据上更容易过拟合）。模型反演、模型窃取则相反。</p>
+</li>
+<li><p>模型参数的白盒参数访问对于成员推理攻击没有帮助</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ML-DOCTOR- Holistic Risk Assessment of Inference Attacks Against Machine Learning Models</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>神经网络模型架构越深，并不更容易受到攻击</p>
+</li>
+<li><p>具有高维输出（许多类）的任务比具有低维输出的任务更容易受到MIA的影响</p>
+</li>
+<li><p>过拟合不是成员推理攻击的决定性因素</p>
+</li>
+<li><p>所有在可推广模型上的实现中等或高成功率的黑匣子 MIA 都需要了解目标样本的真实类别</p>
+</li>
+<li><p>可推广性模型上的 MIA，对在模型参数有很大影响的记录上，如异常点或分布点，表现会更好</p>
+</li>
+<li><p>模型泛化能力很大程度上取决于所使用的优化器和正则化方法</p>
+</li>
+<li><p>优化器的选择对具有强背景信息的黑箱对手的可推广模型的潜在鲁棒性几乎没有影响</p>
+</li>
+<li><p>对于可推广的模型，唯一显著的差异出现在正确分类的样本和错误分类样本中间，而不是成员与非成员</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SoK: Membership Inference is Harder Than Previously Thought</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>过拟合模型可以使用一些不典型方式来将该实例识别为训练集成员</p>
+</li>
+</ol>
+<h4 id="神经网络训练"><a href="#神经网络训练" class="headerlink" title="神经网络训练"></a>神经网络训练</h4><ol>
+<li>数据规模可以压制标签中存在的噪声</li>
+<li>随着训练数据数量级的增加，任务性能呈对数上升</li>
+</ol>
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-07-02T18:02:02.000Z" title="2023/7/3 02:02:02">2023-07-03</time>发表</span><span class="level-item"><time dateTime="2023-07-04T02:36:53.060Z" title="2023/7/4 10:36:53">2023-07-04</time>更新</span><span class="level-item">7 分钟读完 (大约1119个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/07/03/%E8%AE%BA%E6%96%87%E6%B5%81%E7%A8%8B%E6%95%B4%E7%90%86/">论文流程整理</a></h1><div class="content"><span id="more"></span>
 
 <blockquote>
