@@ -28,7 +28,7 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="仰望" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags">标签</a></li><li class="is-active"><a href="#" aria-current="page">科研</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2099-12-11T18:02:02.000Z" title="2099/12/12 02:02:02">2099-12-12</time>发表</span><span class="level-item"><time dateTime="2023-09-13T08:13:38.407Z" title="2023/9/13 16:13:38">2023-09-13</time>更新</span><span class="level-item">13 分钟读完 (大约1877个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2099/12/12/%E5%AD%A6%E6%9C%AF%E5%AE%9A%E7%90%86%E6%80%A7%E7%BB%93%E8%AE%BA%E8%AE%B0%E5%BD%95/">学术定理性结论记录</a></h1><div class="content"><span id="more"></span>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="仰望" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags">标签</a></li><li class="is-active"><a href="#" aria-current="page">科研</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2099-12-11T18:02:02.000Z" title="2099/12/12 02:02:02">2099-12-12</time>发表</span><span class="level-item"><time dateTime="2023-09-14T09:11:40.268Z" title="2023/9/14 17:11:40">2023-09-14</time>更新</span><span class="level-item">14 分钟读完 (大约2148个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2099/12/12/%E5%AD%A6%E6%9C%AF%E5%AE%9A%E7%90%86%E6%80%A7%E7%BB%93%E8%AE%BA%E8%AE%B0%E5%BD%95/">学术定理性结论记录</a></h1><div class="content"><span id="more"></span>
 
 <h3 id="学术论文阅读结论记录"><a href="#学术论文阅读结论记录" class="headerlink" title="学术论文阅读结论记录"></a>学术论文阅读结论记录</h3><blockquote>
 <p>阅读论文过程中，别人的一些结论进行记录，在自己工作中进行引用</p>
@@ -95,26 +95,42 @@
 <li><p>训练数据相较于测试数据距离分类边界应该远</p>
 </li>
 <li><p>模型应该会对训练数据的数据增强结果更加准确的分类</p>
-</li>
-</ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MemGuard: Defending against Black-Box MembershipInference Attacks via Adversarial Examples</span><br></pre></td></tr></table></figure>
-
-<ol start="26">
-<li><code>对于 MIA 攻击效果的评估，应该考虑低假阳率（FPR）前提下的真阳率（TPR）</code>，这才是合理的评估指标，平均指标没有任何意义。</li>
-<li>对于样本的衡量，文章考虑了两个性质，一个是样本在模型中拟合的难易程度（通过loss可以判断，loss低代表容易拟合），二是样本对于模型的影响，通过对比有无该样本训练的模型对于样本的评估差别，如果没与差别代表样本对于模型影响不大，如果差别很大代表样本本身对模型影响很大。很多攻击只考虑了对于模型影响特别大的样本，而对于影响不大的样本它就没办法判断了。</li>
-<li>通过引入 per-class hardness（用来衡量每个类训练的难易程度），没有有效提升低 FPR 下的攻击效果。</li>
-<li>通过使用 per-example hardness（用来衡量每个样本训练的难易程度），有效提升低 FPR 下的攻击效果。</li>
-<li>过拟合的模型更容易受到攻击，而且更准确的模型更容易受到攻击。</li>
-<li>攻击模型与目标模型架构相同时，攻击效果最好，差别越小效果越好。</li>
-<li>optimizer（SGD、SGDM、ADAM） 对于攻击效果没有影响。</li>
-<li>如果影子模型数据增强方式与目标模型对应时，攻击效果最好。使用的数据增强越强，越难被攻击。</li>
-<li>对于本攻击来说，白盒并没有什么改进。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Membership Inference Attacks From First Principles</span><br></pre></td></tr></table></figure></li>
-<li>文章提出成员样本与非成员样本可能最终 loss 差别不大，但是 loss trajectory（loss下降曲线）是不一样的。</li>
-<li>蒸馏数据集越大，代表攻击者有更多的辅助数据集，效提升低 FPR 下的攻击效果。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Membership Inference Attacks by Exploiting Loss Trajectory</span><br></pre></td></tr></table></figure></li>
+</li>
+<li><p><code>对于 MIA 攻击效果的评估，应该考虑低假阳率（FPR）前提下的真阳率（TPR）</code>，这才是合理的评估指标，平均指标没有任何意义。</p>
+</li>
+<li><p>对于样本的衡量，文章考虑了两个性质，一个是样本在模型中拟合的难易程度（通过loss可以判断，loss低代表容易拟合），二是样本对于模型的影响，通过对比有无该样本训练的模型对于样本的评估差别，如果没与差别代表样本对于模型影响不大，如果差别很大代表样本本身对模型影响很大。很多攻击只考虑了对于模型影响特别大的样本，而对于影响不大的样本它就没办法判断了。</p>
+</li>
+<li><p>通过引入 per-class hardness（用来衡量每个类训练的难易程度），没有有效提升低 FPR 下的攻击效果。</p>
+</li>
+<li><p>通过使用 per-example hardness（用来衡量每个样本训练的难易程度），有效提升低 FPR 下的攻击效果。</p>
+</li>
+<li><p>过拟合的模型更容易受到攻击，而且更准确的模型更容易受到攻击。</p>
+</li>
+<li><p>攻击模型与目标模型架构相同时，攻击效果最好，差别越小效果越好。</p>
+</li>
+<li><p>optimizer（SGD、SGDM、ADAM） 对于攻击效果没有影响。</p>
+</li>
+<li><p>如果影子模型数据增强方式与目标模型对应时，攻击效果最好。使用的数据增强越强，越难被攻击。</p>
+</li>
+<li><p>对于本攻击来说，白盒并没有什么改进。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Membership Inference Attacks From First Principles</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>文章提出成员样本与非成员样本可能最终 loss 差别不大，但是 loss trajectory（loss下降曲线）是不一样的。</p>
+</li>
+<li><p>蒸馏数据集越大，代表攻击者有更多的辅助数据集，效提升低 FPR 下的攻击效果。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Membership Inference Attacks by Exploiting Loss Trajectory</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h4 id="神经网络训练"><a href="#神经网络训练" class="headerlink" title="神经网络训练"></a>神经网络训练</h4><ol>
 <li>数据规模可以压制标签中存在的噪声</li>
 <li>随着训练数据数量级的增加，任务性能呈对数上升</li>
+<li>数据集是一个长尾分布（意思异常值与错误值以及非典型例子占大多数），而对于这些例子模型往往是采用记忆的方法也就是强行背下来的方法，但是这种记忆对于模型达到最优泛化能力是不可获取的</li>
+<li>记忆得分高的例子是非典型例子和异常值&#x2F;错误标记的例子的混合，经典例子的记忆得分往往更低</li>
+<li><code>在受显著影响的测试示例中，大多数仅受单个训练示例的显著影响</code></li>
+<li>互相高影响的数据对，在视觉上有很强的相似性</li>
+<li>对于成员推理攻击的防御，减少记忆会影响模型的准确度</li>
+<li>在CIFAR-100上删除这两组中的964个独特训练示例可将测试精度降低2.46±0.36%，这与删除11000个随机示例的效果相当</li>
+<li>记忆并不是只存在于最后一层<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">What Neural Networks Memorize and Why:Discovering the Long Tail via Influence Estimation</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h4 id="隐私数据合成"><a href="#隐私数据合成" class="headerlink" title="隐私数据合成"></a>隐私数据合成</h4><ol>
 <li>数据合成领域主要包括 表格数据（Tabular data）、轨迹数据（Trajectory data）、图数据（Graph data）</li>
