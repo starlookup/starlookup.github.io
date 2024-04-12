@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>大模型学习记录 - 仰望</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="仰望"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="仰望"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="对于大模型深入学习，不断补齐基础"><meta property="og:type" content="blog"><meta property="og:title" content="大模型学习记录"><meta property="og:url" content="http://lookupes.cn/2024/03/31/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%B0%E5%BD%95/"><meta property="og:site_name" content="仰望"><meta property="og:description" content="对于大模型深入学习，不断补齐基础"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404121101269.png"><meta property="og:image" content="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404121102879.png"><meta property="og:image" content="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404112219953.png"><meta property="og:image" content="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404112232564.png"><meta property="og:image" content="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404112146881.png"><meta property="og:image" content="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404112228466.png"><meta property="og:image" content="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404121055454.png"><meta property="og:image" content="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404112317529.png"><meta property="og:image" content="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404120949114.png"><meta property="og:image" content="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404120950634.png"><meta property="og:image" content="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404121031663.png"><meta property="og:image" content="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404121045533.png"><meta property="article:published_time" content="2024-03-30T18:02:02.000Z"><meta property="article:modified_time" content="2024-04-12T03:02:22.959Z"><meta property="article:author" content="Lookup"><meta property="article:tag" content="LLM"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404121101269.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://lookupes.cn/2024/03/31/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%B0%E5%BD%95/"},"headline":"大模型学习记录","image":["https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404121101269.png","https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404121102879.png","https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404112219953.png","https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404112232564.png","https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404112146881.png","https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404112228466.png","https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404121055454.png","https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404112317529.png","https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404120949114.png","https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404120950634.png","https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404121031663.png","https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404121045533.png"],"datePublished":"2024-03-30T18:02:02.000Z","dateModified":"2024-04-12T03:02:22.959Z","author":{"@type":"Person","name":"Lookup"},"publisher":{"@type":"Organization","name":"仰望","logo":{"@type":"ImageObject","url":"http://lookupes.cn/img/logo.svg"}},"description":"对于大模型深入学习，不断补齐基础"}</script><link rel="canonical" href="http://lookupes.cn/2024/03/31/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%B0%E5%BD%95/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><script data-ad-client="Lookup" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="仰望" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-03-30T18:02:02.000Z" title="2024/3/31 02:02:02">2024-03-31</time>发表</span><span class="level-item"><time dateTime="2024-04-12T03:02:22.959Z" title="2024/4/12 11:02:22">2024-04-12</time>更新</span><span class="level-item">2 小时读完 (大约18110个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">大模型学习记录</h1><div class="content"><blockquote>
+<p>对于大模型深入学习，不断补齐基础</p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="大模型记录"><a href="#大模型记录" class="headerlink" title="大模型记录"></a>大模型记录</h3><h4 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h4><ul>
+<li>主流的 LLM（语言模型）模型体系包括以下几个</li>
+</ul>
+<ol>
+<li>GPT（Generative Pre-trained Transofrmer）系列：通过在大规模无标签文本上进行预训练，然后在特定任务上进行微调</li>
+<li>BERT（Bidirectional Encoder Representations from Transformers）：在大规模无标签文本上进行预训练，然后在下游任务上进行微调</li>
+<li>XLNet：由CMU和Google Brain发布的一种基于Transformer架构的自回归预训练语言模型。XLNet模型通过自回归方式预训练，可以建模全局依赖关系</li>
+<li>RoBERTa：由Facebook发布的一种基于Transformer架构的预训练语言模型。RoBERTa模型在BERT的基础上进行了改进，通过更大规模的数据和更长的训练时间，取得了更好的性能。</li>
+<li>T5（Text-to-Text Transfer Transformer）：由Google发布的一种基于Transformer架构的多任务预训练语言模型。</li>
+</ol>
+<p><img src="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404121101269.png"></p>
+<p><img src="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404121102879.png"></p>
+<ol>
+<li>BLOOM (BigScience Large Open-science Open-access Multilingual Language Model) BigScience 是一个由 Hugging Face 协调，联合法国的 GENCI 和 IDRIS 组织共同参与的国际合作项目，涵盖了来自 60 个国家、250 个研究机构的 1000 名科研人员。在这一系列模型中，最大的一个拥有 1760 亿个参数，它接受了 46 种人类语言和 13 种编程语言的 3500 亿个多语言数据词元的训练。</li>
+<li>OPT(Open Pre-trained Transformer) 这些模型借鉴了 GPT-3 论文中的技术，如特定的权重初始化和预归一化策略，并对注意力机制进行了改进，比如引入了交替的密集型与局部带状注意力层。系列中最大的模型拥有 1750 亿个参数，其训练数据涵盖了来自公共领域的 1800 亿个数据词元，包括书籍、Reddit 社交平台数据、新闻、维基百科以及其他多种互联网来源。这一系列模型在性能上与 GPT-3 不相上下，并且通过编码优化减少了计算资源的消耗。</li>
+<li>GLM-130B (General Language Model) 清华大学联合智谱 AI 共同发布了 GLM-130B 模型。该模型基于完整的 Transformer 架构，并引入了一些创新（如采用 DeepNorm 进行层后归一化、使用旋转式位置嵌入）。GLM-130B 拥有 1300 亿参数，是在包含英文和中文的互联网数据集上训练的，这些数据集包括 The Pile、WuDao 语料库以及其他中文语料库，共计 4000 亿个词元。在性能上，GLM-130B 与 GPT-3 模型不相上下。</li>
+<li>DeepMind 发表了一篇 论文，探讨了在固定计算预算条件下，模型参数与数据量的最优配比。简而言之，如果你的模型训练预算有限，应该如何平衡模型大小和数据规模？研究者们发现，在平均计算预算下，对于大型语言模型（LLMs），更高效的策略是维持一个相对较小的模型，并在更广泛的数据集上进行训练。他们开发的模型 Chinchilla（未公开）拥有 700 亿个参数，仅为某些大型模型参数总数的三分之一，却在高达 1.4 万亿个词元的数据集上进行了训练，是其他模型所使用数据量的三到四倍。结果显示，Chinchilla 在性能上不仅媲美甚至超越了其他更大的同类型模型，无论是开源还是非开源的。</li>
+<li>Meta AI 发布的 LLaMA 系列是该系列中的首款模型。研究团队的目标是在既定的计算预算内训练不同规模的模型，以求达到最优性能。他们首次明确将训练预算与推理成本（即在满足特定性能目标时，模型推理所需的成本）并重考虑。基于这样的考量，他们选择在更大量的数据和更多的训练步骤上，训练规模较小的模型，以期在较小的模型尺度上获得更高的性能（这是对训练计算效率的一种权衡）。在 LLaMA 系列中，最大的模型拥有 650 亿参数，经过了 1.4 万亿的词元训练，而规模较小的模型 —— 分别具有 60 亿和 130 亿参数 —— 则在 1 万亿词元训练后完成。在大多数基准测试中，130 亿参数的 LLaMA 小型模型的表现超过了 GPT-3，而 650 亿参数的 LLaMA 大模型在发布时则代表了最先进的技术水平。然而，这些模型的权重是以非商业许可的形式发布的，这限制了它们在社区中的应用范围。</li>
+<li>Eleuther AI 是一个开源的非营利实验室，它发布了一系列名为 Pythia 的大型语言模型（LLMs）。这些模型有不同的规模，全部采用公开数据进行训练，目的是为了帮助研究人员理解大型语言模型训练的不同阶段。有关 Pythia 模型的更多信息，可以通过它们在 Hugging Face 上的 系列合集 查看。</li>
+<li>MosaicML 公司在两个月后推出了 MPT 模型，该模型的性能优越，并且支持商业用途，同时公司还公开了其训练的具体细节。MPT 的首个版本是一个 7B 的模型，紧接着在 6 月份，公司发布了一个更大的 30B 版本。这两个模型都是基于 1 万亿个英语和编程语言的词元训练而成，训练数据包括了 C4、CommonCrawl、The Stack、S2ORC 等数据集。</li>
+<li>TIIUAE 团队便发布了 Falcon 系列模型 中的 7B 和 30B 版本。这些模型在 1 至 1.5 万亿个英文和代码词元上进行了训练，训练数据包括来自 RefinedWeb、Project Gutenberg、Reddit、StackOverflow、GitHub、arXiv、Wikipedia 等多个来源。同年晚些时候，TIIUAE 还发布了一款更为庞大的 180B 模型。Falcon 模型的细节、所用数据以及训练过程均在一份技术报告及随后发表的 研究论文 中有详尽的描述。</li>
+<li>X-Gen 在 Meta 推出的更为引人注目的新的 LLaMA-2 家族的阴影下显得有些黯然失色。LLaMA-2 是 Meta 推出的一个新的模型系列，规模从 7B 到 70B 不等，这些模型是在 2 万亿个 “来自公开来源的词元” 上训练而成的，采用了宽松的社区许可证，并经过了人类偏好的精细调整（RLHF），即所谓的对齐过程。</li>
+<li>Llama-2、Qwen 和 Yi 发布了对话版本</li>
+<li>来自中国多个研究机构的研究人员共同发布了 人类 ChatGPT 指令语料库（HC3），其中包含了人类与模型对各种问题的回答。3 月份，发布活动接连不断：斯坦福大学推出了 Alpaca 模型，这是首个遵循指令的 LLaMA 模型（7B），以及相关的数据集，包括用大型语言模型生成的 52K 条指令。非营利开源实验室 LAION 发布了 开放指令通用数据集（OIG），包含 4300 万条指令，这些指令既有通过数据增强创建的，也有编译自其他现有数据源的。同月，位于加州大学伯克利分校的 LMSYS 组织发布了 Vicuna，这也是一个基于 ChatGPT 聊天数据的 LLaMA 精调模型（13B），这些聊天数据是用户与 ChatGPT 之间的对话，由用户自己公开分享在 ShareGPT 上。还发布了 Guanaco 数据集，它是 Alpaca 数据集的扩展版（增加了 50 万条多语言条目），以及相关的 LLaMA-7B 精调模型。</li>
+<li>伯克利人工智能研究实验室（Berkeley AI Research lab，BAIR）发布了 Koala，这是一个经过聊天调优的 LLaMA 模型，它使用了多个先前的数据集（包括 Alpaca、HH-RLHF、WebGPT、ShareGPT），而 DataBricks 则发布了 Dolly 数据集，这是一个由 15K 条人工生成的指令组成的数据集，以及相关的 Pythia 微调模型。五月，清华大学发布了 UltraChat，这是一个包含 1.5M 对话指令的数据集，以及在该数据集上进行微调的 UltraLLaMA 模型。随后，微软发布了 GPT4-LLM 数据集 &#x2F; 框架，用于生成 GPT4 的指令。六月，微软研究院分享了一种新方法 Orca，通过使用大型模型的推理轨迹（逐步解释其推理过程）来构建指令数据集，该方法很快被社区（尤其是 Alignementlab.ai）复现，他们创建了 Open Orca 数据集，包含数百万条条目，随后用于微调多个模型（如 Llama、Mistral 等）</li>
+<li>由中国的非营利组织 OpenBMB 发布了 UltraLM（一种基于 LLaMA 的高性能聊天模型微调版本），随后在九月，他们又发布了相关的偏好数据集 UltraFeedback，这是一个包含与 GPT4 对比的输入反馈数据集，并附有注释。在整个夏天，一个名为 NousResearch 的集体发布了多个基于私有和公开指导数据集的微调版本（特别是 Hermes 和 Capybara 系列）。九月，清华大学的一个学生团队发布了 OpenChat，这是一个应用了新的强化学习微调策略的 LLaMA 微调版本。</li>
+<li>一个含有 300 亿参数的模型，在使用 float16 格式时需要不到 66GB 的内存。如果采用 8bit，内存需求将减半至 33GB；若使用 4bit 编码，则只需大约 16GB，进一步降低了内存的要求，使得模型更易于部署和使用。</li>
+<li>Hugging Face英文测试公开单 Pretrained 预训练开源模型排名</li>
+<li>GPT-4可支持32K、约2.5万汉字，Claude 2可支持100K、约20万字.<br><img src="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404112219953.png"></li>
+</ol>
+<ul>
+<li>Prefix LM 和 causal LM 区别是什么</li>
+</ul>
+<ol>
+<li><p>前缀语言模型：<br>在前缀语言模型中，模型根据给定的前缀（即部分文本）来生成接下来的文本序列。<br>这意味着模型可以使用部分文本来预测接下来的词语，而不需要考虑生成这部分文本的顺序。因此，前缀语言模型通过这种方式来实现对文本的生成和预测。</p>
+</li>
+<li><p>因果语言模型：<br>因果语言模型则是一种自回归模型，它只能根据之前的文本生成接下来的文本。<br>这意味着模型在生成文本时，需要按照文本的顺序逐步生成，每一步都基于之前生成的内容。因果语言模型因此更加关注文本的时序和顺序性。<br>总的来说，前缀语言模型更侧重于利用给定的部分文本来进行文本生成，而因果语言模型则更加注重对文本生成顺序的严格控制。</p>
+</li>
+</ol>
+<p><img src="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404112232564.png"></p>
+<ul>
+<li><p>涌现能力<br>大模型的涌现能力是由数据量的增加、计算能力的提升、模型架构的改进以及预训练和微调等因素共同作用的结果。这些因素的进步使得大模型能够更好地理解和生成文本</p>
+</li>
+<li><p>大模型 LLM 架构</p>
+</li>
+</ul>
+<ol>
+<li>Transformer 架构、自注意力机制、多头注意力机制、前馈神经网络、预训练和微调</li>
+</ol>
+<h4 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h4><ul>
+<li>LLMs 复读机问题原因</li>
+</ul>
+<ol>
+<li><p>数据偏差：大型语言模型通常是通过预训练阶段使用大规模无标签数据进行训练的。如果训练数据中存在大量的重复文本或者某些特定的句子或短语出现频率较高，模型在生成文本时可能会倾向于复制这些常见的模式。</p>
+</li>
+<li><p>训练目标的限制：大型语言模型的训练通常是基于自监督学习的方法，通过预测下一个词或掩盖词来学习语言模型。这样的训练目标可能使得模型更倾向于生成与输入相似的文本，导致复读机问题的出现。</p>
+</li>
+<li><p>缺乏多样性的训练数据：虽然大型语言模型可以处理大规模的数据，但如果训练数据中缺乏多样性的语言表达和语境，模型可能无法学习到足够的多样性和创造性，导致复读机问题的出现。</p>
+</li>
+</ol>
+<ul>
+<li>LLMs 复读机解决思路</li>
+</ul>
+<ol>
+<li><p>训练思想：整体思想就是通过构造伪数据，即短语重复、句子重复等伪数据，如短语或句子重复 N 遍，然后设计重复惩罚项来抑制大模型生成重复句子。重复惩罚项通过设计损失函数来达成，其中是惩罚因子λ，对于开放式生成，推荐取值为 0.5，对于总结摘要类任务，取值为 0.9 性能更好</p>
+</li>
+<li><p>引入噪声：在生成文本时，可以引入一些随机性或噪声，例如通过采样不同的词或短语，或者引入随机的变换操作，以增加生成文本的多样性。</p>
+</li>
+<li><p>温度参数调整：温度参数是用来控制生成文本的多样性的一个参数。通过调整温度参数的值，可以控制生成文本的独创性和多样性，从而减少复读机问题的出现。</p>
+</li>
+<li><p>后处理和过滤：对生成的文本进行后处理和过滤，去除重复的句子或短语，以提高生成文本的质量和多样性。</p>
+</li>
+<li><p>Beam搜索调整：在生成文本时，可以调整Beam搜索算法的参数。Beam搜索是一种常用的生成策略，它在生成过程中维护了一个候选序列的集合。通过调整Beam大小和搜索宽度，可以控制生成文本的多样性和创造性。</p>
+</li>
+</ol>
+<ul>
+<li>llama 输入句子长度理论可以无限长吗</li>
+</ul>
+<p>理论上说可以无限长，但是存在一些限制和挑战</p>
+<ol>
+<li><p>计算资源：生成长句子需要更多的计算资源，包括内存和计算时间。由于LLMs通常是基于神经网络的模型，计算长句子可能会导致内存不足或计算时间过长的问题。</p>
+</li>
+<li><p>模型训练和推理：训练和推理长句子可能会面临一些挑战。在训练阶段，处理长句子可能会导致梯度消失或梯度爆炸的问题，影响模型的收敛性和训练效果。在推理阶段，生成长句子可能会增加模型的错误率和生成时间。</p>
+</li>
+<li><p>上下文建模：LLMs是基于上下文建模的模型，长句子的上下文可能会更加复杂和深层。模型需要能够捕捉长句子中的语义和语法结构，以生成准确和连贯的文本。</p>
+</li>
+</ol>
+<ul>
+<li>什么情况用Bert模型，什么情况用LLaMA、ChatGLM类大模型，咋选</li>
+</ul>
+<ol>
+<li><p>BERT：Bert是一种预训练的语言模型，适用于各种自然语言处理任务，如文本分类、命名实体识别、语义相似度计算等。如果你的任务是通用的文本处理任务，而不依赖于特定领域的知识或语言风格，Bert模型通常是一个不错的选择。Bert由一个Transformer编码器组成，更适合于NLU相关的任务。</p>
+</li>
+<li><p>LLaMA（Large Language Model Meta AI）包含从 7B 到 65B 的参数范围，训练使用多达14,000亿tokens语料，具有常识推理、问答、数学推理、代码生成、语言理解等能力。Bert由一个Transformer解码器组成。训练预料主要为以英语为主的拉丁语系，不包含中日韩文。所以适合于英文文本生成的任务。</p>
+</li>
+<li><p>ChatGLM是一个面向对话生成的语言模型，适用于构建聊天机器人、智能客服等对话系统。如果你的应用场景需要模型能够生成连贯、流畅的对话回复，并且需要处理对话上下文、生成多轮对话等，ChatGLM模型可能是一个较好的选择。ChatGLM的架构为Prefix decoder，训练语料为中英双语，中英文比例为1:1。所以适合于中文和英文文本生成的任务。</p>
+</li>
+</ol>
+<ul>
+<li>各个专业领域是否需要各自的大模型来服务？</li>
+</ul>
+<ol>
+<li><p>领域特定知识：不同领域拥有各自特定的知识和术语，需要针对该领域进行训练的大模型才能更好地理解和处理相关文本。例如，在医学领域，需要训练具有医学知识的大模型，以更准确地理解和生成医学文本。</p>
+</li>
+<li><p>语言风格和惯用语：各个领域通常有自己独特的语言风格和惯用语，这些特点对于模型的训练和生成都很重要。专门针对某个领域进行训练的大模型可以更好地掌握该领域的语言特点，生成更符合该领域要求的文本。</p>
+</li>
+<li><p>领域需求的差异：不同领域对于文本处理的需求也有所差异。例如，金融领域可能更关注数字和统计数据的处理，而法律领域可能更关注法律条款和案例的解析。因此，为了更好地满足不同领域的需求，需要专门针对各个领域进行训练的大模型。</p>
+</li>
+<li><p>数据稀缺性：某些领域的数据可能相对较少，无法充分训练通用的大模型。针对特定领域进行训练的大模型可以更好地利用该领域的数据，提高模型的性能和效果。</p>
+</li>
+</ol>
+<ul>
+<li>如何让大模型处理更长的文本？</li>
+</ul>
+<ol>
+<li><p>分块处理：将长文本分割成较短的片段，然后逐个片段输入模型进行处理。这样可以避免长文本对模型内存和计算资源的压力。在处理分块文本时，可以使用重叠的方式，即将相邻片段的一部分重叠，以保持上下文的连贯性。</p>
+</li>
+<li><p>层次建模：通过引入层次结构，将长文本划分为更小的单元。例如，可以将文本分为段落、句子或子句等层次，然后逐层输入模型进行处理。这样可以减少每个单元的长度，提高模型处理长文本的能力。</p>
+</li>
+<li><p>部分生成：如果只需要模型生成文本的一部分，而不是整个文本，可以只输入部分文本作为上下文，然后让模型生成所需的部分。例如，输入前一部分文本，让模型生成后续的内容。</p>
+</li>
+<li><p>注意力机制：注意力机制可以帮助模型关注输入中的重要部分，可以用于处理长文本时的上下文建模。通过引入注意力机制，模型可以更好地捕捉长文本中的关键信息。</p>
+</li>
+<li><p>模型结构优化：通过优化模型结构和参数设置，可以提高模型处理长文本的能力。例如，可以增加模型的层数或参数量，以增加模型的表达能力。还可以使用更高效的模型架构，如Transformer等，以提高长文本的处理效率。</p>
+</li>
+</ol>
+<ul>
+<li>如果想要在某个模型基础上做全参数微调，究竟需要多少显存？</li>
+</ul>
+<p>LLM 默认为半精度，当在模型大小为 XB ，推理所需显存约为 X 的两倍，对于全参数微调所需显存普遍的说法是约为推理所需显存的 3-4 倍，包括模型推理（1倍）、梯度（1倍）、优化器状态（AdamW 2倍，SGD 1倍），也就是 X 的 6-8 倍。但实际测试看来全参所需显存约为推理所需显存的 8-10 倍。</p>
+<p><img src="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404112146881.png"></p>
+<ol>
+<li><p>模型的大小：模型的大小是指模型参数的数量。通常，参数越多，模型的大小就越大。大型的预训练模型如Bert、GPT等通常有数亿到数十亿个参数，而较小的模型可能只有数百万到数千万个参数。模型的大小直接影响了所需的显存量。</p>
+</li>
+<li><p>批量大小：批量大小是指在每次训练迭代中一次性输入到模型中的样本数量。较大的批量大小可以提高训练的效率，但也需要更多的显存。通常，全参数微调时，较大的批量大小可以提供更好的性能。</p>
+</li>
+<li><p>训练数据的维度：训练数据的维度是指输入数据的形状。如果输入数据具有较高的维度，例如图像数据，那么所需的显存量可能会更大。对于文本数据，通常需要进行一些编码和嵌入操作，这也会增加显存的需求。</p>
+</li>
+<li><p>训练设备的显存限制：最后，需要考虑训练设备的显存限制。显卡的显存大小是一个硬性限制，超过显存限制可能导致训练失败或性能下降。确保所选择的模型和批量大小适应训练设备的显存大小。</p>
+</li>
+</ol>
+<ul>
+<li>为什么SFT之后感觉LLM傻了?</li>
+</ul>
+<ol>
+<li>数据偏移：SFT过程中使用的微调数据集可能与基座模型在预训练阶段接触到的数据分布有所不同。如果微调数据集与预训练数据集之间存在显著的差异，模型可能会在新任务上表现较差。这种数据偏移可能导致模型在新任务上出现错误的预测或不准确的输出。</li>
+<li>非典型标注：微调数据集的标注可能存在错误或不准确的标签。这些错误的标签可能会对模型的性能产生负面影响，导致模型产生“傻”的行为。</li>
+<li>过拟合：如果微调数据集相对较小，或者模型的容量（参数数量）较大，模型可能会过拟合微调数据，导致在新的输入上表现不佳。过拟合可能导致模型过于依赖微调数据的特定样本，而无法泛化到更广泛的输入。</li>
+<li>缺乏多样性：微调数据集可能缺乏多样性，未能涵盖模型在新任务上可能遇到的各种输入情况。这可能导致模型在面对新的、与微调数据集不同的输入时出现困惑或错误的预测。</li>
+</ol>
+<ul>
+<li>SFT 指令微调数据，如何构建</li>
+</ul>
+<ol>
+<li><p>收集原始数据：首先，您需要收集与目标任务相关的原始数据。这可以是对话数据、分类数据、生成任务数据等，具体取决于您的任务类型。确保数据集具有代表性和多样性，以提高模型的泛化能力。</p>
+</li>
+<li><p>标注数据：对原始数据进行标注，为每个样本提供正确的标签或目标输出。标签的类型取决于您的任务，可以是分类标签、生成文本、对话回复等。确保标注的准确性和一致性。</p>
+</li>
+<li><p>划分数据集：将标注数据划分为训练集、验证集和测试集。通常，大部分数据用于训练，一小部分用于验证模型的性能和调整超参数，最后一部分用于最终评估模型的泛化能力。</p>
+</li>
+<li><p>数据预处理：根据任务的要求，对数据进行预处理。这可能包括文本清洗、分词、去除停用词、词干化等处理步骤。确保数据格式和特征表示适合模型的输入要求。</p>
+</li>
+<li><p>格式转换：将数据转换为适合模型训练的格式。这可能涉及将数据转换为文本文件、JSON格式或其他适合模型输入的格式。</p>
+</li>
+<li><p>模型微调：使用转换后的数据对基座模型进行微调。根据任务的要求，选择适当的微调方法和超参数进行训练。这可以使用常见的深度学习框架（如PyTorch、TensorFlow）来实现。</p>
+</li>
+<li><p>模型评估：使用测试集对微调后的模型进行评估，计算模型在任务上的性能指标，如准确率、召回率、生成质量等。根据评估结果对模型进行进一步的优化和调整。</p>
+</li>
+</ol>
+<ul>
+<li>领域模型Continue PreTrain 数据选取？</li>
+</ul>
+<ol>
+<li><p>领域相关数据：首先，可以收集与目标领域相关的数据。这些数据可以是从互联网上爬取的、来自特定领域的文档或者公司内部的数据等。这样的数据可以提供领域相关的语言和知识，有助于模型在特定领域上的表现。</p>
+</li>
+<li><p>领域专家标注：如果有领域专家可用，可以请他们对领域相关的数据进行标注。标注可以是分类、命名实体识别、关系抽取等任务，这样可以提供有监督的数据用于模型的训练。</p>
+</li>
+<li><p>伪标签：如果没有领域专家或者标注数据的成本较高，可以使用一些自动化的方法生成伪标签。例如，可以使用预训练的模型对领域相关的数据进行预测，将预测结果作为伪标签，然后使用这些伪标签进行模型的训练。</p>
+</li>
+<li><p>数据平衡：在进行数据选取时，需要注意数据的平衡性。如果某个类别的数据样本较少，可以考虑使用数据增强技术或者对该类别进行过采样，以平衡各个类别的数据量。</p>
+</li>
+<li><p>数据质量控制：在进行数据选取时，需要对数据的质量进行控制。可以使用一些质量评估指标，如数据的准确性、一致性等，来筛选和过滤数据。</p>
+</li>
+<li><p>数据预处理：在进行数据选取之前，可能需要对数据进行一些预处理，如分词、去除停用词、标准化等，以准备好输入模型进行训练。</p>
+</li>
+</ol>
+<ul>
+<li>领域数据训练后，通用能力往往会有所下降，如何缓解模型遗忘通用能力？</li>
+</ul>
+<ol>
+<li><p>保留通用数据：在进行领域数据训练时，仍然需要保留一部分通用数据用于模型训练。这样可以确保模型仍然能够学习到通用的语言和知识，从而保持一定的通用能力。</p>
+</li>
+<li><p>增量学习：使用增量学习（Incremental Learning）的方法，将领域数据与通用数据逐步交替进行训练。这样可以在学习新领域的同时，保持对通用知识的记忆。</p>
+</li>
+<li><p>预训练和微调：在领域数据训练之前，可以使用大规模通用数据进行预训练，获得一个通用的基础模型。然后，在领域数据上进行微调，以适应特定领域的任务。这样可以在保留通用能力的同时，提升领域任务的性能。</p>
+</li>
+<li><p>强化学习：使用强化学习的方法，通过给模型设置奖励机制，鼓励模型在领域任务上表现好，同时保持一定的通用能力。</p>
+</li>
+<li><p>领域适应技术：使用领域适应技术，如领域自适应（Domain Adaptation）和领域对抗训练（Domain Adversarial Training），帮助模型在不同领域之间进行迁移学习，从而减少遗忘通用能力的问题。</p>
+</li>
+<li><p>数据重采样：在进行领域数据训练时，可以使用数据重采样的方法，使得模型在训练过程中能够更多地接触到通用数据，从而缓解遗忘通用能力的问题。</p>
+</li>
+</ol>
+<ul>
+<li>进行SFT操作的时候，基座模型选用Chat还是Base?</li>
+</ul>
+<p>在进行 SFT 时，选用 Chat 还是 Base 作为基座，需要根据 SFT 的数据量决定。如果数据量小于 10k，建议选用 Chat 模型作为基座进行微调；如果有 100k 以上的数据，建议在 Base 模型上进行微调。</p>
+<p>在进行Supervised Fine-Tuning（SFT）操作时，基座模型的选择也可以根据具体情况来决定。与之前的SFT操作不同，这次的目标是在特定的监督任务上进行微调，因此选择基座模型时需要考虑任务的性质和数据集的特点。</p>
+<p>如果您的监督任务是对话生成相关的，比如生成对话回复或对话情感分类等，那么选择ChatGPT模型作为基座模型可能更合适。ChatGPT模型在对话生成任务上进行了专门的优化和训练，具有更好的对话交互能力。</p>
+<p>然而，如果您的监督任务是单轮文本生成或非对话生成任务，那么选择Base GPT模型作为基座模型可能更合适。Base GPT模型在单轮文本生成和非对话生成任务上表现良好，可以提供更准确的文本生成能力。</p>
+<p>总之，基座模型的选择应该根据监督任务的性质和数据集的特点进行权衡。如果任务是对话生成相关的，可以选择ChatGPT模型作为基座模型；如果任务是单轮文本生成或非对话生成，可以选择Base GPT模型作为基座模型。</p>
+<ul>
+<li>领域模型词表扩增是不是有必要的？<br>词表扩增可能会增加模型的计算和存储成本。因此，在决定是否进行词表扩增时，需要综合考虑领域特定词汇的重要性、数据稀缺性以及计算资源的限制等因素。有时候，简单的词表截断或者使用基于规则的方法来处理领域特定词汇也可以取得不错的效果。最佳的词表扩增策略会因特定任务和领域的需求而有所不同，建议根据具体情况进行评估和实验。</li>
+</ul>
+<ol>
+<li><p>领域特定词汇：如果目标领域中存在一些特定的词汇或术语，而这些词汇在通用的预训练模型的词表中没有覆盖到，那么词表扩增就是必要的。通过将这些领域特定的词汇添加到模型的词表中，可以使模型更好地理解和处理这些特定的词汇。</p>
+</li>
+<li><p>领域特定上下文：在某些领域任务中，词汇的含义可能会受到特定上下文的影响。例如，在医学领域中，同一个词汇在不同的上下文中可能具有不同的含义。如果领域任务中的上下文与通用预训练模型的训练数据中的上下文有较大差异，那么词表扩增可以帮助模型更好地理解和处理领域特定的上下文。</p>
+</li>
+<li><p>数据稀缺性：如果目标领域的训练数据相对较少，而通用预训练模型的词表较大，那么词表扩增可以帮助模型更好地利用预训练模型的知识，并提升在目标领域任务上的性能。</p>
+</li>
+</ol>
+<ul>
+<li>训练中文大模型有啥经验？</li>
+</ul>
+<ol>
+<li>数据预处理：对于中文文本，常见的预处理步骤包括分词、去除停用词、词性标注、拼音转换等。分词是中文处理的基本步骤，可以使用成熟的中文分词工具，如jieba、pkuseg等。</li>
+<li>数据增强：中文数据集可能相对有限，可以考虑使用数据增强技术来扩充数据集。例如，可以使用同义词替换、随机插入或删除词语、句子重组等方法来生成新的训练样本。</li>
+<li>字词级别的表示：中文中既有字级别的表示，也有词级别的表示。对于字级别的表示，可以使用字符嵌入或者字级别的CNN、RNN等模型。对于词级别的表示，可以使用预训练的词向量，如Word2Vec、GloVe等。</li>
+<li>预训练模型：可以考虑使用已经在大规模中文语料上预训练好的模型作为初始模型，然后在目标任务上进行微调。例如，可以使用BERT、GPT等预训练语言模型。这样可以利用大规模中文语料的信息，提升模型的表达能力和泛化能力。</li>
+<li>中文特定的任务：对于一些中文特定的任务，例如中文分词、命名实体识别、情感分析等，可以使用一些中文特定的工具或者模型来辅助训练。例如，可以使用THULAC、LTP等中文NLP工具包。</li>
+<li>计算资源：训练大模型需要大量的计算资源，包括GPU、内存和存储。可以考虑使用云计算平台或者分布式训练来加速训练过程。</li>
+<li>超参数调优：对于大模型的训练，超参数的选择和调优非常重要。可以使用网格搜索、随机搜索或者基于优化算法的自动调参方法来寻找最佳的超参数组合。</li>
+</ol>
+<ul>
+<li>指令微调的好处？</li>
+</ul>
+<ol>
+<li>个性化适应：大模型通常是在大规模通用数据上进行训练的，具有强大的语言理解和表示能力。但是，对于某些特定任务或领域，模型可能需要更加个性化的适应。通过指令微调，可以在大模型的基础上，使用特定任务或领域的数据进行微调，使模型更好地适应目标任务的特点。</li>
+<li>提升性能：大模型的泛化能力通常很强，但在某些特定任务上可能存在一定的性能瓶颈。通过指令微调，可以针对特定任务的要求，调整模型的参数和结构，以提升性能。例如，在机器翻译任务中，可以通过指令微调来调整注意力机制、解码器结构等，以提高翻译质量。</li>
+<li>控制模型行为：大模型通常具有很高的复杂性和参数数量，其行为可能难以解释和控制。通过指令微调，可以引入特定的指令或约束，以约束模型的行为，使其更符合特定任务的需求。例如，在生成式任务中，可以使用基于指令的方法来控制生成结果的风格、长度等。</li>
+<li>数据效率：大模型的训练通常需要大量的数据，但在某些任务或领域中，特定数据可能相对稀缺或难以获取。通过指令微调，可以利用大模型在通用数据上的预训练知识，结合少量特定任务数据进行微调，从而在数据有限的情况下获得更好的性能。</li>
+<li>提高训练效率：大模型的训练通常需要大量的计算资源和时间。通过指令微调，可以在已经训练好的大模型的基础上进行微调，避免从头开始训练的时间和资源消耗，从而提高训练效率。</li>
+</ol>
+<ul>
+<li>样本量规模增大，训练出现OOM错</li>
+</ul>
+<ol>
+<li>减少批量大小（Batch Size）：将批量大小减小可以减少每个训练步骤中所需的内存量。较小的批量大小可能会导致训练过程中的梯度估计不稳定，但可以通过增加训练步骤的数量来弥补这一问题。</li>
+<li>分布式训练：使用多台机器或多个GPU进行分布式训练可以将训练负载分散到多个设备上，从而减少单个设备上的内存需求。通过分布式训练，可以将模型参数和梯度在多个设备之间进行同步和更新。</li>
+<li>内存优化技术：使用一些内存优化技术可以减少模型训练过程中的内存占用。例如，使用混合精度训练（Mixed Precision Training）可以减少模型参数的内存占用；使用梯度累积（Gradient Accumulation）可以减少每个训练步骤中的内存需求。</li>
+<li>减少模型规模：如果内存问题仍然存在，可以考虑减少模型的规模，例如减少模型的层数、隐藏单元的数量等。虽然这可能会导致模型性能的一定损失，但可以在一定程度上减少内存需求。</li>
+<li>增加硬件资源：如果条件允许，可以考虑增加硬件资源，例如增加内存容量或使用更高内存的设备。这样可以提供更多的内存空间来容纳更大规模的训练数据。</li>
+<li>数据处理和加载优化：优化数据处理和加载过程可以减少训练过程中的内存占用。例如，可以使用数据流水线技术来并行加载和处理数据，减少内存中同时存在的数据量。</li>
+</ol>
+<ul>
+<li>为什么大模型主流的是 decoder-only<br>以BERT为代表的encoder-only、以T5和BART为代表的encoder-decoder、以GPT为代表的decoder-only，还有以UNILM为代表的PrefixLM（相比于GPT只改了attention mask，前缀部分是双向，后面要生成的部分是单向的causal mask）</li>
+</ul>
+<p><img src="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404112228466.png"></p>
+<ul>
+<li><p>大模型存在模型幻觉问题，请问如何处理<br>挂载文档其实相当于引入外部知识，为了扩展语言模型以减少歧义，从大型文本数据库中检索相关文档。通常将输入序列分割成块并检索与用户输入的 query 相似的文档，然后将所选文档放在输入文本之前作为前置知识以改进模型的预测。使得模型可以更容易、更准确地访问专业知识。</p>
+</li>
+<li><p>PEFT<br>PEFT 通常有以下方法：</p>
+</li>
+</ul>
+<p>Adapter Tuning：该方法设计了一个 Adapter 结构，将其嵌入 Transformer 的结构里面，在训练时，固定住原来预训练模型的参数不变，只对新增的 Adapter 结构进行微调。</p>
+<p>Prefix Tuning：该方法是在输入 token 之前构造一段任务相关的 virtual tokens 作为 Prefix，然后训练的时候只更新 Prefix 部分的参数，而 Transformer 中的其他部分参数固定。</p>
+<p>Prompt Tuning：该方法可以看作是 Prefix Tuning 的简化版本，只在输入层加入 prompt tokens，并不需要加入 MLP 进行调整来解决难训练的问题。</p>
+<p>P-Tuning(v1)：P-Tuning 提出将 Prompt 转换为可以学习的 Embedding 层，作者提出用MLP+LSTM的方式来对 prompt embedding 进行一层处理。Prefix Tuning 是将额外的 embedding 加在开头，看起来更像是模仿 Instruction 指令；而 P-Tuning 的位置则不固定。Prefix Tuning 通过在每个 Attention 层都加入 Prefix Embedding 来增加额外的参数，通过 MLP 来初始化；而 P-Tuning 只是在输入的时候加入 Embedding，并通过      LSTM+MLP 来初始化。</p>
+<p>P-Tuning(v2)：P-Tuning v2 的目标就是要让 Prompt Tuning 能够在不同参数规模的预训练模型、针对不同下游任务的结果上都达到匹敌 Fine-tuning 的结果。带来更多可学习的参数（从 P-tuning 和 Prompt Tuning 的0.1%增加到0.1%-3%），同时也足够 parameter-efficient。同时加入到更深层结构中的 Prompt 能给模型预测带来更直接的影响。</p>
+<p>LoRA：大语言模型虽然参数众多，但是起到关键作用的还是其中低秩的本质维度，基于此该方法为 LLM 设计了一个旁路分支，在涉及到矩阵相乘的模块，引入A、B这样两个低秩矩阵模块去模拟Full-finetune的过程，相当于只对语言模型中起关键作用的低秩本质维度进行更新</p>
+<ul>
+<li>PEFT 缺点</li>
+</ul>
+<ol>
+<li><p>性能保持：一些 PEFT 技术可能在提高效率的同时，对模型性能产生一定的影响。因此，在使用高效微调技术时需要权衡效率和性能之间的关系，并进行适当的调整和优化。</p>
+</li>
+<li><p>数据依赖性：一些 PEFT 技术可能对数据的分布和规模具有一定的依赖性。例如，迁移学习通常需要目标任务和预训练任务具有相似的数据分布。这可能限制了高效微调技术在一些特殊或小规模数据集上的应用。</p>
+</li>
+<li><p>可解释性：一些 PEFT 技术可能会引入黑盒操作，使得模型的解释性变得模糊。这可能会影响模型的可解释性和可信度。</p>
+</li>
+</ol>
+<ul>
+<li>prompting 有哪些方法</li>
+</ul>
+<ol>
+<li><p>文本前缀（Text Prefix）：在输入文本的开头添加一个人工设计的前缀作为提示。这个前缀可以是一个问题、一个指令、一个关键词等，用来引导模型生成相关的输出。例如，在文本生成任务中，可以在输入文本前添加一个问题，要求模型回答该问题。</p>
+</li>
+<li><p>问题模板（Question Templates）：设计一系列问题模板，用于引导模型生成回答问题的文本。这些问题模板可以覆盖不同类型的问题，包括事实性问题、推理问题、主观性问题等。模型可以根据问题模板生成对应的回答。</p>
+</li>
+<li><p>知识引导（Knowledge Guided）：利用外部的知识源来辅助模型生成输出。这些知识源可以是知识图谱、数据库、文档等，模型可以根据这些知识源进行查询、检索和引用。这样可以提供更准确、更丰富的信息来指导模型生成。</p>
+</li>
+</ol>
+<ul>
+<li>前缀微调（Prefix-tining）思路是什么？</li>
+</ul>
+<p>前缀微调（Prefix-tuning）的思路是在预训练语言模型的基础上，通过微调的方式引入任务相关的指导信息，从而提高模型在特定生成任务上的性能和可控性。在预训练语言模型的基础上引入任务相关的指导信息，使模型更加适应特定的生成任务。这种方法不仅提高了生成结果的质量和准确性，还增加了对生成过程的可控性，使模型能够更好地满足任务的需求。</p>
+<ul>
+<li>前缀微调（Prefix-tining）的优点是什么？</li>
+</ul>
+<ol>
+<li><p>可控性：通过设计合适的前缀，可以引导模型生成特定类型的内容，使生成结果更加符合任务要求。前缀提供了对生成过程的控制，使得模型能够根据任务需求生成相关的内容，从而提高生成结果的准确性和质量。</p>
+</li>
+<li><p>数据效率：相比于从零开始训练一个生成模型，前缀微调利用了预训练语言模型的知识，可以在相对较少的任务数据上进行微调，从而节省了大量的训练时间和资源。这对于数据稀缺的任务或领域来说尤为重要。</p>
+</li>
+<li><p>可解释性：前缀微调中的前缀可以包含任务的要求、指导或关键信息，这使得模型生成的结果更加可解释。通过分析前缀和生成结果之间的关系，可以更好地理解模型在任务中的决策过程，从而更好地调试和优化模型。</p>
+</li>
+</ol>
+<ul>
+<li>为什么需要指示微调（Prompt-tuning）？</li>
+</ul>
+<p>指示微调（Prompt-tuning）是一种用于生成任务的微调方法，它的出现主要是为了解决前缀微调（Prefix-tuning）中前缀设计的挑战和限制。以下是需要指示微调的几个原因：</p>
+<ol>
+<li><p>前缀设计的复杂性：前缀微调需要设计合适的前缀来引导模型生成相关内容。然而，前缀的设计可能需要领域知识和人工调整，这增加了任务的复杂性和工作量。指示微调通过使用简洁的指示语句来替代复杂的前缀设计，简化了任务的准备过程。</p>
+</li>
+<li><p>指导信息的一致性：前缀微调中的前缀需要包含任务的要求、指导或关键信息。然而，前缀的设计可能存在主观性和不确定性，导致模型生成结果的一致性较差。指示微调通过使用明确和一致的指示语句来提供指导信息，可以更好地控制模型生成的结果，提高一致性和可控性。</p>
+</li>
+<li><p>任务的多样性和灵活性：前缀微调中的前缀是针对特定任务设计的，对于不同的任务需要单独进行微调。这对于多样的任务和领域来说可能需要更多的任务数据和人力资源。指示微调通过使用通用的指示语句，可以适用于各种生成任务，提高了任务的灵活性和可扩展性。</p>
+</li>
+<li><p>模型的可解释性：指示微调中的指示语句可以提供对模型生成结果的解释和指导。通过分析指示语句和生成结果之间的关系，可以更好地理解模型在任务中的决策过程，从而更好地调试和优化模型。</p>
+</li>
+</ol>
+<ul>
+<li>Qlora 思路</li>
+</ul>
+<p><img src="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404121055454.png"></p>
+<p>QLoRA 的目的是要解决当前微调特别大的模型成本太高的问题，如常规 fp16 的 LLaMA-65B 模型的参数微调需要超过780G的显存，主要包括以下三个部分：</p>
+<p>NF4 Quantization(4bit量化)： 一种新的int4量化方法，灵感来自信息论。NF4量化可以保证量化后的数据和量化前具有同等的数据分布。意思就是NF4量化后，权重信息损失少，那么最后模型的整体精度就损失少。</p>
+<p>Double Quantization ： 对第一次量化后的 常量做二次量化，减小模型存储。</p>
+<p>Paged optimizers : 使用 NVIDIA 统一内存功能，该功能在 CPU 和 GPU 之间进行自动 page 对 page 传输，以便在 OOM 的情况下进行. 可以从现象上理解成出现训练过程中偶发 OOM 时能够自动处理，保证训练正常训练下去。</p>
+<ul>
+<li>LoRA权重是否可以合入原模型？</li>
+</ul>
+<p>LoRA 权重可以合并到原模型中。在使用 LoRA 进行低秩适应时，原始模型的参数矩阵会被分解为较小的矩阵的乘积。这些较小的矩阵可以表示为低秩矩阵的形式，其中包含了原始模型的权重信息。<br>合并 LoRA 权重到原模型的过程通常涉及将低秩矩阵重新组合成原始模型的参数矩阵。这可以通过矩阵乘法等操作来实现。合并后的模型将包含原始模型的权重信息，同时也融入了低秩适应的优化，从而在减少计算和存储开销的同时保持模型性能。</p>
+<ul>
+<li>Lora 微调方法为什么能加速训练？</li>
+</ul>
+<p>冻结了大量的参数：在训练时只更新低秩矩阵的参数，预训练好的模型参数是固定不变的。在推断时可以利用重参数（reparametrization）思想，将AB与W合并，这样就不会在推断时引入额外的计算了。<br>降低了计算复杂度：由于 LoRA 微调减少了参数量，每个参数的计算量也相应减少。在训练过程中，计算参数更新和梯度传播的时间会显著减少，从而加速了训练过程。特别是在大规模语言模型中，参数量巨大，计算复杂度很高，LoRA微调可以显著减少计算开销，提高训练效率。<br>加速收敛速度：LoRA 微调通过低秩适应对原模型进行了正则化，使得模型更容易收敛到较好的解。低秩适应过程中的正则化可以帮助模型更好地利用数据进行训练，减少过拟合的风险。这样可以加快模型的收敛速度，从而加速训练过程。</p>
+<ul>
+<li>为什么大模型推理时显存涨的那么多还一直占着？</li>
+</ul>
+<ol>
+<li>模型参数占用显存：大语言模型本身具有大量参数量，这些参数需要存储在显存中以供推理使用。不量化的情况下这部分显存占用和大模型所占存储空间相同。</li>
+<li>输入数据占用显存：进行推理时，需要将输入数据加载到显存中。对于大语言模型而言，输入数据通常也会占用较大的显存空间，尤其是对于较长的文本输入。</li>
+<li>中间计算结果占用显存：在推理过程中，模型会进行一系列的计算操作，生成中间结果。这些中间结果也需要存储在显存中，以便后续计算使用。对于大语言模型而言，中间计算结果可能会占用较多的显存空间。</li>
+<li>内存管理策略：某些深度学习框架在推理时采用了一种延迟释放显存的策略，即显存不会立即释放，而是保留一段时间以备后续使用。这种策略可以减少显存的分配和释放频率，提高推理效率，但也会导致显存一直占用的现象。</li>
+</ol>
+<ul>
+<li>大模型在 GPU 和 CPU 上推理速度如何？</li>
+</ul>
+<ol>
+<li>GPU推理速度快：GPU 具有大量的并行计算单元，可以同时处理多个计算任务。对于大语言模型而言， GPU 可以更高效地执行矩阵运算和神经网络计算，从而加速推理过程。</li>
+<li>CPU推理速度相对较慢：相较于 GPU，CPU 的计算能力较弱，主要用于通用计算任务。虽然 CPU 也可以执行大语言模型的推理任务，但由于计算能力有限，推理速度通常会较慢。</li>
+<li>使用GPU加速推理：为了充分利用GPU的计算能力，通常会使用深度学习框架提供的 GPU 加速功能，如 CUDA，CUDA 可以将计算任务分配给GPU并利用其并行计算能力，从而加快大语言模型的推理速度。</li>
+</ol>
+<ul>
+<li>大模型生成时的参数怎么设置？</li>
+</ul>
+<ol>
+<li>Temperature：用于调整随机从生成模型中抽样的程度，使得相同的提示可能会产生不同的输出。温度为 0 将始终产生相同的输出，该参数设置越高随机性越大。<br>波束搜索宽度：波束搜索是许多 NLP 和语音识别模型中常用的一种算法，作为在给定可能选项的情况下选择最佳输出的最终决策步骤。波束搜索宽度是一个参数，用于确定算法在搜索的每个步骤中应该考虑的候选数量。</li>
+<li>Top p：动态设置tokens候选列表的大小。  将可能性之和不超过特定值的top tokens列入候选名单。</li>
+<li>Top p 通常设置为较高的值（如 0.75），目的是限制可能被采样的低概率 token 的长度。</li>
+<li>Top k：允许其他高分tokens有机会被选中。  这种采样引入的随机性有助于在很多情况下生成的质量。 Top k 参数设置为 3 则意味着选择前三个tokens。</li>
+</ol>
+<p>若 Top k 和 Top p 都启用，则 Top p 在 Top k 之后起作用。</p>
+<ul>
+<li>有哪些省内存的大语言模型训练&#x2F;微调&#x2F;推理方法？</li>
+</ul>
+<ol>
+<li>参数共享（Parameter Sharing）：通过共享模型中的参数，可以减少内存占用。例如，可以在不同的位置共享相同的嵌入层或注意力机制。</li>
+<li>梯度累积（Gradient Accumulation）：在训练过程中，将多个小批次的梯度累积起来，然后进行一次参数更新。这样可以减少每个小批次的内存需求，特别适用于GPU内存较小的情况。</li>
+<li>梯度裁剪（Gradient Clipping）：通过限制梯度的大小，可以避免梯度爆炸的问题，从而减少内存使用。</li>
+<li>分布式训练（Distributed Training）：将训练过程分布到多台机器或多个设备上，可以减少单个设备的内存占用。分布式训练还可以加速训练过程。</li>
+<li>量化（Quantization）：将模型参数从高精度表示（如FP32）转换为低精度表示（如INT8或FP16），可以减少内存占用。量化方法可以通过减少参数位数或使用整数表示来实现。</li>
+<li>剪枝（Pruning）：通过去除冗余或不重要的模型参数，可以减少模型的内存占用。剪枝方法可以根据参数的重要性进行选择，从而保持模型性能的同时减少内存需求。</li>
+<li>蒸馏（Knowledge Distillation）：使用较小的模型（教师模型）来指导训练较大的模型（学生模型），可以从教师模型中提取知识，减少内存占用。</li>
+<li>分块处理（Chunking）：将输入数据或模型分成较小的块进行处理，可以减少内存需求。例如，在推理过程中，可以将较长的输入序列分成多个较短的子序列进行处理。</li>
+</ol>
+<ul>
+<li><p>为什么要增量预训练？<br>预训练学知识，指令微调学格式，强化学习对齐人类偏好，所以要想大模型有领域知识，得增量预训练（靠指令微调记知识不靠谱，不是几十w条数据能做到的）</p>
+</li>
+<li><p>微调需要多少条数据？</p>
+</li>
+</ul>
+<p>根据 Scaling Laws，随着模型大小、数据集大小和用于训练的计算浮点数的增加，模型的性能会提高。并且为了获得最佳性能，所有三个因素必须同时放大。一般来说对于给定模型的理想训练数据集 token 数量大约是模型中参数数量的20倍。</p>
+<ul>
+<li>LLM常见问题（显存部分）</li>
+</ul>
+<p>大模型也分为不同的规格，一般模型的规格会体现在模型的名称上，例如 LLaMA2-13b，13b 就是其模型参数量的大小，意思是 130亿的参数量。大模型的文件大小与其参数量有关，通常大模型是以半精度存储的， Xb 的模型文件大概是 2X GB多一些，例如 13b 的模型文件大小大约是 27GB 左右。</p>
+<ul>
+<li>如何评估你的显卡利用率?</li>
+</ul>
+<ol>
+<li><p>flops比值法：gpu利用率 &#x3D; 实测的flops&#x2F;显卡理论上的峰值flops。deepspeed实测flops 100tflops，而用的是A100卡理论峰值312tflops，可以得到GPU利用率只有 32.05%。</p>
+</li>
+<li><p>throughout估计法：吞吐量 &#x3D; example数量&#x2F;秒&#x2F;GPU * max_length；gpu利用率 &#x3D; 实际吞吐量 &#x2F; 论文中的吞吐量（假设利用率100%），实测训练时处理样本速度为 3 example&#x2F;s，一共有4卡，max length 2048，则吞吐量为 1536 token&#x2F;s&#x2F;gpu，根据llama论文可以得知，他们训练7B模型的吞吐量约为 3300 token&#x2F;s&#x2F;gpu，那么GPU利用率只有46.54%</p>
+</li>
+<li><p>torch profiler分析法：利用torch profiler记录各个函数的时间，将结果在tensorboard上展示，在gpu kenel视图下，可以看到tensor core的利用率，比如30%。</p>
+</li>
+</ol>
+<ul>
+<li><p>如何查看服务器上的多卡之间的NVLINK topo？<br>nvidia-smi topo -m</p>
+</li>
+<li><p>TF32 格式有多长？<br>TF32（TensorFloat32）是 NVIDIA 在 Ampere 架构推出的时候面世的，现已成为 Tensorflow 和 Pytorch 框架中默认的32位格式。用于近似 FP32 精度下任务的专有格式，实际上约等于 FP19 也就是19位。</p>
+</li>
+</ul>
+<p><img src="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404112317529.png"></p>
+<ul>
+<li>重复 Token 对模型性能有什么影响</li>
+</ul>
+<p>在LLM时代，很多模型的 epoch 只有1次或者几次。例如，2022年谷歌的 PaLM 模型，其训练的 epoch 数量只有 1。而 MetaAI 训练的 LLaMA 模型，在不同数据集上训练的 epoch 设置都是 1-2。这似乎与我们之前理解的模型训练充分有不一致。</p>
+<ol>
+<li>2022年，Hoffmann 的论文中提出用重复的 tokens 训练大语言模型会让模型降低性能，而 Taylor 在训练 Galactica 模型时候发现 epochs 次数达到4次也可以提升模型效果。显然，在重复数据集上训练多次对模型的影响目前还没有一个相对完善的研究。</li>
+<li>相对更高质量的数据集并不能降低重复训练带来的影响。</li>
+<li>FLOPs 较大的模型性能会更好一点，但是依然无法有效降低重复训练带来的模型损失。</li>
+<li>在目前超过 100亿 参数规模的大语言模型中，如 GPT-3、PaLM、LLaMA 等，都没有使用 dropout（可能是因为太慢了）。而前面说的 Galactica 训练使用了，这是 Galactica 能够训练 4 Epochs 提升性能的最重要的原因。</li>
+</ol>
+<ul>
+<li>Gelu 激活函数<br><img src="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404120949114.png"></li>
+</ul>
+<p>GeLU函数的特点是在接近零的区域表现得类似于线性函数，而在远离零的区域则表现出非线性的特性。相比于其他常用的激活函数（如ReLU），GeLU函数在某些情况下能够提供更好的性能和更快的收敛速度。</p>
+<ul>
+<li>Swish 激活函数<br><img src="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404120950634.png"></li>
+</ul>
+<p>Swish函数的特点是在接近零的区域表现得类似于线性函数，而在远离零的区域则表现出非线性的特性。相比于其他常用的激活函数（如ReLU、tanh等），Swish函数在某些情况下能够提供更好的性能和更快的收敛速度。Swish函数的设计灵感来自于自动搜索算法，它通过引入一个可调节的超参数来增加非线性程度。当beta为0时，Swish函数退化为线性函数；当beta趋近于无穷大时，Swish函数趋近于ReLU函数。</p>
+<ul>
+<li>LLM 什么时候最容易产生幻觉</li>
+</ul>
+<ol>
+<li>数值混淆：当LLM处理与数字有关的文本，如日期或数值时，容易产生幻觉。</li>
+<li>处理长文本：在需要解读长期依赖关系的任务中，例如文档摘要或长对话历史，模型可能会生成自相矛盾的内容。</li>
+<li>逻辑推断障碍：若模型误解了源文本中的信息，它有可能产生不准确的结论。因此，模型的逻辑推理能力至关重要。</li>
+<li>上下文与内置知识的冲突：模型在处理信息时，可能会过度依赖于预训练阶段获取的知识，而忽略实际上下文，导致输出不准确。</li>
+<li>错误的上下文信息：当给定的上下文包含错误信息或基于错误的假设时（如：“为什么高尔夫球比篮球大？”或“氦的原子序数为什么是1？”），模型可能无法识别这些错误，并在其回答中产生幻觉。</li>
+</ol>
+<ul>
+<li>传统 attention 机制存在哪些问题</li>
+</ul>
+<ol>
+<li>传统的 Attention 机制忽略了源端或目标端句子中词与词之间的依赖关系。</li>
+<li>传统的 Attention 机制过度依赖 Encoder-Decoder 架构上。</li>
+<li>传统的 Attention 机制依赖于Decoder的循环解码器，所以依赖于 RNN,LSTM 等循环结构。</li>
+<li>传统的 Attention 依赖 RNN 结构，无法做到并行训练，训练速度受到影响。</li>
+</ol>
+<ul>
+<li>Attention 有哪些优化方法？</li>
+</ul>
+<ol>
+<li>稀疏 attention：比如窗口注意力，其实就是一个 token 只考虑周围一个窗口内的其他 token。</li>
+<li>矩阵分解：我们通常认为注意力矩阵是低秩的，这意味着矩阵里的元素并不都是相互独立的。所以，我们可以将这个矩阵拆解并使用一个更小的矩阵来近似它，从而能更高效地计算 softmax 的结果。</li>
+<li>局部敏感哈希：局部敏感哈希（LSH）是一种高效寻找近似最近邻的技巧。其核心思想是选择特定的哈希函数，使得在高维空间里，两个点 p 和 q 如若靠近，则它们的哈希值应相同。这样，所有的点就可以被分配到不同的哈希桶中，大大提高了寻找某个点的最近邻的效率，因为我们只需考虑同一个哈希桶内的点。在自注意力机制中，这种方法可以用于快速计算 P，方法是在 Q 和 K 上应用 LSH，仅对近似的元素进行计算，而非直接进行 Q 和 K 的全量计算。</li>
+<li>Kernel attention：Kernel attention 是一种近似的注意力机制，其主要思想是使用核技巧（kernel trick）来估计原始注意力的计算。这种方法尤其在长序列上很有效，因为它可以显著减少计算和存储的需求。</li>
+<li>KV-Cache：KV-Cache 的主要思路是：当我们一次生成一个 token 时，之前 token 的 key 和 value 不会改变。因此，我们可以缓存（或记住）这些值，并在下一个 token 的计算中重复使用它们。</li>
+<li>Multi-Query Attention：传统的多头注意力实质上是将输入分成多个头部，并为每个头部独立计算注意力。在 MHA 中，QQ、KK 和 VV 都根据每个 head 进行不同的转换。这在头部数量较多时可能会计算密集。多查询注意力简化了这个过程，尤其是在 KK 和 VV 的部分。与为每个 head 提供多个、单独的 KK 和 VV 映射不同，MQA 为所有 head 应用单一的 KK 和 VV 转换。只有 QQ 值才有多个 head。</li>
+<li>Grouped-Query Attention：Grouped-Query Attention 其实是一个折中方案，相比于 MQA 它的 KK 和 VV 的数量减少一些，但又不是只有一组这么少。</li>
+</ol>
+<ul>
+<li>Multi-head Attention 存在什么问题？</li>
+</ul>
+<ol>
+<li>计算复杂度高：Multi-head Attention 需要对查询、键和值进行线性变换，然后再进行点积操作和 Softmax 归一化。这些计算在长序列上会导致较高的计算复杂度和显存消耗。这可能限制了模型在大规模数据集和超长序列上的应用。</li>
+<li>低秩瓶颈：在 Multi-head Attention 中，查询、键和值的维度通常被投影到较低的维度（头大小）。这可能导致表达能力受到限制，从而影响模型性能。为了缓解这个问题，可以增大头大小或者采用其他方法，如局部敏感哈希（Locality Sensitive Hashing，LSH）注意力机制。</li>
+</ol>
+<ul>
+<li>对比一下 Multi-head Attention 和 Multi-Query Attention？</li>
+</ul>
+<ol>
+<li>MHA 是利用多个查询，来平行地计算从输入信息中选取多个信息。每个注意力关注输入信息的不同部分，然后再进行拼接。多头注意力的机制进一步细化了注意力层，通过扩展模型专注于不同位置的能力以及提供了多个“表示子空间”来提高注意力层的性能。</li>
+<li>MQA 让所有的头之间 共享 同一份 Key 和 Value 矩阵，每个头只单独保留了一份 Query 参数，从而大大减少 Key 和 Value 矩阵的参数量。在 MQA 中，除了 query 向量还保存着多个头，key 和 value 向量都只剩 1 个「公共头」了。</li>
+</ol>
+<ul>
+<li><p>Grouped-query Attention 是什么？<br>Grouped-query Attention（分组查询注意力）是一种针对 Transformer 模型中 Multi-head Attention 的改进方法，旨在提高模型的运算速度，同时保持预测质量。在标准的Multi-head Attention中，每个注意力头都是独立计算的，这导致了计算和存储需求较高。分组查询注意力通过将查询头分组，让每组共享一个键头和值头，从而减少计算和存储需求。<br><img src="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404121031663.png"></p>
+</li>
+<li><p>RAG（检索增强生成）<br>Graph RAG 是由悦数图数据提出的概念，是一种基于知识图谱的检索增强技术，通过构建图模型的知识表达，将实体和关系之间的联系用图的形式进行展示，然后利用大语言模型 LLM进行检索增强。<br>通过图技术构建知识图谱提升 In-Context Learning 的全面性为用户提供更多的上下文信息，能够帮助大语言模型（LLM）更好地理解实体间的关系，提升自己的表达和推理能力。</p>
+</li>
+</ul>
+<p>如何从海量信息中获取准确全面的搜索结果，并以更直观、可读的方式呈现出来是大家期待达成的目标。传统的搜索增强技术受限于训练文本数量、质量等问题，对于复杂或多义词查询效果不佳，更无法满足 ChatGPT 等大语言模型应用带来的大规模、高并发的复杂关联查询需求。<br>知识图谱可以减少基于嵌入的语义搜索所导致的不准确性。<br>“保温大棚”与“保温杯”，尽管在语义上两者是存在相关性的，但在大多数场景下，这种通用语义（Embedding）下的相关性很高，进而作为错误的上下文而引入“幻觉”。这时候，可以利用领域知识的知识图谱来缓解这种幻觉。</p>
+<ul>
+<li>Qwen<br>Qwen 基础模型已经稳定训练了大规模高质量且多样化的数据，覆盖多语言（当前以中文和英文为主），Qwen 目前有多个版本：1.8B、7B、14B、72B，同时还开源了 Qwen-VL、Qwen-Audio 两款多模态模型。<br><img src="https://starlookup-1259639797.cos.ap-chongqing.myqcloud.com/markdown/202404121045533.png"></li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>大模型学习记录</p><p><a href="http://lookupes.cn/2024/03/31/大模型记录/">http://lookupes.cn/2024/03/31/大模型记录/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Lookup</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2024-03-31</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2024-04-12</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/LLM/">LLM</a></div><div class="a2a_kit a2a_kit_size_32 a2a_default_style"><a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a><a class="a2a_button_facebook"></a><a class="a2a_button_twitter"></a><a class="a2a_button_telegram"></a><a class="a2a_button_whatsapp"></a><a class="a2a_button_reddit"></a></div><script src="https://static.addtoany.com/menu/page.js" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay.jpg" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechat.jpg" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2098/12/10/Math%20List/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Math List</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2024/03/20/%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3%E6%A0%87%E5%87%86/"><span class="level-item">数据安全相关法律与标准</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Lookup"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Lookup</p><p class="is-size-6 is-block">仰望一切，无论是天空中的太阳与月亮，又或者是身边的你</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Xi&#039;an China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">42</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">25</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/starlookup" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/starlookup"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#大模型记录"><span class="level-left"><span class="level-item">1</span><span class="level-item">大模型记录</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#基础"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">基础</span></span></a></li><li><a class="level is-mobile" href="#进阶"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">进阶</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2099-12-11T18:02:02.000Z">2099-12-12</time></p><p class="title"><a href="/2099/12/12/%E5%AD%A6%E6%9C%AF%E5%AE%9A%E7%90%86%E6%80%A7%E7%BB%93%E8%AE%BA%E8%AE%B0%E5%BD%95/">学术定理性结论记录</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2099-08-27T18:02:03.000Z">2099-08-28</time></p><p class="title"><a href="/2099/08/28/leetcode_%E6%A8%A1%E7%89%88/">leetcode 模版</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2098-12-11T18:02:02.000Z">2098-12-12</time></p><p class="title"><a href="/2098/12/12/English%20list/">English List</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2098-12-10T18:02:02.000Z">2098-12-11</time></p><p class="title"><a href="/2098/12/11/Figure%20List/">Figure List</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2098-12-09T18:02:02.000Z">2098-12-10</time></p><p class="title"><a href="/2098/12/10/Math%20List/">Math List</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2099/12/"><span class="level-start"><span class="level-item">十二月 2099</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2099/08/"><span class="level-start"><span class="level-item">八月 2099</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2098/12/"><span class="level-start"><span class="level-item">十二月 2098</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/03/"><span class="level-start"><span class="level-item">三月 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/02/"><span class="level-start"><span class="level-item">二月 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/01/"><span class="level-start"><span class="level-item">一月 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/10/"><span class="level-start"><span class="level-item">十月 2023</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/09/"><span class="level-start"><span class="level-item">九月 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/08/"><span class="level-start"><span class="level-item">八月 2023</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/07/"><span class="level-start"><span class="level-item">七月 2023</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/06/"><span class="level-start"><span class="level-item">六月 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/05/"><span class="level-start"><span class="level-item">五月 2023</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/02/"><span class="level-start"><span class="level-item">二月 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">四月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">十月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">九月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/07/"><span class="level-start"><span class="level-item">七月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Docker/"><span class="tag">Docker</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/English/"><span class="tag">English</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/FIgure/"><span class="tag">FIgure</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LLM/"><span class="tag">LLM</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/xgboost/"><span class="tag">xgboost</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BB%A3%E7%A0%81/"><span class="tag">代码</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BC%81%E4%B8%9A%E5%AE%89%E5%85%A8/"><span class="tag">企业安全</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"><span class="tag">基础知识</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AE%89%E5%85%A8/"><span class="tag">安全</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81/"><span class="tag">差分隐私</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%91%84%E5%BD%B1/"><span class="tag">摄影</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8/"><span class="tag">数据安全</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90/"><span class="tag">数据生成</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E8%92%B8%E9%A6%8F/"><span class="tag">数据蒸馏</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%97%A5%E8%AE%B0/"><span class="tag">日记</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"><span class="tag">服务器</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1-%E5%9B%BD%E9%87%8D%E9%A1%B9%E7%9B%AE/"><span class="tag">知识图谱 国重项目</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%A7%91%E7%A0%94/"><span class="tag">科研</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AF%AE%E7%90%83%E8%A3%81%E5%88%A4/"><span class="tag">篮球裁判</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E7%A8%8B/"><span class="tag">编程</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%8B%B1%E8%AF%AD-%E7%95%99%E5%AD%A6/"><span class="tag">英语 留学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BA%E6%96%87/"><span class="tag">论文</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BA%E6%96%87%E8%AF%84%E5%AE%A1/"><span class="tag">论文评审</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%98%85%E8%AF%BB/"><span class="tag">阅读</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget" data-type="adsense"><div class="card-content"><div class="menu"><h3 class="menu-label">广告</h3><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="Lookup" data-ad-slot="Lookup" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="仰望" height="28"></a><p class="is-size-7"><span>&copy; 2024 Lookup</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><a href="https://beian.miit.gov.cn/" target="_blank">备案号：皖ICP备19019268号</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/starlookup"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
