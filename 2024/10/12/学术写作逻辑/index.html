@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>学术写作逻辑 - 仰望</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="仰望"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="仰望"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Writing AI Conference Papers: A Handbook for Beginners 阅读 提出问题——抽象出背后的原理——提出自己的解决方案和具体的实现——实验验证 A little squiggle of paint by Picasso can be as beautiful as an intricate painting by Rembrandt. —— N"><meta property="og:type" content="blog"><meta property="og:title" content="学术写作逻辑"><meta property="og:url" content="http://lookupes.cn/2024/10/12/%E5%AD%A6%E6%9C%AF%E5%86%99%E4%BD%9C%E9%80%BB%E8%BE%91/"><meta property="og:site_name" content="仰望"><meta property="og:description" content="Writing AI Conference Papers: A Handbook for Beginners 阅读 提出问题——抽象出背后的原理——提出自己的解决方案和具体的实现——实验验证 A little squiggle of paint by Picasso can be as beautiful as an intricate painting by Rembrandt. —— N"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://lookupes.cn/img/og_image.png"><meta property="article:published_time" content="2024-10-11T18:02:02.000Z"><meta property="article:modified_time" content="2024-10-12T08:02:33.874Z"><meta property="article:author" content="Lookup"><meta property="article:tag" content="科研"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://lookupes.cn/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://lookupes.cn/2024/10/12/%E5%AD%A6%E6%9C%AF%E5%86%99%E4%BD%9C%E9%80%BB%E8%BE%91/"},"headline":"学术写作逻辑","image":["http://lookupes.cn/img/og_image.png"],"datePublished":"2024-10-11T18:02:02.000Z","dateModified":"2024-10-12T08:02:33.874Z","author":{"@type":"Person","name":"Lookup"},"publisher":{"@type":"Organization","name":"仰望","logo":{"@type":"ImageObject","url":"http://lookupes.cn/img/logo.svg"}},"description":"Writing AI Conference Papers: A Handbook for Beginners 阅读 提出问题——抽象出背后的原理——提出自己的解决方案和具体的实现——实验验证 A little squiggle of paint by Picasso can be as beautiful as an intricate painting by Rembrandt. —— N"}</script><link rel="canonical" href="http://lookupes.cn/2024/10/12/%E5%AD%A6%E6%9C%AF%E5%86%99%E4%BD%9C%E9%80%BB%E8%BE%91/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><script data-ad-client="Lookup" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="仰望" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-10-11T18:02:02.000Z" title="2024/10/12 02:02:02">2024-10-12</time>发表</span><span class="level-item"><time dateTime="2024-10-12T08:02:33.874Z" title="2024/10/12 16:02:33">2024-10-12</time>更新</span><span class="level-item">21 分钟读完 (大约3156个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">学术写作逻辑</h1><div class="content"><span id="more"></span>
+
+<blockquote>
+<p>Writing AI Conference Papers: A Handbook for Beginners 阅读</p>
+<p>提出问题——抽象出背后的原理——提出自己的解决方案和具体的实现——实验验证</p>
+<p>A little squiggle of paint by Picasso can be as beautiful as an intricate painting by Rembrandt. —— <a target="_blank" rel="noopener" href="https://medium.com/@black_51980/novelty-in-science-8f1fd1a0a143">Novelty in Science</a> (highly recommended for readers)</p>
+</blockquote>
+<ul>
+<li><p>Find the Core Idea</p>
+<ul>
+<li>当有了一些有趣的发现和实验结果，如何定义文章的核心主题，所有文章主题大可分为三类<ul>
+<li>Insight：对一些已经有的进一步解释</li>
+<li>Performance：有更好的效果</li>
+<li>Capability：做了一些之前没有做的事情</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>摘要 -&gt; 引言 -&gt; 正文，作为三个层次，在每个层次上，不断扩展，每一层都是前一层的扩展。  </p>
+</li>
+<li><p>在坚持核心思想的同时，开始概述你打算在论文中呈现的内容。首先制作一张简单的幻灯片，向你的同伴、同事或导师展示你的研究方法和成果，以评估他们的理解程度。有意识地从不熟悉你工作的研究人员那里寻求反馈，以确定理解上的潜在差距，可能是有益的。</p>
+</li>
+<li><p>围绕贡献陈述，在结果部分进行扎实的分析。许多读者在决定阅读整篇论文之前，会先通过检查结果来评估这种方法的有效性。他们会看看你的贡献是否与实验结果相符。即使对你的方法的有效性有很强的信心，你也可能需要额外的比较和消融实验。重要的是创建更多的表格和视觉效果，选择最重要的方面来展示。</p>
+</li>
+<li><p>Introduction</p>
+<ol>
+<li>把读者放在心中最重要的位置</li>
+<li>开门见山，论文的新颖和有趣方面应该尽早体现</li>
+<li>用更多的空间来描述原创和新颖的想法</li>
+<li>最终前任工作，肯定历史贡献，再指出不足</li>
+<li>page one figure 很重要</li>
+</ol>
+</li>
+<li><p>Related work </p>
+<p>更好的方法是关注不同的方法与你所作的事情之间的关系。不要列出其他技术的所有缺点，而是解释你如何改进它们。你可以先写一篇独立于你的作品的文献综述。您可以对前面的方法进行分类和排序（例如，某一方法是先驱），此时，重要的是要注意正确的讨论。</p>
+</li>
+<li></li>
+<li><p>防御弹性：没写完一句话都要考虑审稿人可能从哪个角度攻击这句话</p>
+<ul>
+<li>言出有据：“Problem A是本领域的关键问题且尚未得到解决”，这时就要考虑到审稿人可能会问：“为什么说这是关键问题？它造成的后果有多严重？这种后果对最终性能影响大吗？”这就需要我们完善引用</li>
+<li>轻重适当：<ul>
+<li>我们有直接的证据时：The performance improves, which is attributed to that XXX can … （后面要高调地把证据展示出来） </li>
+<li>没有直接的证据，但有一些可视化等间接证据：The performance improves, which may be explained that XXX can … </li>
+<li>几乎没有证据，只是感觉应该是这样的，反正跟我们的motivation是相符的：The performance improves, suggesting that XXX can …</li>
+</ul>
+</li>
+<li>不要用自讨苦吃的主观词汇：在学术写作这种场合使用诸如obviously之类的带有强烈主观色彩的词汇没有任何好处。如果审稿人能看出你的结果好，不需要你自己强调这个obviously；如果审稿人看不懂，你越强调他就会越迷惑</li>
+</ul>
+</li>
+<li><p>迷惑时间：“迷惑时间”是读者在阅读过程中每一次“咦，这是啥”到“哦，原来是这样”之间的时间的总和。当代人类的耐心是有限的，一篇文章的总的迷惑时间越短，可读性就越高</p>
+<ul>
+<li>提出概念后应就近解释：建议在给出其名字以后直接解释其实质</li>
+<li>指代对象应该毫无歧义：如果我们的写作水平有限，无法让长句完全不带歧义的话，就应该将其拆为短句。没有人会因为你缺少展示高超英语水平的长难句而拒你的文章！</li>
+<li>不要在需要读者集中注意力时多次引用数页后的内容：不然读者翻过去再翻回来的这段时间里思维就断了。读者思维的连续性也是可读性的一部分，毕竟论文是线性叙事。</li>
+</ul>
+</li>
+<li><p>信息密度：</p>
+<ul>
+<li><p>气氛组语句不应过于冗长</p>
+<ul>
+<li>不要太长</li>
+<li>不相关的不要写</li>
+<li>不要写成历史书</li>
+<li>尽量跟主旨有点关系</li>
+</ul>
+</li>
+<li><p>精炼语言</p>
+<ul>
+<li><p>用简练的语言准确表达意思是一门技术活，具有本质的困难性。建议多看英语母语者写的论文和其他文字内容，特别是那些有丰富教学经验的年轻选手</p>
+<pre><code>      The image classification performance on ImageNet is 79.99%
+      改为 The ImageNet top-1 accuracy is 79.99%.
+  
+      As can be observed in Table 1, A outperforms B.
+      改为 Table 1 shows that A outperforms B.
+  
+      Table 1 shows that the accuracy of model A is 81.0% and the accuracy of model B is 80.0%, so we conclude that model A 				outperforms model B.
+      改为 Table 1 shows that model A outperforms model B by 1.0% in the accuracy (81.0% v.s. 80.0%）
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>图表附近应是全文中信息密度最高的地方，重要的解释和阐述距离图表越近越好</p>
+<ul>
+<li>如果图表中有缩写，那么标题里最好就有解释。</li>
+<li>如果希望强调Table 5中的某个结果，那么分析这一结果的语句最好跟Table 5在同一页上，而且那句话前后最好就有“Table 5”这几个字。这是因为读者可能根本不会仔细看你写的文字，而是先看图表再去找跟图表中的内容关联的文字。一眼看到Table 5中某个亮眼的结果并感到好奇时，他很可能用pdf阅读器的搜索功能来搜“Table 5”。</li>
+<li>不要指望读者自己从复杂的表格中自己想明白应该拿谁去跟谁对比以得出结论，我们应该把希望形成对比的内容放在一起。如果这样的表格很难设计的话，哪怕为此必须得把某个结果（一般是需要跟若干组结果全对比一遍的baseline）重复几行也在所不惜。没有人会因为表格设计不够优雅而拒你的论文，但看不明白表格进而血压升高的审稿人是真的会。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>几个小技巧：</p>
+<pre><code>1.  尝试把图串一遍，看故事是否完整。努力提高图表质量，做到图表自明，即不看论文也能看懂。 
+1.  看文本和图片的详略是否得当，尽量去掉冗余，把重要的信息放在显眼的位置。
+1.  先考虑怎么写一篇满分作文（严谨性），再想着写一篇好作文（美观性）。 
+1.  查缺补漏，把细节、引用处理清楚；最容易引起迷惑的错误是符号或者缩写没定义和用法前后不统一。 
+1.  想想哪些东西其实不是常识，需要在论文里说清。这里可能隐藏了一些作者的创新，被作者误认为是大家都认可的知识，见图 2。多和其它人讨论，可以慢慢地把错误认知给修正。要在写作时就考虑不同的读者群体。 
+1.  在最终修改的时候，着重检查容易被看到的部分，比如图的配字，公式等。
+</code></pre>
+<ul>
+<li>Checklist<ul>
+<li><input disabled="" type="checkbox"> 通读图表以确保故事完整。努力提高图表的质量，使其不言自明。</li>
+<li><input disabled="" type="checkbox"> 检查符号、缩写和引用中的任何不一致之处。</li>
+<li><input disabled="" type="checkbox"> 文本和图表的详细程度是否合适？</li>
+<li><input disabled="" type="checkbox"> 将重要信息放在显眼的位置。</li>
+<li><input disabled="" type="checkbox"> 图中的文字和图例可以大一点吗？</li>
+<li><input disabled="" type="checkbox"> 是否可以通过使用列分割、保留文本和删除冗余等方法来提高表的理解速度？</li>
+<li><input disabled="" type="checkbox"> 检查各种数字是否复制错误</li>
+<li><input disabled="" type="checkbox"> 搜索问号以检查 latex 错误</li>
+<li><input disabled="" type="checkbox"> 确保所有图表都在正文中提到，并且提到的顺序与图表出现的顺序一致</li>
+<li><input disabled="" type="checkbox"> 标题很明显。避免语法错误，建议使用句号</li>
+<li><input disabled="" type="checkbox"> 矢量化图表</li>
+<li><input disabled="" type="checkbox"> 检查所有的公式是否完整，它们在编辑过程中很容易被忽略</li>
+<li><input disabled="" type="checkbox"> 通读所有字幕，统一大小写风格</li>
+<li><input disabled="" type="checkbox"> 确认正文页之外没有数字</li>
+<li><input disabled="" type="checkbox"> 检查匿名性；您可能需要删除确认</li>
+<li><input disabled="" type="checkbox"> 确保页数正确，避免被拒绝</li>
+</ul>
+</li>
+</ul>
+<p>@misc{WritingAIPaper2024,<br>    author &#x3D; {Zhewei Huang and Xiaohan Ding},<br>    title &#x3D; {Writing AI Conference Papers: A Handbook for Beginners},<br>    publisher &#x3D; {GitHub},<br>    journal &#x3D; {GitHub repository},<br>    howpublished &#x3D; {\url{<a target="_blank" rel="noopener" href="https://github.com/hzwer/WritingAIPaper%7D%7D">https://github.com/hzwer/WritingAIPaper}}</a>,<br>    year &#x3D; {2024},<br>    month &#x3D; {9},<br>}</p>
+<ul>
+<li>Rebuttal</li>
+</ul>
+<blockquote>
+<p>顶会rebuttal技术浅谈：站着，还把论文中了——丁霄汉</p>
+</blockquote>
+<ol>
+<li><p>实事求是，拒绝假装卑微<br>更好的策略是列出几篇代表性文章标题：你看看这几篇也有一定影响力，他们也没做这个实验嘛。当然了，既然你要了，我们也就做了，虽然意义不大，还是谢谢你了。</p>
+</li>
+<li><p>停止辩经，指出谁在划水<br>你的AC也未必看得上他分到的审稿人。如果你能实事求是地给出审稿人不称职的证据，AC可能也懒得看他的意见——到了后续的讨论阶段，跟乐子人打交道浪费的可是他的时间啊。 例如，下面这段来自我某一次给AC打的小报告。作为审稿过程的一部分，具体的内容是不能公开的，我只能概括了一下。 We feel it necessary to bring to your attention that some of the comments from Reviewer X confuse us a lot. It seems that the reviews lack some common knowledge of the deep learning literature.</p>
+<p>对事不对人，我们反对的只是他的言论，不要直接表达对审稿人的不满，不然会显得很不专业。所有对他的言论的指控都必须基于坚实的依据和简单的逻辑。他的言论必须是显而易见地荒诞，才值得你打小报告。AC也很忙，我们不能期望AC在对文章还不是很熟的情况下花几分钟来思考明白为什么某一句comment有事实性的严重错误。不要让AC有“你在教我做事”的感觉。我们可以说希望AC做决定时将这些review的质量问题纳入考虑，不要说希望AC排除这个审稿人的评分。</p>
+</li>
+<li><p>花式引战，勾起内部讨论<br>We would like to note that XXX distinguishes our method from YYY and ZZZ, which is appreciated by Reviewer Y and Z. 除了让审稿人更容易重新审视自己的判断以外，这样做还可能起到的一个正面效果是激发rebuttal后AC带领审稿人进行的讨论（“各位审稿人，我看了rebuttal，注意到了你们的评价各不相同，你们说说这是怎么回事？”）。如果AC觉得讨论是热烈而有益的，自己没白忙活，也收获了一些知识，那么作为引发讨论的素材，你的文章可能会得到一些印象分。</p>
+</li>
+<li><p>要改就改，不画虚空大饼</p>
+<p>如果审稿人说得对，你也想改，那就要在rebuttal中让他们知道你真的会改。由于会议论文只有一次审稿，审稿人和AC会担忧你的修改是不可控的（超出篇幅限制、删除了他们没想让你删的东西、引入了新的错误等）。所以要尽量避免虚空画饼</p>
+</li>
+</ol>
+</div><div class="article-licensing box"><div class="licensing-title"><p>学术写作逻辑</p><p><a href="http://lookupes.cn/2024/10/12/学术写作逻辑/">http://lookupes.cn/2024/10/12/学术写作逻辑/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Lookup</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2024-10-12</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2024-10-12</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%A7%91%E7%A0%94/">科研</a></div><div class="a2a_kit a2a_kit_size_32 a2a_default_style"><a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a><a class="a2a_button_facebook"></a><a class="a2a_button_twitter"></a><a class="a2a_button_telegram"></a><a class="a2a_button_whatsapp"></a><a class="a2a_button_reddit"></a></div><script src="https://static.addtoany.com/menu/page.js" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay.jpg" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechat.jpg" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2098/12/10/Math%20List/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Math List</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2024/03/31/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%B0%E5%BD%95/"><span class="level-item">大模型学习记录</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Lookup"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Lookup</p><p class="is-size-6 is-block">仰望一切，无论是天空中的太阳与月亮，又或者是身边的你</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Xi&#039;an China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">43</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">25</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/starlookup" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/starlookup"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2099-12-11T18:02:02.000Z">2099-12-12</time></p><p class="title"><a href="/2099/12/12/%E5%AD%A6%E6%9C%AF%E5%AE%9A%E7%90%86%E6%80%A7%E7%BB%93%E8%AE%BA%E8%AE%B0%E5%BD%95/">学术定理性结论记录</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2099-08-27T18:02:03.000Z">2099-08-28</time></p><p class="title"><a href="/2099/08/28/leetcode_%E6%A8%A1%E7%89%88/">leetcode 模版</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2098-12-11T18:02:02.000Z">2098-12-12</time></p><p class="title"><a href="/2098/12/12/English%20list/">English List</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2098-12-10T18:02:02.000Z">2098-12-11</time></p><p class="title"><a href="/2098/12/11/Figure%20List/">Figure List</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2098-12-09T18:02:02.000Z">2098-12-10</time></p><p class="title"><a href="/2098/12/10/Math%20List/">Math List</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2099/12/"><span class="level-start"><span class="level-item">十二月 2099</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2099/08/"><span class="level-start"><span class="level-item">八月 2099</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2098/12/"><span class="level-start"><span class="level-item">十二月 2098</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/10/"><span class="level-start"><span class="level-item">十月 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/03/"><span class="level-start"><span class="level-item">三月 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/02/"><span class="level-start"><span class="level-item">二月 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/01/"><span class="level-start"><span class="level-item">一月 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/10/"><span class="level-start"><span class="level-item">十月 2023</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/09/"><span class="level-start"><span class="level-item">九月 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/08/"><span class="level-start"><span class="level-item">八月 2023</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/07/"><span class="level-start"><span class="level-item">七月 2023</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/06/"><span class="level-start"><span class="level-item">六月 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/05/"><span class="level-start"><span class="level-item">五月 2023</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/02/"><span class="level-start"><span class="level-item">二月 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">四月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">十月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">九月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/07/"><span class="level-start"><span class="level-item">七月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Docker/"><span class="tag">Docker</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/English/"><span class="tag">English</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/FIgure/"><span class="tag">FIgure</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LLM/"><span class="tag">LLM</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/xgboost/"><span class="tag">xgboost</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BB%A3%E7%A0%81/"><span class="tag">代码</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BC%81%E4%B8%9A%E5%AE%89%E5%85%A8/"><span class="tag">企业安全</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"><span class="tag">基础知识</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AE%89%E5%85%A8/"><span class="tag">安全</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81/"><span class="tag">差分隐私</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%91%84%E5%BD%B1/"><span class="tag">摄影</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8/"><span class="tag">数据安全</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90/"><span class="tag">数据生成</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E8%92%B8%E9%A6%8F/"><span class="tag">数据蒸馏</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%97%A5%E8%AE%B0/"><span class="tag">日记</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"><span class="tag">服务器</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1-%E5%9B%BD%E9%87%8D%E9%A1%B9%E7%9B%AE/"><span class="tag">知识图谱 国重项目</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%A7%91%E7%A0%94/"><span class="tag">科研</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AF%AE%E7%90%83%E8%A3%81%E5%88%A4/"><span class="tag">篮球裁判</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E7%A8%8B/"><span class="tag">编程</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%8B%B1%E8%AF%AD-%E7%95%99%E5%AD%A6/"><span class="tag">英语 留学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BA%E6%96%87/"><span class="tag">论文</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BA%E6%96%87%E8%AF%84%E5%AE%A1/"><span class="tag">论文评审</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%98%85%E8%AF%BB/"><span class="tag">阅读</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget" data-type="adsense"><div class="card-content"><div class="menu"><h3 class="menu-label">广告</h3><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="Lookup" data-ad-slot="Lookup" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="仰望" height="28"></a><p class="is-size-7"><span>&copy; 2024 Lookup</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><a href="https://beian.miit.gov.cn/" target="_blank">备案号：皖ICP备19019268号</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/starlookup"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
